@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
+import DatePicker from "./DatePicker";
+
 export default function Filter({ title }) {
   return (
     <Container>
       <FilterTitle>{title}</FilterTitle>
+      <DatePicker />
     </Container>
   );
 }

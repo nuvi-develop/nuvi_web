@@ -3,13 +3,22 @@ import styled from "styled-components";
 
 import Colors from "theme/colors";
 
-export default function DefaultTitle({ title, icon, info }) {
+export default function DefaultTitle({
+  title,
+  icon,
+  info,
+  color,
+  style,
+  component: Component
+}) {
   return (
-    <TitleContainer>
+    <TitleContainer style={style}>
       <ImageContainer>
         <img src={icon} alt={`${icon}`} />
       </ImageContainer>
-      <Title>{title}</Title>
+      <Title color={color}>
+        {title ? title : Component ? <Component /> : null}
+      </Title>
       {info
         ? info.map(({ title, color }) => (
             <Info key={title} color={color}>
@@ -30,7 +39,7 @@ const TitleContainer = styled.div`
 
 const Title = styled.div`
   font-size: 32px;
-  color: ${Colors.blue_3};
+  color: ${({ color }) => (color ? color : Colors.blue_3)};
   margin: 0 20px;
 `;
 

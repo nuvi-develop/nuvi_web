@@ -11,6 +11,20 @@ import CustomBarChart from "./Charts/CustomBarChart";
 import ExpectNumber from "./ExpectNumber";
 import ExpectVolume from "./ExpectVolume";
 import BarChart from "./Charts/BarChart";
+import NavItem from "./Navigation/NavItem";
+import FilterContainer from "./FilterContainer";
+import Filter from "./FilterContainer/Filter";
+import LastLunch from "./LastLunch";
+import LastDinner from "./LastDinner";
+import BarHorizontalChart from "./Charts/BarHorizontalChart";
+import FavFood from "./FavFood";
+import FavNotFood from "./FavNotFood";
+import LeftOver from "./LeftOver";
+import MadeTooMuch from "./MadeTooMuch";
+import Compare from "./Compare";
+import SimpleBarChart from "./Charts/SimpleBarChart";
+import HalfPieChart from "./Charts/HalfPieChart";
+import TrashGraph from "./Charts/TrashGraph";
 
 export {
   Navigation,
@@ -25,5 +39,19 @@ export {
   CustomBarChart,
   ExpectNumber,
   ExpectVolume,
-  BarChart
+  BarChart,
+  NavItem,
+  FilterContainer,
+  Filter,
+  LastLunch,
+  LastDinner,
+  BarHorizontalChart,
+  FavFood,
+  FavNotFood,
+  LeftOver,
+  MadeTooMuch,
+  Compare,
+  SimpleBarChart,
+  HalfPieChart,
+  TrashGraph
 };

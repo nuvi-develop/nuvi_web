@@ -32,9 +32,10 @@ export default function ComposedChartComponent({ width, height }) {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="식수량" barSize={20} fill="#413ea0" />
+
       <Area type="monotone" dataKey="최대" fill="#ff7300" stroke="#ff7300" />
       <Area type="monotone" dataKey="최소" fill="#8884d8" stroke="#8884d8" />
+      <Bar dataKey="식수량" barSize={20} fill="#413ea0" />
     </ComposedChart>
   );
 }

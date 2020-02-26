@@ -1,1 +1,27 @@
-<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg enable-background="new 0 0 24 24" height="24px" id="Layer_1" version="1.1" viewBox="0 0 24 24" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M24,8c0-3.3-2.7-6-6-6c-0.5,0-0.9,0.1-1.4,0.2C15.5,0.8,13.9,0,12,0S8.5,0.8,7.4,2.2C6.9,2.1,6.5,2,6,2C2.7,2,0,4.7,0,8  c0,2.6,1.7,4.8,4,5.7V23c0,0.6,0.4,1,1,1h14c0.6,0,1-0.4,1-1v-9.3C22.3,12.8,24,10.6,24,8z M18,22H6v-2h12V22z M18,12v7H6v-7  c-2.2,0-4-1.8-4-4s1.8-4,4-4c0.1,0,0.2,0,0.3,0C7,4.1,7.7,4.3,8.2,4.7C8.5,4,8.8,3.5,9.4,3C10.1,2.4,11,2,12,2s1.9,0.4,2.6,1  c0.5,0.4,0.9,1,1.1,1.7C16.3,4.3,17,4.1,17.7,4c0.1,0,0.2,0,0.3,0c2.2,0,4,1.8,4,4S20.2,12,18,12z"/></svg>
+<svg id="cook2" xmlns="http://www.w3.org/2000/svg" width="41" height="41.248" viewBox="0 0 41 41.248">
+  <g id="Handle" transform="translate(0 25.779)">
+    <g id="그룹_34" data-name="그룹 34">
+      <path id="패스_54" data-name="패스 54" d="M10.312,40c-1.289,1.29-1.289,3.868-2.578,5.157L1.289,50.312C0,51.6,0,52.245,0,52.89a5.032,5.032,0,0,0,2.578,2.578c.644,0,1.289,0,2.578-1.289l5.156-6.445c1.289-1.289,3.867-1.289,5.156-2.578Z" transform="translate(0 -39.999)" fill="#48a0dc"/>
+    </g>
+  </g>
+  <g id="Pan" transform="translate(7.662)">
+    <g id="그룹_35" data-name="그룹 35">
+      <circle id="타원_4" data-name="타원 4" cx="16.5" cy="16.5" r="16.5" transform="translate(0.338)" fill="#4786e9"/>
+    </g>
+  </g>
+  <g id="Bottom" transform="translate(11.493 3.831)">
+    <g id="그룹_36" data-name="그룹 36">
+      <ellipse id="타원_5" data-name="타원 5" cx="13" cy="12.5" rx="13" ry="12.5" transform="translate(-0.493 0.169)" fill="#a9c3ed"/>
+    </g>
+  </g>
+  <g id="Albumen" transform="translate(16.757 10.312)">
+    <g id="그룹_37" data-name="그룹 37">
+      <path id="패스_55" data-name="패스 55" d="M40.179,17.289C38.89,17.289,37.6,16,36.312,16c-3.867,0-6.445,2.578-7.734,3.867S26,22.445,26,25.023a5.545,5.545,0,0,0,5.156,5.156c1.289,0,3.707,1.288,6.445,1.288,1.289,0,2.578-2.577,2.578-5.155s3.867-2.578,3.867-5.156A4.116,4.116,0,0,0,40.179,17.289Z" transform="translate(-26 -16)" fill="#fff"/>
+    </g>
+  </g>
+  <g id="Yolk" transform="translate(21.709 14.047)">
+    <g id="그룹_38" data-name="그룹 38">
+      <ellipse id="타원_6" data-name="타원 6" cx="3.5" cy="4" rx="3.5" ry="4" transform="translate(0.291 -0.047)" fill="#fc6"/>
+    </g>
+  </g>
+</svg>

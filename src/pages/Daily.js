@@ -7,17 +7,16 @@ import {
   ExpectNumber,
   ExpectVolume,
   DefaultTitle,
-  BarChart
+  BarChart,
+  LastLunch,
+  LastDinner
 } from "components";
 import Colors from "theme/colors";
-
-const sunBig = "/icons/sun_big.svg";
-const moonBig = "/icons/moon_big.svg";
 
 export default function Daily() {
   return (
     <DefaultLayout>
-      <Navigation />
+      <Navigation initialTab="DAILY" />
       <DailyContainer>
         <SummaryContainer />
         <MainContainer style={{ gridColumn: "1 / 3 ", gridRow: "2/6" }}>
@@ -25,28 +24,8 @@ export default function Daily() {
           <ExpectVolume />
         </MainContainer>
         <MainContainer style={{ gridColumn: " 3 ", gridRow: "2/6" }}>
-          <SubContainer>
-            <DefaultTitle
-              title="이전 점심"
-              icon={sunBig}
-              info={[
-                { title: "잔반", color: "#918FE1" },
-                { title: "잔식", color: "#96D1A5" }
-              ]}
-            />
-            <BarChart width={600} height={300} />
-          </SubContainer>
-          <SubContainer>
-            <DefaultTitle
-              title="이전 저녁"
-              icon={moonBig}
-              info={[
-                { title: "잔반", color: "#918FE1" },
-                { title: "잔식", color: "#96D1A5" }
-              ]}
-            />
-            <BarChart width={600} height={300} />
-          </SubContainer>
+          <LastLunch />
+          <LastDinner />
         </MainContainer>
       </DailyContainer>
     </DefaultLayout>
@@ -76,8 +55,4 @@ const MainContainer = styled.div`
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 30px;
-`;
-
-const SubContainer = styled.div`
-  flex: 1;
 `;

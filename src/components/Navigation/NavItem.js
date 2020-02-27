@@ -16,7 +16,9 @@ export default function NavItemComponent(props) {
 const NavItem = styled.div`
   font-size: 24px;
   margin-bottom: 20px;
-  padding: 10px 30px;
+  padding: 10px 20px;
+  width: 80px;
+  text-align: center;
   border-radius: 20px;
   background-color: ${({ activeItem, title }) =>
     activeItem === title ? Colors.green_1 : null};

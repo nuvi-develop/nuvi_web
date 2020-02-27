@@ -12,19 +12,19 @@ import {
 } from "components";
 import Colors from "theme/colors";
 
-const compare = "/icons/compare.svg";
-
 export default function Total() {
   return (
     <DefaultLayout>
-      <Navigation initialTab="TOTAL" />
-      <TotalContainer>
+      <Navigation initialTab="TOTAL" style={{ gridColumn: `1/2` }} />
+      <TotalContainer style={{ gridColumn: `2/13` }}>
         <FilterContainer />
         <MainContainer style={{ gridColumn: "1/3", gridRow: "2/6" }}>
           <FavFood />
           <FavNotFood />
         </MainContainer>
-        <MainContainer style={{ gridColumn: "3/5", gridRow: "2/6" }}>
+        <MainContainer
+          style={{ gridColumn: "3/5", gridRow: "2/6", marginRight: "30px" }}
+        >
           <LeftOver />
           <MadeTooMuch />
           <Compare />
@@ -35,19 +35,20 @@ export default function Total() {
 }
 
 const DefaultLayout = styled.div`
-  display: flex;
-  heigh: 100vh;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 1fr
+  gap:30px;
   background-color: ${Colors.gray_2};
 `;
 
 const TotalContainer = styled.div`
   display: grid;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   grid-template-rows: repeat(5, 1fr);
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
-  margin: 0 30px;
 `;
 
 const MainContainer = styled.div`

@@ -42,9 +42,8 @@ const SummaryCard = styled.div`
   align-items: center;
   background-color: ${Colors.blue_1};
   border-radius: 10px;
-  width: 600px;
-  padding: 20px;
-  margin: 0 10px;
+  width: 100%;
+  padding: 20px 0;
 `;
 
 const MainTitle = styled.div`

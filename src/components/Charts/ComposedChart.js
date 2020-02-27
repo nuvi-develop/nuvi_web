@@ -7,7 +7,8 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend
+  Legend,
+  ResponsiveContainer
 } from "recharts";
 
 const data = [
@@ -21,21 +22,21 @@ const data = [
 
 export default function ComposedChartComponent({ width, height }) {
   return (
-    <ComposedChart
-      width={width}
-      height={height}
-      data={data}
-      margin={{ top: 20, right: 60, bottom: 20, left: 20 }}
-    >
-      <CartesianGrid stroke="#f5f5f5" />
-      <XAxis dataKey="name" padding={{ left: 20 }} />
-      <YAxis />
-      <Tooltip />
-      <Legend />
+    <ResponsiveContainer width={width} height={height}>
+      <ComposedChart
+        data={data}
+        margin={{ top: 20, right: 60, bottom: 20, left: 20 }}
+      >
+        <CartesianGrid stroke="#f5f5f5" />
+        <XAxis dataKey="name" padding={{ left: 20 }} />
+        <YAxis />
+        <Tooltip />
+        <Legend />
 
-      <Area type="monotone" dataKey="최대" fill="#ff7300" stroke="#ff7300" />
-      <Area type="monotone" dataKey="최소" fill="#8884d8" stroke="#8884d8" />
-      <Bar dataKey="식수량" barSize={20} fill="#413ea0" />
-    </ComposedChart>
+        <Area type="monotone" dataKey="최대" fill="#ff7300" stroke="#ff7300" />
+        <Area type="monotone" dataKey="최소" fill="#8884d8" stroke="#8884d8" />
+        <Bar dataKey="식수량" barSize={20} fill="#413ea0" />
+      </ComposedChart>
+    </ResponsiveContainer>
   );
 }

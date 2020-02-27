@@ -28,10 +28,11 @@ export default function SummaryContainerComponent() {
 }
 
 const SummaryContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   grid-column-start: 1;
   grid-column-end: 4;
   margin-top: 30px;
+  margin-right: 30px;
 `;

@@ -21,8 +21,8 @@ export default function CompareComponent() {
     <SubContainer>
       <DefaultTitle component={Title} icon={compare} />
       <GraphContainer>
-        <HalfPieChart />
-        <SimpleBarChart />
+        <HalfPieChart width={"50%"} height={200} />
+        <SimpleBarChart width={"50%"} height={200} />
       </GraphContainer>
     </SubContainer>
   );

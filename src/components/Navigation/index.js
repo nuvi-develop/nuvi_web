@@ -38,12 +38,13 @@ export default function Nav({ initialTab }) {
 
 const NavContainer = styled.div`
   background-color: ${Colors.blue_1};
-  height: 100vh;
+  height: 100%;
   width: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 `;
 
 const Logo = styled.img`
@@ -74,6 +75,8 @@ const UserName = styled.div`
 `;
 
 const UserInfoContainer = styled.div`
+  position: fixed;
+  bottom: 10px;
   margin: 30px 0;
   display: flex;
   flex-direction: column;

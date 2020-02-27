@@ -1,5 +1,5 @@
 import React from "react";
-import { PieChart, Pie, Cell, LabelList } from "recharts";
+import { PieChart, Pie, Cell, LabelList, ResponsiveContainer } from "recharts";
 
 import Colors from "theme/colors";
 
@@ -12,23 +12,25 @@ const costomizedLabel = entry => {
   return `${entry.name} ${entry.percent * 100}%`;
 };
 
-export default function HalfPieChart() {
+export default function HalfPieChart({ width, height }) {
   return (
-    <PieChart width={300} height={200}>
-      <Pie
-        startAngle={180}
-        endAngle={0}
-        data={data}
-        outerRadius={80}
-        fill="#8884d8"
-        label={costomizedLabel}
-        cy="80%"
-      >
-        <Cell key={1} fill={Colors.blue_1} />
-        <Cell key={2} fill={Colors.blue_2} />
-        <Cell key={3} fill={Colors.green_2} />
-        <LabelList dataKey="value" position="top" angle="45" />
-      </Pie>
-    </PieChart>
+    <ResponsiveContainer width={width} height={height}>
+      <PieChart>
+        <Pie
+          startAngle={180}
+          endAngle={0}
+          data={data}
+          outerRadius={80}
+          fill="#8884d8"
+          label={costomizedLabel}
+          cy="80%"
+        >
+          <Cell key={1} fill={Colors.blue_1} />
+          <Cell key={2} fill={Colors.blue_2} />
+          <Cell key={3} fill={Colors.green_2} />
+          <LabelList dataKey="value" position="top" angle="45" />
+        </Pie>
+      </PieChart>
+    </ResponsiveContainer>
   );
 }

@@ -21,12 +21,12 @@ export default function ExpectNumber() {
       <ContentContainer>
         <GraphContainer>
           <Lunch blue />
-          <ComposedChart width={600} height={300} />
+          <ComposedChart width={"99%"} height={300} />
         </GraphContainer>
         <DivideLine />
         <GraphContainer>
           <Dinner blue />
-          <ComposedChart width={600} height={300} />
+          <ComposedChart width={"99%"} height={300} />
         </GraphContainer>
       </ContentContainer>
     </SubContainer>

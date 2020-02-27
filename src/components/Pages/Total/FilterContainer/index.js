@@ -27,6 +27,7 @@ const FilterContainer = styled.div`
   background-color: ${Colors.blue_1};
   border-radius: 10px;
   padding: 20px;
+  margin-right: 30px;
 `;
 
 const FilterGroup = styled.div`

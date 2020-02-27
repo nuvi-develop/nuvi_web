@@ -3,20 +3,20 @@ import styled from "styled-components";
 
 import { DefaultTitle, BarChart } from "components";
 
-const sunBig = "/icons/sun_big.svg";
+const moonBig = "/icons/moon_big.svg";
 
-export default function LastLunch() {
+export default function LastDinner() {
   return (
     <SubContainer>
       <DefaultTitle
-        title="이전 점심"
-        icon={sunBig}
+        title="이전 저녁"
+        icon={moonBig}
         info={[
           { title: "잔반", color: "#918FE1" },
           { title: "잔식", color: "#96D1A5" }
         ]}
       />
-      <BarChart width={600} height={300} />
+      <BarChart width={"99%"} height={300} />
     </SubContainer>
   );
 }

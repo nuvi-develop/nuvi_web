@@ -25,7 +25,7 @@ export default function SimpleBarChart() {
       />
       <Bar dataKey="pv" fill="#8884d8" barSize={100}>
         {data.map((entry, index) => (
-          <Cell fill={colors[index]} />
+          <Cell key={entry.name} fill={colors[index]} />
         ))}
         <LabelList
           position="top"

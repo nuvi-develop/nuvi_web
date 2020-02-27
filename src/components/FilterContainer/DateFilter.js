@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import DatePicker from "./DatePicker";
 
-export default function Filter({ title }) {
+export default function DateFilter({ title }) {
   return (
     <Container>
       <FilterTitle>{title}</FilterTitle>

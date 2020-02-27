@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import Colors from "theme/colors";
-import { DefaultTitle, Filter } from "components";
+import { DefaultTitle } from "components";
+import DateFilter from "./DateFilter";
+import GeneralFilter from "./GeneralFilter";
 
 const filter = "/icons/filter.svg";
 
@@ -11,9 +13,9 @@ export default function FilterContainerComponent() {
     <FilterContainer>
       <DefaultTitle icon={filter} title="FILTER" color="white" />
       <FilterGroup>
-        <Filter title="시작 날짜" />
-        <Filter title="종료 날짜" />
-        <Filter title="점심/저녁" />
+        <DateFilter title="시작 날짜" />
+        <DateFilter title="종료 날짜" />
+        <GeneralFilter title="점심/저녁" />
       </FilterGroup>
     </FilterContainer>
   );

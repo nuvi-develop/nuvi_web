@@ -13,7 +13,7 @@ import ExpectVolume from "./ExpectVolume";
 import BarChart from "./Charts/BarChart";
 import NavItem from "./Navigation/NavItem";
 import FilterContainer from "./FilterContainer";
-import Filter from "./FilterContainer/Filter";
+import DateFilter from "./FilterContainer/DateFilter";
 import LastLunch from "./LastLunch";
 import LastDinner from "./LastDinner";
 import BarHorizontalChart from "./Charts/BarHorizontalChart";
@@ -42,7 +42,7 @@ export {
   BarChart,
   NavItem,
   FilterContainer,
-  Filter,
+  DateFilter,
   LastLunch,
   LastDinner,
   BarHorizontalChart,

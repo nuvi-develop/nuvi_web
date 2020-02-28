@@ -4,7 +4,7 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 import "./App.css";
 
-import { Daily, Total } from "pages";
+import { Daily, Total, Auth } from "pages";
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
         <Route exact path="/" component={Daily} />
         <Route path="/daily" component={Daily} />
         <Route path="/total" component={Total} />
+        <Route path="/auth" component={Auth} />
       </Switch>
     </Router>
   );

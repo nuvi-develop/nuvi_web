@@ -25,6 +25,7 @@ import Compare from "./Pages/Total/Compare";
 import SimpleBarChart from "./Charts/SimpleBarChart";
 import HalfPieChart from "./Charts/HalfPieChart";
 import TrashGraph from "./Charts/TrashGraph";
+import SignUpForm from "./Pages/Auth/SignUpForm";
 
 export {
   Navigation,
@@ -53,5 +54,6 @@ export {
   Compare,
   SimpleBarChart,
   HalfPieChart,
-  TrashGraph
+  TrashGraph,
+  SignUpForm
 };

@@ -37,8 +37,7 @@ export default function Total() {
 const DefaultLayout = styled.div`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 1fr
-  gap:30px;
+  gap: 30px;
   background-color: ${Colors.gray_2};
 `;
 

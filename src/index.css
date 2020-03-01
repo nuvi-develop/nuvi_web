@@ -7,6 +7,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button,
+input {
+  font-family: "Jua";
+}
+
+input:focus {
+  outline: none;
+}
+
 h1,
 h2,
 h3,

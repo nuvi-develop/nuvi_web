@@ -32,14 +32,8 @@ export default function SignUpForm() {
       <StyledForm>
         <MyTextInput label="이메일" name="email" type="text" />
         <MyTextInput label="비밀번호" name="password" type="password" />
-        <MyTextInput
-          label="비밀번호 확인"
-          name="passwordConfirm"
-          type="password"
-        />
         <MyTextInput label="관리자" name="isAdmin" type="text" />
-        <MyTextInput label="조직명" name="orgName" type="text" />
-        <StyledButton tyle="submit">다음</StyledButton>
+        <StyledButton tyle="submit">로그인</StyledButton>
       </StyledForm>
     </Formik>
   );

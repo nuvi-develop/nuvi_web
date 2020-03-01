@@ -26,6 +26,7 @@ import SimpleBarChart from "./Charts/SimpleBarChart";
 import HalfPieChart from "./Charts/HalfPieChart";
 import TrashGraph from "./Charts/TrashGraph";
 import SignUpForm from "./Pages/Auth/SignUpForm";
+import LoginForm from "./Pages/Auth/LoginForm";
 
 export {
   Navigation,
@@ -55,5 +56,6 @@ export {
   SimpleBarChart,
   HalfPieChart,
   TrashGraph,
-  SignUpForm
+  SignUpForm,
+  LoginForm
 };

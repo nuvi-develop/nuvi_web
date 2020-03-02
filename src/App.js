@@ -10,7 +10,7 @@ function App({ history }) {
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path="/" component={Daily} />
+        <Route exact path="/" component={Auth} />
         <Route path="/daily" component={Daily} />
         <Route path="/total" component={Total} />
         <Route path="/auth" component={Auth} />

@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e045d37d5f2224eb0b234bbef134c836",
+    "revision": "29907823daa2dc671a9a68f97fcc5d86",
     "url": "/nuvi_web/index.html"
   },
   {
-    "revision": "5ea30d6b76f596d83946",
+    "revision": "2cba67aaf0bc7e75ef03",
     "url": "/nuvi_web/static/css/main.928d15fb.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/nuvi_web/static/js/2.3782e05c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5ea30d6b76f596d83946",
-    "url": "/nuvi_web/static/js/main.141af88f.chunk.js"
+    "revision": "2cba67aaf0bc7e75ef03",
+    "url": "/nuvi_web/static/js/main.586f40bc.chunk.js"
   },
   {
     "revision": "068a56b76ffd3b01a62c",

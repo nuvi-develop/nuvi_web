@@ -1,14 +1,14 @@
 import React from "react";
-import { ConnectedRouter } from "connected-react-router";
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import { ConnectedRouter as Router } from "connected-react-router";
+import { Switch, Route } from "react-router-dom";
 
 import "./App.css";
 
 import { Daily, Total, Auth } from "pages";
 
-function App() {
+function App({ history }) {
   return (
-    <Router>
+    <Router history={history}>
       <Switch>
         <Route exact path="/" component={Daily} />
         <Route path="/daily" component={Daily} />

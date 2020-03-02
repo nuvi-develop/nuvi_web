@@ -2,12 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
 
 import Colors from "theme/colors";
 import MyTextInput from "./Input/MyTextInput";
 import MyToggleInput from "./Input/MyToggleInput";
+import { actions } from "data";
 
 export default function SignUpForm() {
+  const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{
@@ -26,6 +29,7 @@ export default function SignUpForm() {
       })}
       onSubmit={values => {
         console.log(values);
+        dispatch(actions.router.push("daily"));
       }}
     >
       <StyledForm>

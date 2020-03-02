@@ -57,8 +57,12 @@ const StyledSelect = styled.select`
   width: 430px;
   color: white;
   font-size: 40px;
-  height: 100px;
+  height: 60px;
   background-color: ${Colors.gray_1};
   outline: none;
   border: 5px solid ${Colors.gray_2};
+
+  &:focus {
+    border: 5px solid ${Colors.green_1};
+  }
 `;

@@ -80,10 +80,14 @@ const AuthItem = styled.div`
   &:after {
     content: " ";
     display: block;
-    border-top: 10px solid white;
-    border-bottom: 10px solid white;
+    border-top: 10px solid
+      ${({ buttonFor, mode }) => (buttonFor === mode ? Colors.gray_2 : "white")};
+    border-bottom: 10px solid
+      ${({ buttonFor, mode }) => (buttonFor === mode ? Colors.gray_2 : "white")};
     border-radius: 10px;
     width: ${({ buttonFor, mode }) => (buttonFor === mode ? "300px" : "0px")};
+    transition: width 0.5s, border 1s;
+    text-align: center;
   }
 `;
 

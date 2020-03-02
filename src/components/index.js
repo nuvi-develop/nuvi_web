@@ -27,6 +27,7 @@ import HalfPieChart from "./Charts/HalfPieChart";
 import TrashGraph from "./Charts/TrashGraph";
 import SignUpForm from "./Pages/Auth/SignUpForm";
 import LoginForm from "./Pages/Auth/LoginForm";
+import ApplyRegister from "./Modal/ApplyRegister";
 
 export {
   Navigation,
@@ -57,5 +58,6 @@ export {
   HalfPieChart,
   TrashGraph,
   SignUpForm,
-  LoginForm
+  LoginForm,
+  ApplyRegister
 };

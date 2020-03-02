@@ -4,23 +4,29 @@ import { useField } from "formik";
 
 import Colors from "theme/colors";
 
-const MyTextInput = ({ label, ...props }) => {
-  const { name } = props;
+export default function MySelect({ label, ...props }) {
+  const { name, options } = props;
   const [field, meta] = useField(props);
   return (
-    <TextInputContainer>
+    <InputContainer>
       <StyledLabel htmlFor={name}>{label}</StyledLabel>
       <InputWrapper>
-        <StyledInput {...field} {...props} />
+        <StyledSelect {...field} {...props}>
+          {["조직명", ...options].map(option => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </StyledSelect>
         <ErrorPlaceHolder>
           {meta.touched && meta.error ? meta.error : " "}
         </ErrorPlaceHolder>
       </InputWrapper>
-    </TextInputContainer>
+    </InputContainer>
   );
-};
+}
 
-const TextInputContainer = styled.div`
+const InputContainer = styled.div`
   display: flex;
   align-items: center;
   margin: 10px 0;
@@ -37,25 +43,7 @@ const StyledLabel = styled.label`
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const StyledInput = styled.input`
   width: 430px;
-  background-color: ${Colors.gray_1};
-  border: none;
-  border-bottom: 5px solid ${Colors.gray_2};
-  color: white;
-  font-size: 40px;
-  padding: 5px;
-
-  &:focus {
-    border-bottom: 5px solid ${Colors.green_1};
-  }
-
-  &:-webkit-autofill {
-    background-color: ${Colors.gray_1};
-    color: white;
-  }
 `;
 
 const ErrorPlaceHolder = styled.div`
@@ -65,4 +53,12 @@ const ErrorPlaceHolder = styled.div`
   color: ${Colors.green_2};
 `;
 
-export default MyTextInput;
+const StyledSelect = styled.select`
+  width: 430px;
+  color: white;
+  font-size: 40px;
+  height: 100px;
+  background-color: ${Colors.gray_1};
+  outline: none;
+  border: 5px solid ${Colors.gray_2};
+`;

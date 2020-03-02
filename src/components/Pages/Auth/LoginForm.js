@@ -5,6 +5,7 @@ import * as Yup from "yup";
 
 import Colors from "theme/colors";
 import MyTextInput from "./Input/MyTextInput";
+import MyToggleInput from "./Input/MyToggleInput";
 
 export default function SignUpForm() {
   return (
@@ -12,18 +13,16 @@ export default function SignUpForm() {
       initialValues={{
         email: "",
         password: "",
-        passwordConfirm: "",
-        isAdmin: false,
-        orgName: ""
+
+        isAdmin: false
       }}
       validationSchema={Yup.object({
         email: Yup.string()
           .email("올바른 이메일이 아닙니다.")
           .required("필수항목 입니다."),
         password: Yup.string().required("필수항목 입니다."),
-        passwordConfirm: Yup.string().required("필수항목 입니다."),
-        isAdmin: Yup.boolean().required("필수항목 입니다."),
-        orgName: Yup.string().required("필수항목 입니다.")
+
+        isAdmin: Yup.boolean().required("필수항목 입니다.")
       })}
       onSubmit={values => {
         console.log(values);
@@ -32,8 +31,8 @@ export default function SignUpForm() {
       <StyledForm>
         <MyTextInput label="이메일" name="email" type="text" />
         <MyTextInput label="비밀번호" name="password" type="password" />
-        <MyTextInput label="관리자" name="isAdmin" type="text" />
-        <StyledButton tyle="submit">로그인</StyledButton>
+        <MyToggleInput label="관리자" name="isAdmin" type="checkbox" />
+        <StyledButton type="submit">로그인</StyledButton>
       </StyledForm>
     </Formik>
   );

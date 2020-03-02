@@ -10,10 +10,10 @@ function App({ history }) {
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path="/" component={Auth} />
-        <Route path="/daily" component={Daily} />
-        <Route path="/total" component={Total} />
-        <Route path="/auth" component={Auth} />
+        <Route exact path={process.env.PUBLIC_URL + "/"} component={Auth} />
+        <Route path={process.env.PUBLIC_URL + "/daily"} component={Daily} />
+        <Route path={process.env.PUBLIC_URL + "/total"} component={Total} />
+        <Route path={process.env.PUBLIC_URL + "/auth"} component={Auth} />
       </Switch>
     </Router>
   );

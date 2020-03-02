@@ -54,9 +54,9 @@
   "devDependencies": {
     "babel-plugin-module-resolver": "^4.0.0",
     "gh-pages": "^2.2.0",
+    "netlify-cli": "^2.36.0",
     "prettier": "^1.19.1",
     "react-app-rewired": "^2.1.5",
     "redux-devtools": "^3.5.0"
-  },
-  "homepage": "https://nuvi-develop.github.io/nuvi_web"
+  }
 }

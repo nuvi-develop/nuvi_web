@@ -32,7 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && cd build && aws s3 sync ./ s3://dev-cityhall-admin-202003 --acl public-read"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -51,8 +52,6 @@
   },
   "devDependencies": {
     "babel-plugin-module-resolver": "^4.0.0",
-    "gh-pages": "^2.2.0",
-    "netlify-cli": "^2.36.0",
     "prettier": "^1.19.1",
     "react-app-rewired": "^2.1.5",
     "redux-devtools": "^3.5.0"

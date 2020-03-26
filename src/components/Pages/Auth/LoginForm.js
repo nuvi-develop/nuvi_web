@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -7,38 +7,61 @@ import { useDispatch } from "react-redux";
 import Colors from "theme/colors";
 import MyTextInput from "./Input/MyTextInput";
 import MyToggleInput from "./Input/MyToggleInput";
+import MyErrorPlaceHolder from "./Input/MyErrorPlaceHolder";
+import GoogleLogin from "./Social/GoogleLogin";
 import { actions } from "data";
+import api from "api";
+import colors from "theme/colors";
 
-export default function SignUpForm() {
+export default function LoginForm() {
   const dispatch = useDispatch();
+  const [submitError, setSubmitError] = useState(null);
+
+  const submitHandler = async values => {
+    const res = await api.authApi
+      .login(values)
+      .then(res => {
+        console.log("res", res);
+        dispatch(actions.router.push("/daily"));
+      })
+      .catch(error => {
+        const message = error.message;
+        console.log("message", message);
+        setSubmitError(message);
+        setTimeout(() => {
+          setSubmitError(null);
+        }, 3000);
+      });
+  };
   return (
-    <Formik
-      initialValues={{
-        email: "",
-        password: "",
+    <>
+      <Formik
+        initialValues={{
+          emailAddress: "",
+          password: "",
+          isAdmin: false
+        }}
+        validationSchema={Yup.object({
+          emailAddress: Yup.string()
+            .email("올바른 이메일이 아닙니다.")
+            .required("필수항목 입니다."),
+          password: Yup.string().required("필수항목 입니다."),
 
-        isAdmin: false
-      }}
-      validationSchema={Yup.object({
-        email: Yup.string()
-          .email("올바른 이메일이 아닙니다.")
-          .required("필수항목 입니다."),
-        password: Yup.string().required("필수항목 입니다."),
+          isAdmin: Yup.boolean().required("필수항목 입니다.")
+        })}
+        onSubmit={submitHandler}
+      >
+        <StyledForm>
+          <MyTextInput label="이메일" name="emailAddress" type="text" />
+          <MyTextInput label="비밀번호" name="password" type="password" />
+          <MyToggleInput label="관리자" name="isAdmin" type="checkbox" />
+          <MyErrorPlaceHolder message={submitError} />
 
-        isAdmin: Yup.boolean().required("필수항목 입니다.")
-      })}
-      onSubmit={values => {
-        console.log(values);
-        dispatch(actions.router.push("daily"));
-      }}
-    >
-      <StyledForm>
-        <MyTextInput label="이메일" name="email" type="text" />
-        <MyTextInput label="비밀번호" name="password" type="password" />
-        <MyToggleInput label="관리자" name="isAdmin" type="checkbox" />
-        <StyledButton type="submit">로그인</StyledButton>
-      </StyledForm>
-    </Formik>
+          <StyledButton type="submit">로그인</StyledButton>
+        </StyledForm>
+      </Formik>
+      <GoogleLogin />
+    </>
   );
 }
 

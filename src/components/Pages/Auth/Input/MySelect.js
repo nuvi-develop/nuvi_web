@@ -12,9 +12,9 @@ export default function MySelect({ label, ...props }) {
       <StyledLabel htmlFor={name}>{label}</StyledLabel>
       <InputWrapper>
         <StyledSelect {...field} {...props}>
-          {["조직명", ...options].map(option => (
-            <option key={option} value={option}>
-              {option}
+          {[{ id: 0, name: "조직명" }, ...options].map(option => (
+            <option key={option.id} value={option.id}>
+              {option.name}
             </option>
           ))}
         </StyledSelect>

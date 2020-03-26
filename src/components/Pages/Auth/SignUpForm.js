@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -8,17 +8,35 @@ import MyTextInput from "./Input/MyTextInput";
 import MyToggleInput from "./Input/MyToggleInput";
 import MySelect from "./Input/MySelect";
 import { ApplyRegister } from "components";
-
-const options = ["서울시청", "경기도교육청"];
+import api from "api";
 
 export default function SignUpForm() {
   const [step, setStep] = useState(1);
   const [modal, setModal] = useState(false);
-  console.log("modal", modal);
+  const [departmentList, setDepartmentList] = useState([]);
+
+  useEffect(() => {
+    const wrapper = async () => {
+      const res = await api.departmentApi.getDepartmentList();
+      setDepartmentList(res.data);
+    };
+    wrapper();
+  }, []);
+
+  const submitHandler = async values => {
+    const user = {
+      emailAddress: values.emailAddress,
+      password: values.password,
+      isAdmin: values.isAdmin,
+      DepartmentId: values.orgName
+    };
+    await api.authApi.register(user);
+    setModal(true);
+  };
   return (
     <Formik
       initialValues={{
-        email: "",
+        emailAddress: "",
         password: "",
         passwordConfirm: "",
         isAdmin: false,
@@ -30,8 +48,20 @@ export default function SignUpForm() {
         weight: "",
         job: ""
       }}
+      validate={async values => {
+        const errors = {};
+        const { emailAddress } = values;
+        const isSameEmail = await api.authApi.checkEmail({
+          emailAddress
+        });
+        console.log("values.orgName", values.orgName);
+        if (isSameEmail.data) {
+          errors.emailAddress = "가입된 이메일 입니다.";
+        }
+        return errors;
+      }}
       validationSchema={Yup.object({
-        email: Yup.string()
+        emailAddress: Yup.string()
           .email("올바른 이메일이 아닙니다.")
           .required("필수항목 입니다."),
         password: Yup.string().required("필수항목 입니다."),
@@ -43,7 +73,10 @@ export default function SignUpForm() {
           ? {
               name: Yup.string().required("필수항목 입니다."),
               orgName: Yup.string()
-                .oneOf(options, "해당 목록중 선택해 주세요.")
+                .test("Org selected", "해당 목록중 선택해 주세요.", value => {
+                  console.log("value", value);
+                  return +value !== 0;
+                })
                 .required("필수항목 입니다."),
               duty: Yup.string().required("필수항목 입니다.")
             }
@@ -63,13 +96,13 @@ export default function SignUpForm() {
             ? setStep(2)
             : setStep(3)
           : console.log(values);
-        step === 2 && setModal(true);
+        step === 2 && submitHandler(values);
       }}
     >
       {({ values }) =>
         step === 1 ? (
           <StyledForm>
-            <MyTextInput label="이메일" name="email" type="text" />
+            <MyTextInput label="이메일" name="emailAddress" type="text" />
             <MyTextInput label="비밀번호" name="password" type="password" />
             <MyTextInput
               label="비밀번호 확인"
@@ -83,7 +116,7 @@ export default function SignUpForm() {
           <StyledForm>
             <MyTextInput label="이름" name="name" type="text" />
             <MyTextInput label="담당업무" name="duty" type="text" />
-            <MySelect label="조직명" name="orgName" options={options} />
+            <MySelect label="조직명" name="orgName" options={departmentList} />
             <StyledButton type="submit">가입신청</StyledButton>
             {modal && <ApplyRegister onClick={() => setModal(false)} />}
           </StyledForm>

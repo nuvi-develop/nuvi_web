@@ -47,7 +47,7 @@ const CoverImage = styled.div`
 
 const TransparentBlock = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   width: 100%;
   height: 100vh;
@@ -57,9 +57,9 @@ const TransparentBlock = styled.div`
 
 const AuthBlock = styled.div`
   width: 900px;
+  height: 90%;
   border: 10px solid white;
   border-radius: 10px;
-  margin-top: 150px;
 `;
 
 const AuthController = styled.div`

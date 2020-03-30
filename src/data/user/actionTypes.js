@@ -15,3 +15,5 @@ export const REGISTER_LOADING = loading(REGISTER);
 export const RESET_AUTH = "RESET_AUTH";
 
 export const SET_USER_SESSION = "SET_USER_SESSION";
+
+export const TOGGLE_AUTH_MODE = "TOGGLE_AUTH_MODE";

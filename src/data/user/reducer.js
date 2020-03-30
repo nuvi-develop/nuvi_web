@@ -6,7 +6,8 @@ import * as AT from "data/rootActionTypes";
 const Initial_State = {
   userSession: null,
   [AT.LOG_IN]: Remote.NotAsked,
-  [AT.REGISTER]: Remote.NotAsked
+  [AT.REGISTER]: Remote.NotAsked,
+  authMode: "login"
 };
 
 const user = produce((draft, action) => {
@@ -35,6 +36,9 @@ const user = produce((draft, action) => {
       break;
     case AT.REGISTER_FAILURE:
       draft[AT.REGISTER] = Remote.Failure(action.error);
+      break;
+    case AT.TOGGLE_AUTH_MODE:
+      draft.authMode = action.authMode;
       break;
     default:
       return;

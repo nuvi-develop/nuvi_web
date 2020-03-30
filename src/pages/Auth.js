@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 
 import Colors from "theme/colors";
 import { SignUpForm, LoginForm } from "components";
+import { selectors, actions } from "data";
 
 const nutritions = "/images/nutritions.svg";
 
 export default function Auth() {
-  const [mode, setMode] = useState("login");
+  const dispatch = useDispatch();
+  const authMode = useSelector(selectors.user.getAuthMode);
   return (
     <>
       <CoverImage></CoverImage>
@@ -16,20 +19,20 @@ export default function Auth() {
           <AuthController>
             <AuthItem
               buttonFor="login"
-              mode={mode}
-              onClick={() => setMode("login")}
+              mode={authMode}
+              onClick={() => dispatch(actions.user.toggleAuthMode("login"))}
             >
               로그인
             </AuthItem>
             <AuthItem
               buttonFor="register"
-              mode={mode}
-              onClick={() => setMode("register")}
+              mode={authMode}
+              onClick={() => dispatch(actions.user.toggleAuthMode("register"))}
             >
               가입하기
             </AuthItem>
           </AuthController>
-          {mode === "login" ? <LoginForm /> : <SignUpForm />}
+          {authMode === "login" ? <LoginForm /> : <SignUpForm />}
         </AuthBlock>
       </TransparentBlock>
     </>

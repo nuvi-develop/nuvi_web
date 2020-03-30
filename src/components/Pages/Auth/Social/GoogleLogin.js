@@ -7,36 +7,17 @@ import { google } from "config";
 import api from "api";
 import { actions } from "data";
 
-export default function GoogleLoginComponent({ setRegisterPage }) {
+export default function GoogleLoginComponent() {
   const dispatch = useDispatch();
 
   const onSuccess = async googleUser => {
-    console.log("googleUser", googleUser);
-    const profile = googleUser.getBasicProfile();
+    // const profile = googleUser.getBasicProfile();
+    // const id = profile.getId();
+    // const name = profile.getName();
+    // const imageUrl = profile.getImageUrl();
+    // const emailAddress = profile.getEmail();
     const token = googleUser.getAuthResponse().id_token;
-    const id = profile.getId();
-    const name = profile.getName();
-    const imageUrl = profile.getImageUrl();
-    const emailAddress = profile.getEmail();
-    if (emailAddress) {
-      const res = await api.authApi
-        .checkEmail({ emailAddress })
-        .catch(error => console.log("error", error));
-
-      if (!res.data) {
-        const user = {
-          emailAddress,
-          name,
-          providerType: "google",
-          providerKey: id,
-          DepartmentId: 1
-        };
-        await api.authApi
-          .register(user)
-          .catch(error => console.log("error", error));
-      }
-    }
-    dispatch(actions.router.push("/daily"));
+    dispatch(actions.user.login({ token }));
   };
   return (
     <GoogleLogin

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
 
 import Colors from "theme/colors";
 import MyTextInput from "./Input/MyTextInput";
@@ -9,11 +10,13 @@ import MyToggleInput from "./Input/MyToggleInput";
 import MySelect from "./Input/MySelect";
 import { ApplyRegister } from "components";
 import api from "api";
+import { actions } from "data";
 
 export default function SignUpForm() {
   const [step, setStep] = useState(1);
   const [modal, setModal] = useState(false);
   const [departmentList, setDepartmentList] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const wrapper = async () => {
@@ -24,13 +27,14 @@ export default function SignUpForm() {
   }, []);
 
   const submitHandler = async values => {
-    const user = {
+    const userRegisterInfo = {
       emailAddress: values.emailAddress,
       password: values.password,
       isAdmin: values.isAdmin,
+      name: values.name,
       DepartmentId: values.orgName
     };
-    await api.authApi.register(user);
+    dispatch(actions.user.register(userRegisterInfo));
     setModal(true);
   };
   return (
@@ -54,7 +58,6 @@ export default function SignUpForm() {
         const isSameEmail = await api.authApi.checkEmail({
           emailAddress
         });
-        console.log("values.orgName", values.orgName);
         if (isSameEmail.data) {
           errors.emailAddress = "가입된 이메일 입니다.";
         }
@@ -74,7 +77,6 @@ export default function SignUpForm() {
               name: Yup.string().required("필수항목 입니다."),
               orgName: Yup.string()
                 .test("Org selected", "해당 목록중 선택해 주세요.", value => {
-                  console.log("value", value);
                   return +value !== 0;
                 })
                 .required("필수항목 입니다."),
@@ -95,8 +97,7 @@ export default function SignUpForm() {
           ? values.isAdmin
             ? setStep(2)
             : setStep(3)
-          : console.log(values);
-        step === 2 && submitHandler(values);
+          : step === 2 && submitHandler(values);
       }}
     >
       {({ values }) =>

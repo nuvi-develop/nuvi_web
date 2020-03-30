@@ -2,36 +2,23 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Colors from "theme/colors";
 import MyTextInput from "./Input/MyTextInput";
 import MyToggleInput from "./Input/MyToggleInput";
 import MyErrorPlaceHolder from "./Input/MyErrorPlaceHolder";
 import GoogleLogin from "./Social/GoogleLogin";
-import { actions } from "data";
+import { actions, selectors } from "data";
 import api from "api";
 import colors from "theme/colors";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
-  const [submitError, setSubmitError] = useState(null);
+  const loginStatus = useSelector(selectors.user.getLoginStatus);
 
-  const submitHandler = async values => {
-    const res = await api.authApi
-      .login(values)
-      .then(res => {
-        console.log("res", res);
-        dispatch(actions.router.push("/daily"));
-      })
-      .catch(error => {
-        const message = error.message;
-        console.log("message", message);
-        setSubmitError(message);
-        setTimeout(() => {
-          setSubmitError(null);
-        }, 3000);
-      });
+  const submitHandler = async userLoginInfo => {
+    dispatch(actions.user.login(userLoginInfo));
   };
   return (
     <>
@@ -55,7 +42,7 @@ export default function LoginForm() {
           <MyTextInput label="이메일" name="emailAddress" type="text" />
           <MyTextInput label="비밀번호" name="password" type="password" />
           <MyToggleInput label="관리자" name="isAdmin" type="checkbox" />
-          <MyErrorPlaceHolder message={submitError} />
+          <MyErrorPlaceHolder message={loginStatus.error?.message} />
 
           <StyledButton type="submit">로그인</StyledButton>
         </StyledForm>

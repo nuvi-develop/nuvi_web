@@ -9,9 +9,17 @@ export const api = {
       });
   },
 
-  login: async userLoginInfo => {
+  loginTraditional: async userLoginInfo => {
     return await apiClient
-      .post("/api/auth/login", userLoginInfo)
+      .post("/api/auth/loginTraditional", userLoginInfo)
+      .catch(error => {
+        throw new Error(error.response.data.message);
+      });
+  },
+
+  loginSocial: async userLoginInfo => {
+    return await apiClient
+      .post("/api/auth/loginSocial", userLoginInfo)
       .catch(error => {
         throw new Error(error.response.data.message);
       });

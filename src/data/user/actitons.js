@@ -44,3 +44,8 @@ export const setUSerSession = userSession => ({
   type: AT.SET_USER_SESSION,
   userSession
 });
+
+export const toggleAuthMode = authMode => ({
+  type: AT.TOGGLE_AUTH_MODE,
+  authMode
+});

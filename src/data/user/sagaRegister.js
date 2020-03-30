@@ -4,4 +4,5 @@ import { takeEvery } from "redux-saga/effects";
 
 export default function*() {
   yield takeEvery(AT.LOG_IN, sagas.login);
+  yield takeEvery(AT.REGISTER, sagas.register);
 }

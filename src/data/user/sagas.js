@@ -20,7 +20,6 @@ export function* login(action) {
         idToken: token,
         audience: GOOGLE_CLIENT_ID
       });
-      console.log("login", login);
       const payload = login.getPayload();
       const audience = payload.aud;
       // 토큰 인증
@@ -35,9 +34,21 @@ export function* login(action) {
         email_verified: payload["email_verified"],
         emailAddress: payload["email"]
       };
-      const res = yield api.authApi.loginSocial(userPayloadData);
-      const { userData } = res.data;
-      yield put(actions.user.loginSuccess(userData));
+      const emailRes = yield api.authApi.checkEmail({
+        emailAddress: userPayloadData.emailAddress
+      });
+
+      const user = emailRes.data;
+
+      if (user) {
+        const res = yield api.authApi.loginSocial(userPayloadData);
+        const { userData } = res.data;
+        yield put(actions.user.loginSuccess(userData));
+      } else {
+        yield put(actions.user.loginSuccess(userPayloadData));
+        yield put(actions.user.toggleAuthMode("registerSocial"));
+        return;
+      }
 
       //Traditional password login
     } else {
@@ -55,11 +66,16 @@ export function* login(action) {
 export function* register(action) {
   try {
     const { userRegisterInfo } = action;
+    const { type } = userRegisterInfo;
+    let res;
     yield put(actions.user.registerLoading());
-    const res = yield api.authApi.register(userRegisterInfo);
+    if (type === "social") {
+      res = yield api.authApi.registerSocial(userRegisterInfo);
+    } else {
+      res = yield api.authApi.registerTraditional(userRegisterInfo);
+    }
     const { userData } = res.data;
     yield put(actions.user.registerSuccess(userData));
-    yield put(actions.user.toggleAuthMode("login"));
   } catch (e) {
     yield put(actions.user.registerFailure({ message: e.message }));
   }

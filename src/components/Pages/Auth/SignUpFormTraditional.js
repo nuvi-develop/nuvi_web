@@ -12,7 +12,7 @@ import { ApplyRegister } from "components";
 import api from "api";
 import { actions } from "data";
 
-export default function SignUpForm() {
+export default function SignUpFormTraditional() {
   const [step, setStep] = useState(1);
   const [modal, setModal] = useState(false);
   const [departmentList, setDepartmentList] = useState([]);
@@ -32,6 +32,7 @@ export default function SignUpForm() {
       password: values.password,
       isAdmin: values.isAdmin,
       name: values.name,
+      type: "traditional",
       DepartmentId: values.orgName
     };
     dispatch(actions.user.register(userRegisterInfo));
@@ -119,7 +120,14 @@ export default function SignUpForm() {
             <MyTextInput label="담당업무" name="duty" type="text" />
             <MySelect label="조직명" name="orgName" options={departmentList} />
             <StyledButton type="submit">가입신청</StyledButton>
-            {modal && <ApplyRegister onClick={() => setModal(false)} />}
+            {modal && (
+              <ApplyRegister
+                onClick={() => {
+                  setModal(false);
+                  dispatch(actions.user.toggleAuthMode("login"));
+                }}
+              />
+            )}
           </StyledForm>
         ) : step === 3 ? (
           <StyledForm>

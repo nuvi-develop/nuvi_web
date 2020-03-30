@@ -25,7 +25,8 @@ import Compare from "./Pages/Total/Compare";
 import SimpleBarChart from "./Charts/SimpleBarChart";
 import HalfPieChart from "./Charts/HalfPieChart";
 import TrashGraph from "./Charts/TrashGraph";
-import SignUpForm from "./Pages/Auth/SignUpForm";
+import SignUpFormTraditional from "./Pages/Auth/SignUpFormTraditional";
+import SignUpFormSocial from "./Pages/Auth/SignUpFormSocial";
 import LoginForm from "./Pages/Auth/LoginForm";
 import ApplyRegister from "./Modal/ApplyRegister";
 
@@ -57,7 +58,8 @@ export {
   SimpleBarChart,
   HalfPieChart,
   TrashGraph,
-  SignUpForm,
+  SignUpFormTraditional,
+  SignUpFormSocial,
   LoginForm,
   ApplyRegister
 };

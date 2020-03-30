@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
 import Colors from "theme/colors";
-import { SignUpForm, LoginForm } from "components";
+import { LoginForm, SignUpFormTraditional, SignUpFormSocial } from "components";
 import { selectors, actions } from "data";
 
 const nutritions = "/images/nutritions.svg";
@@ -20,19 +20,29 @@ export default function Auth() {
             <AuthItem
               buttonFor="login"
               mode={authMode}
-              onClick={() => dispatch(actions.user.toggleAuthMode("login"))}
+              onClick={() => {
+                dispatch(actions.user.toggleAuthMode("login"));
+              }}
             >
               로그인
             </AuthItem>
             <AuthItem
               buttonFor="register"
               mode={authMode}
-              onClick={() => dispatch(actions.user.toggleAuthMode("register"))}
+              onClick={() => {
+                dispatch(actions.user.toggleAuthMode("register"));
+              }}
             >
               가입하기
             </AuthItem>
           </AuthController>
-          {authMode === "login" ? <LoginForm /> : <SignUpForm />}
+          {authMode === "login" ? (
+            <LoginForm />
+          ) : authMode === "registerSocial" ? (
+            <SignUpFormSocial />
+          ) : (
+            <SignUpFormTraditional />
+          )}
         </AuthBlock>
       </TransparentBlock>
     </>
@@ -84,14 +94,15 @@ const AuthItem = styled.div`
     content: " ";
     display: block;
     border-top: 10px solid
-      ${({ buttonFor, mode }) => (buttonFor === mode ? Colors.gray_2 : "white")};
+      ${({ buttonFor, mode }) =>
+        mode.startsWith(buttonFor) ? Colors.gray_2 : "white"};
     border-bottom: 10px solid
-      ${({ buttonFor, mode }) => (buttonFor === mode ? Colors.gray_2 : "white")};
+      ${({ buttonFor, mode }) =>
+        mode.startsWith(buttonFor) ? Colors.gray_2 : "white"};
     border-radius: 10px;
-    width: ${({ buttonFor, mode }) => (buttonFor === mode ? "300px" : "0px")};
+    width: ${({ buttonFor, mode }) =>
+      mode.startsWith(buttonFor) ? "300px" : "0px"};
     transition: width 0.5s, border 1s;
     text-align: center;
   }
 `;
-
-const InputContainer = styled.div``;

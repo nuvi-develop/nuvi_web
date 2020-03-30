@@ -1,9 +1,16 @@
 import { apiClient } from "../client";
 
 export const api = {
-  register: async userRegisterInfo => {
+  registerTraditional: async userRegisterInfo => {
     return await apiClient
-      .post("/api/auth/register", userRegisterInfo)
+      .post("/api/auth/registerTraditional", userRegisterInfo)
+      .catch(error => {
+        throw new Error(error.response.data.message);
+      });
+  },
+  registerSocial: async userRegisterInfo => {
+    return await apiClient
+      .post("/api/auth/registerSocial", userRegisterInfo)
       .catch(error => {
         throw new Error(error.response.data.message);
       });

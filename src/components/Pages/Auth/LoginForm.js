@@ -16,6 +16,7 @@ import colors from "theme/colors";
 export default function LoginForm() {
   const dispatch = useDispatch();
   const loginStatus = useSelector(selectors.user.getLoginStatus);
+  const authMode = useSelector(selectors.user.getAuthMode);
 
   const submitHandler = async userLoginInfo => {
     dispatch(actions.user.login(userLoginInfo));
@@ -43,11 +44,10 @@ export default function LoginForm() {
           <MyTextInput label="비밀번호" name="password" type="password" />
           <MyToggleInput label="관리자" name="isAdmin" type="checkbox" />
           <MyErrorPlaceHolder message={loginStatus.error?.message} />
-
           <StyledButton type="submit">로그인</StyledButton>
+          <GoogleLogin />
         </StyledForm>
       </Formik>
-      <GoogleLogin />
     </>
   );
 }

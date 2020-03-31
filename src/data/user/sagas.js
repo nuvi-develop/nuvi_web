@@ -14,6 +14,7 @@ export function* login(action) {
     yield put(actions.user.loginLoading());
     const { userLoginInfo } = action;
     const { token } = userLoginInfo;
+
     //Social Login
     if (token) {
       const login = yield client.verifyIdToken({
@@ -56,6 +57,10 @@ export function* login(action) {
       const { userData } = res.data;
       setAuthCookie(userData);
       yield put(actions.user.loginSuccess(userData));
+      if (userData.id === "master") {
+        yield put(actions.router.push("/adminApply"));
+        return;
+      }
     }
     yield put(actions.router.push("/daily"));
   } catch (e) {
@@ -76,6 +81,7 @@ export function* register(action) {
     }
     const { userData } = res.data;
     yield put(actions.user.registerSuccess(userData));
+    yield put(actions.modal.setModal(true));
   } catch (e) {
     yield put(actions.user.registerFailure({ message: e.message }));
   }

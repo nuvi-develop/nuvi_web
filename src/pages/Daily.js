@@ -12,9 +12,17 @@ import {
 import Colors from "theme/colors";
 
 export default function Daily() {
+  const tabs = [
+    { name: "DAILY", route: "/daily" },
+    { name: "TOTAL", route: "/total" }
+  ];
   return (
     <DefaultLayout>
-      <Navigation initialTab="DAILY" style={{ gridColumn: `1/2` }} />
+      <Navigation
+        tabs={tabs}
+        initialTab={"DAILY"}
+        style={{ gridColumn: `1/2` }}
+      />
       <DailyContainer style={{ gridColumn: `2/13` }}>
         <SummaryContainer />
         <MainContainer style={{ gridColumn: "1 / 3 ", gridRow: "2/6" }}>

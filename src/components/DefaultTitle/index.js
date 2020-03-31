@@ -13,9 +13,12 @@ export default function DefaultTitle({
 }) {
   return (
     <TitleContainer style={style}>
-      <ImageContainer>
-        <img src={icon} alt={`${icon}`} />
-      </ImageContainer>
+      {icon && (
+        <ImageContainer>
+          <img src={icon} alt={`${icon}`} />
+        </ImageContainer>
+      )}
+
       <Title color={color}>
         {title ? title : Component ? <Component /> : null}
       </Title>

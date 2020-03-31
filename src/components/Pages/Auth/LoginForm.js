@@ -16,7 +16,6 @@ import colors from "theme/colors";
 export default function LoginForm() {
   const dispatch = useDispatch();
   const loginStatus = useSelector(selectors.user.getLoginStatus);
-  const authMode = useSelector(selectors.user.getAuthMode);
 
   const submitHandler = async userLoginInfo => {
     dispatch(actions.user.login(userLoginInfo));

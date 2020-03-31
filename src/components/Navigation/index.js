@@ -7,25 +7,24 @@ import { NavItem } from "components";
 const nuviLogo = "/images/nuviLogo_narrow.svg";
 const seoulLogo = "./images/i_seoul_u.svg";
 
-export default function Nav({ initialTab }) {
+export default function Nav({ tabs, initialTab }) {
   const [activeItem, setActiveItem] = useState(initialTab);
   return (
     <NavContainer>
       <NavTopContainer>
         <Logo src={nuviLogo} alt={"logo"} />
-        <NavItem
-          to="/daily"
-          onClick={() => setActiveItem("DAILY")}
-          title="DAILY"
-          activeItem={activeItem}
-        />
-
-        <NavItem
-          to="/total"
-          onClick={() => setActiveItem("TOTAL")}
-          title="TOTAL"
-          activeItem={activeItem}
-        />
+        {tabs.map(tap => {
+          const { name, route } = tap;
+          return (
+            <NavItem
+              key={name}
+              to={route}
+              onClick={() => setActiveItem(name)}
+              title={name}
+              activeItem={activeItem}
+            />
+          );
+        })}
       </NavTopContainer>
       <UserInfoContainer>
         <UserImage src={seoulLogo} />

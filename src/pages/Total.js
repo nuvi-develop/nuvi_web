@@ -13,9 +13,17 @@ import {
 import Colors from "theme/colors";
 
 export default function Total() {
+  const tabs = [
+    { name: "DAILY", route: "/daily" },
+    { name: "TOTAL", route: "/total" }
+  ];
   return (
     <DefaultLayout>
-      <Navigation initialTab="TOTAL" style={{ gridColumn: `1/2` }} />
+      <Navigation
+        tabs={tabs}
+        initialTab="TOTAL"
+        style={{ gridColumn: `1/2` }}
+      />
       <TotalContainer style={{ gridColumn: `2/13` }}>
         <FilterContainer />
         <MainContainer style={{ gridColumn: "1/3", gridRow: "2/6" }}>

@@ -29,6 +29,7 @@ import SignUpFormTraditional from "./Pages/Auth/SignUpFormTraditional";
 import SignUpFormSocial from "./Pages/Auth/SignUpFormSocial";
 import LoginForm from "./Pages/Auth/LoginForm";
 import ApplyRegister from "./Modal/ApplyRegister";
+import AdminListItem from "./Pages/Admin/AdminListItem";
 
 export {
   Navigation,
@@ -61,5 +62,6 @@ export {
   SignUpFormTraditional,
   SignUpFormSocial,
   LoginForm,
-  ApplyRegister
+  ApplyRegister,
+  AdminListItem
 };

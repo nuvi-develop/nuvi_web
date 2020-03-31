@@ -10,13 +10,14 @@ import MyToggleInput from "./Input/MyToggleInput";
 import MySelect from "./Input/MySelect";
 import { ApplyRegister } from "components";
 import api from "api";
-import { actions } from "data";
+import { actions, selectors } from "data";
 
 export default function SignUpFormTraditional() {
   const [step, setStep] = useState(1);
-  const [modal, setModal] = useState(false);
   const [departmentList, setDepartmentList] = useState([]);
   const dispatch = useDispatch();
+
+  const modal = useSelector(selectors.modal.getModal);
 
   useEffect(() => {
     const wrapper = async () => {
@@ -36,7 +37,6 @@ export default function SignUpFormTraditional() {
       DepartmentId: values.orgName
     };
     dispatch(actions.user.register(userRegisterInfo));
-    setModal(true);
   };
   return (
     <Formik
@@ -120,14 +120,7 @@ export default function SignUpFormTraditional() {
             <MyTextInput label="담당업무" name="duty" type="text" />
             <MySelect label="조직명" name="orgName" options={departmentList} />
             <StyledButton type="submit">가입신청</StyledButton>
-            {modal && (
-              <ApplyRegister
-                onClick={() => {
-                  setModal(false);
-                  dispatch(actions.user.toggleAuthMode("login"));
-                }}
-              />
-            )}
+            {modal && <ApplyRegister />}
           </StyledForm>
         ) : step === 3 ? (
           <StyledForm>

@@ -19,8 +19,17 @@ export const api = {
       throw Error(error.messege);
     });
   },
-  approveAdmin: async userId => {
-    return await apiClient.put(`/api/user/${userId}`).catch(error => {
+  toggleApproved: async userId => {
+    return await apiClient
+      .put(`/api/user/toggleApproved/${userId}`)
+      .catch(error => {
+        console.log("error.messege", error.messege);
+        throw Error(error.messege);
+      });
+  },
+  whoAmI: async token => {
+    const headers = { "x-access-token": token };
+    return await apiClient.get("api/user/me", { headers }).catch(error => {
       console.log("error.messege", error.messege);
       throw Error(error.messege);
     });

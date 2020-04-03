@@ -36,8 +36,8 @@ export const getAdminsLoading = () => ({
   type: AT.GET_ADMINS_LOADING
 });
 
-export const updateToAdmin = userId => ({
-  type: AT.UPDATE_TO_ADMIN,
+export const toggleApproved = userId => ({
+  type: AT.TOGGLE_APPROVED,
   userId
 });
 

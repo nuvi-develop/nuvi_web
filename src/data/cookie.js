@@ -1,15 +1,15 @@
 import Cookies from "js-cookie";
 
-const USER_SESSION = "userSession";
+const API_TOKEN = "apiToken";
 
-export const setAuthCookie = userSession => {
-  Cookies.set(USER_SESSION, userSession);
+export const setAuthCookie = apiToken => {
+  Cookies.set(API_TOKEN, apiToken);
 };
 
 export const getAuthCookie = () => {
-  return Cookies.getJSON(USER_SESSION);
+  return Cookies.getJSON(API_TOKEN);
 };
 
 export const clearAuthCookie = () => {
-  Cookies.remove(USER_SESSION);
+  Cookies.remove(API_TOKEN);
 };

@@ -21,8 +21,12 @@ export default function SignUpFormTraditional() {
 
   useEffect(() => {
     const wrapper = async () => {
-      const res = await api.departmentApi.getDepartmentList();
-      setDepartmentList(res.data);
+      try {
+        const res = await api.departmentApi.getDepartmentList();
+        setDepartmentList(res.data);
+      } catch (error) {
+        dispatch(actions.router.push("/500"));
+      }
     };
     wrapper();
   }, []);

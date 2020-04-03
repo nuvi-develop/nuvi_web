@@ -1,70 +1,61 @@
 import { put, call } from "redux-saga/effects";
-import { OAuth2Client } from "google-auth-library";
 
 import { actions } from "data";
 import { setAuthCookie, getAuthCookie, clearAuthCookie } from "data/cookie";
 import api from "api";
-import { google } from "config";
 
-const GOOGLE_CLIENT_ID = google.oAuthId;
-const client = new OAuth2Client(GOOGLE_CLIENT_ID);
+export function* loginSocial(action) {
+  try {
+    yield put(actions.user.loginLoading());
+    const { token } = action.userLoginInfo;
 
-export function* login(action) {
+    const res = yield api.authApi.loginSocial({ token });
+
+    const userWithToken = res.data;
+    if (userWithToken.type) {
+      //가입되어있으면 그대로 로그인
+      yield put(actions.user.setUserSession(userWithToken));
+      setAuthCookie(userWithToken.token);
+      yield put(actions.user.loginSuccess(userWithToken));
+      yield put(actions.router.push("/daily"));
+    } else {
+      //가입이 안되어있으면 추가정보 기입
+      yield put(actions.user.loginSuccess(userWithToken));
+      yield put(actions.user.toggleAuthMode("registerSocial"));
+      return;
+    }
+  } catch (e) {
+    console.log("e.status", e.status);
+    if (e.status || e.status !== 500) {
+      yield put(actions.user.loginFailure({ message: e.message }));
+    } else {
+      yield put(actions.router.push("/500"));
+    }
+  }
+}
+
+export function* loginTraditional(action) {
   try {
     yield put(actions.user.loginLoading());
     const { userLoginInfo } = action;
-    const { token } = userLoginInfo;
 
-    //Social Login
-    if (token) {
-      const login = yield client.verifyIdToken({
-        idToken: token,
-        audience: GOOGLE_CLIENT_ID
-      });
-      const payload = login.getPayload();
-      const audience = payload.aud;
-      // 토큰 인증
-      if (audience !== GOOGLE_CLIENT_ID) {
-        throw new Error("등록된 Google 유저가 아닙니다.");
-      }
-      // 유저 프로필 받아옴
-      const userPayloadData = {
-        name: payload["name"],
-        pic: payload["picture"],
-        id: payload["sub"],
-        email_verified: payload["email_verified"],
-        emailAddress: payload["email"]
-      };
-      const emailRes = yield api.authApi.checkEmail({
-        emailAddress: userPayloadData.emailAddress
-      });
-
-      const user = emailRes.data;
-
-      if (user) {
-        const res = yield api.authApi.loginSocial(userPayloadData);
-        const { userData } = res.data;
-        yield put(actions.user.loginSuccess(userData));
-      } else {
-        yield put(actions.user.loginSuccess(userPayloadData));
-        yield put(actions.user.toggleAuthMode("registerSocial"));
-        return;
-      }
-
-      //Traditional password login
-    } else {
-      const res = yield api.authApi.loginTraditional(userLoginInfo);
-      const { userData } = res.data;
-      setAuthCookie(userData);
-      yield put(actions.user.loginSuccess(userData));
-      if (userData.id === "master") {
-        yield put(actions.router.push("/adminApply"));
-        return;
-      }
+    const res = yield api.authApi.loginTraditional(userLoginInfo);
+    const userData = res.data;
+    yield put(actions.user.setUserSession(userData));
+    setAuthCookie(userData.token);
+    yield put(actions.user.loginSuccess(userData));
+    if (userData.id === "master") {
+      yield put(actions.router.push("/adminApply"));
+      return;
     }
     yield put(actions.router.push("/daily"));
   } catch (e) {
-    yield put(actions.user.loginFailure({ message: e.message }));
+    console.log("e.status", e.status);
+    if (e.status || (e.status && e.status !== 500)) {
+      yield put(actions.user.loginFailure({ message: e.message }));
+    } else {
+      yield put(actions.router.push("/500"));
+    }
   }
 }
 
@@ -79,10 +70,34 @@ export function* register(action) {
     } else {
       res = yield api.authApi.registerTraditional(userRegisterInfo);
     }
-    const { userData } = res.data;
+    const userData = res.data;
     yield put(actions.user.registerSuccess(userData));
     yield put(actions.modal.setModal(true));
   } catch (e) {
     yield put(actions.user.registerFailure({ message: e.message }));
+  }
+}
+
+export function* logout(action) {
+  try {
+    yield put(actions.user.resetAuth());
+    clearAuthCookie();
+    yield put(actions.router.push("/"));
+  } catch (e) {
+    console.log("e.message", e.message);
+  }
+}
+
+export function* whoAmI(action) {
+  try {
+    yield put(actions.user.whoAmILoading());
+    const maybeValidToken = getAuthCookie();
+
+    const res = yield call(api.userApi.whoAmI, maybeValidToken);
+    const user = res.data;
+    yield put(actions.user.setUserSession(user));
+    yield put(actions.user.whoAmISuccess(user));
+  } catch (e) {
+    yield put(actions.user.whoAmIFailure({ message: e.message }));
   }
 }

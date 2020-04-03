@@ -10,6 +10,6 @@ export const GET_ADMINS_SUCCESS = success(GET_ADMINS);
 export const GET_ADMINS_FAILURE = failure(GET_ADMINS);
 export const GET_ADMINS_LOADING = loading(GET_ADMINS);
 
-export const UPDATE_TO_ADMIN = "UPDATE_TO_ADMIN";
+export const TOGGLE_APPROVED = "TOGGLE_APPROVED";
 
 export const DELETE_ADMIN = "DELETE_ADMIN";

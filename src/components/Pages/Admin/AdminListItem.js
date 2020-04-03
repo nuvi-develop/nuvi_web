@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import { format } from "date-fns";
 
 import Colors from "theme/colors";
 import api from "api";
@@ -12,21 +13,47 @@ export default function AdminListItem({
   deleteButton
 }) {
   const dispatch = useDispatch();
-  const { org, emailAddress, name, userId } = contents;
+  const { org, emailAddress, name, userId, approved, createdAt } = contents;
 
   const approveHandler = async () => {
-    dispatch(actions.admins.updateToAdmin(userId));
+    dispatch(
+      actions.modal.setModal({
+        contents: approved
+          ? "관리자 자격을 박탈하시겠습니까?"
+          : "관리자로 승인하시겠습니까?",
+        onClick: () => {
+          dispatch(actions.admins.toggleApproved(userId));
+          dispatch(actions.modal.setModal(false));
+        },
+        buttonName: approved ? "박탈" : "승인"
+      })
+    );
   };
   const deleteHandler = async () => {
-    dispatch(actions.admins.deleteAdmin(userId));
+    dispatch(
+      actions.modal.setModal({
+        contents: "해당 신청과 사용자를 제거하시겠습니까?",
+        onClick: () => {
+          dispatch(actions.admins.deleteAdmin(userId));
+          dispatch(actions.modal.setModal(false));
+        },
+        buttonName: "제거"
+      })
+    );
   };
+  const registerDate = createdAt
+    ? format(new Date(createdAt), "MM/dd/yyyy")
+    : "등록날짜";
   return (
     <Container>
       <Content>{org}</Content>
       <Content>{emailAddress}</Content>
       <Content>{name}</Content>
+      <Content>{registerDate}</Content>
       <ButtonContainer>
-        {approveButton && <Button onClick={approveHandler}>승인</Button>}
+        {approveButton && (
+          <Button onClick={approveHandler}>{approved ? "박탈" : "승인"}</Button>
+        )}
         {deleteButton && (
           <DeleteButton onClick={deleteHandler}>제거</DeleteButton>
         )}
@@ -37,7 +64,7 @@ export default function AdminListItem({
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   justify-items: center;
   align-items: center;
   margin: 10px 0;

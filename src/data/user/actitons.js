@@ -1,7 +1,11 @@
 import * as AT from "data/rootActionTypes";
 
-export const login = userLoginInfo => ({
-  type: AT.LOG_IN,
+export const loginTraditional = userLoginInfo => ({
+  type: AT.LOG_IN_TRADITIONAL,
+  userLoginInfo
+});
+export const loginSocial = userLoginInfo => ({
+  type: AT.LOG_IN_SOCIAL,
   userLoginInfo
 });
 export const loginLoading = () => ({
@@ -36,11 +40,26 @@ export const registerSuccess = data => ({
   data
 });
 
+export const whoAmI = () => ({
+  type: AT.WHO_AM_I
+});
+export const whoAmILoading = () => ({
+  type: AT.WHO_AM_I_LOADING
+});
+export const whoAmIFailure = error => ({
+  type: AT.WHO_AM_I_FAILURE,
+  error
+});
+export const whoAmISuccess = data => ({
+  type: AT.WHO_AM_I_SUCCESS,
+  data
+});
+
 export const resetAuth = () => ({
   type: AT.RESET_AUTH
 });
 
-export const setUSerSession = userSession => ({
+export const setUserSession = userSession => ({
   type: AT.SET_USER_SESSION,
   userSession
 });

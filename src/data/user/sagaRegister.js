@@ -3,6 +3,9 @@ import * as AT from "./actionTypes";
 import { takeEvery } from "redux-saga/effects";
 
 export default function*() {
-  yield takeEvery(AT.LOG_IN, sagas.login);
+  yield takeEvery(AT.LOG_IN_SOCIAL, sagas.loginSocial);
+  yield takeEvery(AT.LOG_IN_TRADITIONAL, sagas.loginTraditional);
   yield takeEvery(AT.REGISTER, sagas.register);
+  yield takeEvery(AT.WHO_AM_I, sagas.whoAmI);
+  yield takeEvery(AT.LOG_OUT, sagas.logout);
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Navigation, DefaultTitle, AdminListItem } from "components";
+import { Navigation, DefaultTitle, AdminListItem, Modal } from "components";
 import Colors from "theme/colors";
 import api from "api";
 import { actions, selectors } from "data";
@@ -14,6 +14,7 @@ export default function Master() {
     { name: "관리자 리스트", route: "/adminList" }
   ];
   const waitingAdminList = useSelector(selectors.admins.getWaitingAdmins);
+  const modal = useSelector(selectors.modal.getModal);
   useEffect(() => {
     dispatch(actions.admins.getWaitingAdmins());
   }, []);
@@ -37,7 +38,9 @@ export default function Master() {
                 org: waitingAdmin.Department.name,
                 emailAddress: waitingAdmin.emailAddress,
                 name: waitingAdmin.name,
-                userId: waitingAdmin.id
+                userId: waitingAdmin.id,
+                approved: waitingAdmin.approved,
+                createdAt: waitingAdmin.createdAt
               }}
               approveButton
               deleteButton
@@ -45,6 +48,7 @@ export default function Master() {
           ))}
         </MainContainer>
       </MasterContainer>
+      {modal && <Modal modalInfo={modal} />}
     </DefaultLayout>
   );
 }

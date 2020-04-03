@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 
 import Colors from "theme/colors";
 import { NavItem } from "components";
+import { actions, selectors } from "data";
 
 const nuviLogo = "/images/nuviLogo_narrow.svg";
 const seoulLogo = "./images/i_seoul_u.svg";
 
 export default function Nav({ tabs, initialTab }) {
   const [activeItem, setActiveItem] = useState(initialTab);
+  const dispatch = useDispatch();
+  const user = useSelector(selectors.user.getUserSession);
+
+  const logoutHandler = () => {
+    dispatch(actions.user.logout());
+  };
   return (
     <NavContainer>
       <NavTopContainer>
@@ -30,6 +38,7 @@ export default function Nav({ tabs, initialTab }) {
         <UserImage src={seoulLogo} />
 
         <UserName>서울시청</UserName>
+        <LogoutText onClick={logoutHandler}>로그아웃</LogoutText>
       </UserInfoContainer>
     </NavContainer>
   );
@@ -80,4 +89,11 @@ const UserInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const LogoutText = styled.div`
+  color: ${Colors.gray_2};
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 20px;
 `;

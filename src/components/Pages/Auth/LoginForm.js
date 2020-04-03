@@ -18,7 +18,7 @@ export default function LoginForm() {
   const loginStatus = useSelector(selectors.user.getLoginStatus);
 
   const submitHandler = async userLoginInfo => {
-    dispatch(actions.user.login(userLoginInfo));
+    dispatch(actions.user.loginTraditional(userLoginInfo));
   };
   return (
     <>
@@ -41,7 +41,7 @@ export default function LoginForm() {
         <StyledForm>
           <MyTextInput label="이메일" name="emailAddress" type="text" />
           <MyTextInput label="비밀번호" name="password" type="password" />
-          <MyToggleInput label="관리자" name="isAdmin" type="checkbox" />
+          {/* <MyToggleInput label="관리자" name="isAdmin" type="checkbox" /> */}
           <MyErrorPlaceHolder message={loginStatus.error?.message} />
           <StyledButton type="submit">로그인</StyledButton>
           <GoogleLogin />

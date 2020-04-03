@@ -25,10 +25,11 @@ export function* getAdmins(action) {
   }
 }
 
-export function* updateToAdmin(action) {
+export function* toggleApproved(action) {
   try {
     const { userId } = action;
-    yield api.userApi.approveAdmin(userId);
+    yield api.userApi.toggleApproved(userId);
+    yield put(actions.admins.getAdmins());
     yield put(actions.admins.getWaitingAdmins());
   } catch (e) {
     console.log("e.message", e.message);
@@ -40,7 +41,7 @@ export function* deleteAdmin(action) {
     const { userId } = action;
     yield api.userApi.deleteUser(userId);
     yield put(actions.admins.getAdmins());
-    yield put(actions.admins.getWatingAdmins());
+    yield put(actions.admins.getWaitingAdmins());
   } catch (e) {
     console.log("e.message", e.message);
   }

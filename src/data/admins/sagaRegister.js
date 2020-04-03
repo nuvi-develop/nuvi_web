@@ -6,5 +6,5 @@ export default function*() {
   yield takeEvery(AT.GET_WAITING_ADMINS, sagas.getWaitingAdmins);
   yield takeEvery(AT.GET_ADMINS, sagas.getAdmins);
   yield takeEvery(AT.DELETE_ADMIN, sagas.deleteAdmin);
-  yield takeEvery(AT.UPDATE_TO_ADMIN, sagas.updateToAdmin);
+  yield takeEvery(AT.TOGGLE_APPROVED, sagas.toggleApproved);
 }

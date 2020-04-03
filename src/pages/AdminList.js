@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Navigation, DefaultTitle, AdminListItem } from "components";
+import { Navigation, DefaultTitle, AdminListItem, Modal } from "components";
 import Colors from "theme/colors";
 import api from "api";
 import { actions, selectors } from "data";
@@ -14,6 +14,7 @@ export default function AdminList() {
     { name: "관리자 리스트", route: "/adminList" }
   ];
   const adminList = useSelector(selectors.admins.getAdmins);
+  const modal = useSelector(selectors.modal.getModal);
   useEffect(() => {
     dispatch(actions.admins.getAdmins());
   }, []);
@@ -22,7 +23,7 @@ export default function AdminList() {
       <Navigation tabs={tabs} initialTab={"관리자 리스트"} />
       <MasterContainer style={{ gridColumn: `2/13` }}>
         <MainContainer>
-          <DefaultTitle title="관리자 신청내역" />
+          <DefaultTitle title="현재 관리자 리스트" />
           <AdminListItem
             contents={{
               org: "조직명",
@@ -37,13 +38,17 @@ export default function AdminList() {
                 org: waitingAdmin.Department.name,
                 emailAddress: waitingAdmin.emailAddress,
                 name: waitingAdmin.name,
-                userId: waitingAdmin.id
+                userId: waitingAdmin.id,
+                approved: waitingAdmin.approved,
+                createdAt: waitingAdmin.createdAt
               }}
               deleteButton
+              approveButton
             />
           ))}
         </MainContainer>
       </MasterContainer>
+      {modal && <Modal modalInfo={modal} />}
     </DefaultLayout>
   );
 }

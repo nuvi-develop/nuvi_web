@@ -16,7 +16,7 @@ export default function GoogleLoginComponent() {
     // const imageUrl = profile.getImageUrl();
     // const emailAddress = profile.getEmail();
     const token = googleUser.getAuthResponse().id_token;
-    dispatch(actions.user.login({ token }));
+    dispatch(actions.user.loginSocial({ token }));
   };
   return (
     <GoogleLogin

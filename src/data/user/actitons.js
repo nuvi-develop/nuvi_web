@@ -55,6 +55,22 @@ export const whoAmISuccess = data => ({
   data
 });
 
+export const findPassword = findPasswordInfo => ({
+  type: AT.FIND_PASSWORD,
+  findPasswordInfo
+});
+export const findPasswordLoading = () => ({
+  type: AT.FIND_PASSWORD_LOADING
+});
+export const findPasswordFailure = error => ({
+  type: AT.FIND_PASSWORD_FAILURE,
+  error
+});
+export const findPasswordSuccess = data => ({
+  type: AT.FIND_PASSWORD_SUCCESS,
+  data
+});
+
 export const resetAuth = () => ({
   type: AT.RESET_AUTH
 });

@@ -9,6 +9,7 @@ import {
   Daily,
   Total,
   Auth,
+  FindPassword,
   AdminApply,
   AdminList,
   Error404,
@@ -22,6 +23,7 @@ function App({ history }) {
         {/* 누구나 접근가능한 public route */}
         <Route exact path="/" component={Auth} />
         <Route path="/auth" component={Auth} />
+
         {/* admin 이고 approved 받는 user 만 접근가능 */}
         <AdminLayout path="/daily" component={Daily} />
         <AdminLayout path="/total" component={Total} />

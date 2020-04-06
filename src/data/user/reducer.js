@@ -8,6 +8,7 @@ const Initial_State = {
   [AT.LOG_IN]: Remote.NotAsked,
   [AT.REGISTER]: Remote.NotAsked,
   [AT.WHO_AM_I]: Remote.NotAsked,
+  [AT.FIND_PASSWORD]: Remote.NotAsked,
   authMode: "login"
 };
 
@@ -43,7 +44,6 @@ const user = produce((draft, action) => {
       break;
 
     case AT.WHO_AM_I_LOADING:
-      console.log("Remote.Loading", Remote.Loading);
       draft[AT.WHO_AM_I] = Remote.Loading;
       break;
     case AT.WHO_AM_I_SUCCESS:
@@ -51,6 +51,16 @@ const user = produce((draft, action) => {
       break;
     case AT.WHO_AM_I_FAILURE:
       draft[AT.WHO_AM_I] = Remote.Failure(action.error);
+      break;
+
+    case AT.FIND_PASSWORD_LOADING:
+      draft[AT.FIND_PASSWORD] = Remote.Loading;
+      break;
+    case AT.FIND_PASSWORD_SUCCESS:
+      draft[AT.FIND_PASSWORD] = Remote.Success(action.data);
+      break;
+    case AT.FIND_PASSWORD_FAILURE:
+      draft[AT.FIND_PASSWORD] = Remote.Failure(action.error);
       break;
 
     case AT.TOGGLE_AUTH_MODE:

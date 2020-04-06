@@ -25,8 +25,8 @@ export function* loginSocial(action) {
       return;
     }
   } catch (e) {
-    console.log("e.status", e.status);
-    if (e.status || e.status !== 500) {
+    console.log("e.name", e.name);
+    if (e.status || (e.status && e.status !== 500)) {
       yield put(actions.user.loginFailure({ message: e.message }));
     } else {
       yield put(actions.router.push("/500"));
@@ -59,6 +59,16 @@ export function* loginTraditional(action) {
   }
 }
 
+export function* logout(action) {
+  try {
+    yield put(actions.user.resetAuth());
+    clearAuthCookie();
+    yield put(actions.router.push("/"));
+  } catch (e) {
+    console.log("e.message", e.message);
+  }
+}
+
 export function* register(action) {
   try {
     const { userRegisterInfo } = action;
@@ -78,16 +88,6 @@ export function* register(action) {
   }
 }
 
-export function* logout(action) {
-  try {
-    yield put(actions.user.resetAuth());
-    clearAuthCookie();
-    yield put(actions.router.push("/"));
-  } catch (e) {
-    console.log("e.message", e.message);
-  }
-}
-
 export function* whoAmI(action) {
   try {
     yield put(actions.user.whoAmILoading());
@@ -99,5 +99,24 @@ export function* whoAmI(action) {
     yield put(actions.user.whoAmISuccess(user));
   } catch (e) {
     yield put(actions.user.whoAmIFailure({ message: e.message }));
+  }
+}
+
+export function* findPassword(action) {
+  try {
+    yield put(actions.user.findPasswordLoading());
+    const { updatePasswordInfo, onClick } = action.findPasswordInfo;
+    const res = yield api.mailApi.updatePassword(updatePasswordInfo);
+    const { data } = res;
+    yield put(actions.user.findPasswordSuccess(data));
+    yield put(
+      actions.modal.setModal({
+        onClick,
+        contents: `${updatePasswordInfo.emailAddress} 수신함을 확인해 주세요.`,
+        buttonName: "확인"
+      })
+    );
+  } catch (e) {
+    yield put(actions.user.findPasswordFailure({ message: e.message }));
   }
 }

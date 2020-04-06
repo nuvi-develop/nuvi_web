@@ -20,6 +20,10 @@ export default function LoginForm() {
   const submitHandler = async userLoginInfo => {
     dispatch(actions.user.loginTraditional(userLoginInfo));
   };
+
+  const findPasswordHandler = async () => {
+    dispatch(actions.user.toggleAuthMode("findPassword"));
+  };
   return (
     <>
       <Formik
@@ -44,6 +48,9 @@ export default function LoginForm() {
           {/* <MyToggleInput label="관리자" name="isAdmin" type="checkbox" /> */}
           <MyErrorPlaceHolder message={loginStatus.error?.message} />
           <StyledButton type="submit">로그인</StyledButton>
+          <FindPassword onClick={findPasswordHandler}>
+            비밀번호를 잊어버리셨나요?
+          </FindPassword>
           <GoogleLogin />
         </StyledForm>
       </Formik>
@@ -70,4 +77,12 @@ const StyledButton = styled.button`
   color: ${Colors.green_2};
   font-size: 36px;
   margin: 30px;
+`;
+
+const FindPassword = styled.div`
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  align-self: flex-end;
+  margin: 0 30px;
 `;

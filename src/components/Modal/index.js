@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import Colors from "theme/colors";
 import { actions } from "data";
 
-export default function ModalComp({ modalInfo }) {
+export default function ModalComp({ modalInfo, withCancel }) {
   const dispatch = useDispatch();
   const { onClick, contents, buttonName } = modalInfo;
   return (
@@ -14,9 +14,13 @@ export default function ModalComp({ modalInfo }) {
         <Text>{contents}</Text>
         <ButtonsContainer>
           <Button onClick={onClick}>{buttonName}</Button>
-          <CancleButton onClick={() => dispatch(actions.modal.setModal(false))}>
-            취소
-          </CancleButton>
+          {withCancel && (
+            <CancleButton
+              onClick={() => dispatch(actions.modal.setModal(false))}
+            >
+              취소
+            </CancleButton>
+          )}
         </ButtonsContainer>
       </Modal>
     </Background>
@@ -49,7 +53,8 @@ const Modal = styled.div`
 
 const Text = styled.div`
   color: ${Colors.blue_1};
-  font-size: 40px;
+  width: 80%;
+  font-size: 24px;
   text-align: center;
 `;
 
@@ -57,7 +62,7 @@ const ButtonsContainer = styled.div`
   display: flex;
 `;
 
-const Button = styled.button`
+const Button = styled.div`
   background-color: ${Colors.blue_1};
   border: 1px solid ${Colors.gray_1};
   border-radius: 10px;
@@ -67,6 +72,8 @@ const Button = styled.button`
   width: 200px;
   height: 60px;
   margin: 20px;
+  text-align: center;
+  line-height: 60px;
 `;
 
 const CancleButton = styled(Button)`

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Colors from "theme/colors";
 import { NavItem } from "components";
 import { actions, selectors } from "data";
+import { awsPhotoUrl } from "config";
 
 const nuviLogo = "/images/nuviLogo_narrow.svg";
 const seoulLogo = "./images/i_seoul_u.svg";
@@ -13,6 +14,10 @@ export default function Nav({ tabs, initialTab }) {
   const [activeItem, setActiveItem] = useState(initialTab);
   const dispatch = useDispatch();
   const user = useSelector(selectors.user.getUserSession);
+  const departmentId = user.DepartmentId;
+  const departmentName = user.Department.name;
+  const logoImage = awsPhotoUrl + `/department/${departmentId}.svg`;
+  console.log("logoImage", logoImage);
 
   const logoutHandler = () => {
     dispatch(actions.user.logout());
@@ -35,9 +40,9 @@ export default function Nav({ tabs, initialTab }) {
         })}
       </NavTopContainer>
       <UserInfoContainer>
-        <UserImage src={seoulLogo} />
+        <UserImage src={logoImage} />
 
-        <UserName>서울시청</UserName>
+        <UserName>{departmentName}</UserName>
         <LogoutText onClick={logoutHandler}>로그아웃</LogoutText>
       </UserInfoContainer>
     </NavContainer>

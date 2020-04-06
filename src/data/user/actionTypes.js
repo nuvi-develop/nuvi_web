@@ -24,3 +24,8 @@ export const RESET_AUTH = "RESET_AUTH";
 export const SET_USER_SESSION = "SET_USER_SESSION";
 
 export const TOGGLE_AUTH_MODE = "TOGGLE_AUTH_MODE";
+
+export const FIND_PASSWORD = "FIND_PASSWORD";
+export const FIND_PASSWORD_SUCCESS = success(FIND_PASSWORD);
+export const FIND_PASSWORD_FAILURE = failure(FIND_PASSWORD);
+export const FIND_PASSWORD_LOADING = loading(FIND_PASSWORD);

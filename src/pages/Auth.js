@@ -3,7 +3,12 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
 import Colors from "theme/colors";
-import { LoginForm, SignUpFormTraditional, SignUpFormSocial } from "components";
+import {
+  LoginForm,
+  SignUpFormTraditional,
+  SignUpFormSocial,
+  FindPassword
+} from "components";
 import { selectors, actions } from "data";
 
 const nutritions = "/images/nutritions.svg";
@@ -16,33 +21,50 @@ export default function Auth() {
       <CoverImage></CoverImage>
       <TransparentBlock>
         <AuthBlock>
-          <AuthController>
-            <AuthItem
-              buttonFor="login"
-              mode={authMode}
-              onClick={() => {
-                dispatch(actions.user.toggleAuthMode("login"));
-              }}
-            >
-              로그인
-            </AuthItem>
-            <AuthItem
-              buttonFor="register"
-              mode={authMode}
-              onClick={() => {
-                dispatch(actions.user.toggleAuthMode("register"));
-              }}
-            >
-              가입하기
-            </AuthItem>
-          </AuthController>
-          {authMode === "login" ? (
+          {authMode !== "findPassword" && (
+            <AuthController>
+              <AuthItem
+                buttonFor="login"
+                mode={authMode}
+                onClick={() => {
+                  dispatch(actions.user.toggleAuthMode("login"));
+                }}
+              >
+                로그인
+              </AuthItem>
+              <AuthItem
+                buttonFor="register"
+                mode={authMode}
+                onClick={() => {
+                  dispatch(actions.user.toggleAuthMode("register"));
+                }}
+              >
+                가입하기
+              </AuthItem>
+            </AuthController>
+          )}
+
+          {(() => {
+            switch (authMode) {
+              case "login":
+                return <LoginForm />;
+              case "register":
+                return <SignUpFormTraditional />;
+              case "registerSocial":
+                return <SignUpFormSocial />;
+              case "findPassword":
+                return <FindPassword />;
+              default:
+                return null;
+            }
+          })()}
+          {/* {authMode === "login" ? (
             <LoginForm />
-          ) : authMode === "registerSocial" ? (
+          ) : authMode ==="findPassword" authMode === "registerSocial" ? (
             <SignUpFormSocial />
           ) : (
             <SignUpFormTraditional />
-          )}
+          )} */}
         </AuthBlock>
       </TransparentBlock>
     </>
@@ -69,6 +91,8 @@ const TransparentBlock = styled.div`
 `;
 
 const AuthBlock = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 900px;
   height: 90%;
   border: 10px solid white;
@@ -77,6 +101,7 @@ const AuthBlock = styled.div`
 
 const AuthController = styled.div`
   display: flex;
+
   flex-direction: row;
   justify-content: space-around;
   margin: 50px 50px 100px;

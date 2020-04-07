@@ -9,11 +9,11 @@ import {
   Daily,
   Total,
   Auth,
-  FindPassword,
   AdminApply,
   AdminList,
   Error404,
-  Error500
+  Error500,
+  UpdatePasswordPage
 } from "pages";
 
 function App({ history }) {

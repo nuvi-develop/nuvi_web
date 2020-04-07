@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
+import randomstring from "randomstring";
 
 import MyTextInput from "components/Pages/Auth/Input/MyTextInput";
 import { actions, selectors } from "data";
 import api from "api";
 import { Modal } from "components";
-import { updatePasswordHtml } from "components/Mail";
+
 import Colors from "theme/colors";
 
 export default function FindPassword() {
@@ -20,11 +21,14 @@ export default function FindPassword() {
       dispatch(actions.user.toggleAuthMode("login"));
     };
 
-    const updatePasswordInfo = {
+    const tempPassword = randomstring.generate(15);
+
+    const tempPasswordInfo = {
       emailAddress,
-      htmlMessage: updatePasswordHtml
+      tempPassword,
+      htmlMessage: "<div>임시비밀번호</div>" + tempPassword
     };
-    dispatch(actions.user.findPassword({ updatePasswordInfo, onClick }));
+    dispatch(actions.user.findPassword({ tempPasswordInfo, onClick }));
   };
 
   return (

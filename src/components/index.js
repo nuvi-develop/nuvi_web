@@ -32,7 +32,7 @@ import ApplyRegister from "./Modal/ApplyRegister";
 import Modal from "./Modal";
 import AdminListItem from "./Pages/Admin/AdminListItem";
 import FindPassword from "./Pages/Auth/FindPassword";
-import UpdatePassword from "./Mail/UpdatePassword";
+import UpdatePassword from "./Pages/Auth/UpdatePassword";
 
 export {
   Navigation,

@@ -48,7 +48,7 @@ export default function Master() {
           ))}
         </MainContainer>
       </MasterContainer>
-      {modal && <Modal modalInfo={modal} withCancel />}
+      {modal.contents && <Modal modalInfo={modal} withCancel />}
     </DefaultLayout>
   );
 }

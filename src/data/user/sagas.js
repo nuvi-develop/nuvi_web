@@ -51,6 +51,7 @@ export function* loginTraditional(action) {
     yield put(actions.router.push("/daily"));
   } catch (e) {
     console.log("e.status", e.status);
+    console.log("e.message", e.message);
     if (e.status || (e.status && e.status !== 500)) {
       yield put(actions.user.loginFailure({ message: e.message }));
     } else {
@@ -105,17 +106,22 @@ export function* whoAmI(action) {
 export function* findPassword(action) {
   try {
     yield put(actions.user.findPasswordLoading());
-    const { updatePasswordInfo, onClick } = action.findPasswordInfo;
-    const res = yield api.mailApi.updatePassword(updatePasswordInfo);
-    const { data } = res;
-    yield put(actions.user.findPasswordSuccess(data));
+
+    const { tempPasswordInfo, onClick } = action.findPasswordInfo;
+    const { emailAddress, tempPassword } = tempPasswordInfo;
+    yield api.userApi.updateUserPassword({ emailAddress, tempPassword });
+
     yield put(
       actions.modal.setModal({
         onClick,
-        contents: `${updatePasswordInfo.emailAddress} 수신함을 확인해 주세요.`,
+        contents: `${tempPasswordInfo.emailAddress} 수신함을 확인해 주세요.`,
         buttonName: "확인"
       })
     );
+
+    const res = yield api.mailApi.sendTempPassword(tempPasswordInfo);
+    const { data } = res;
+    yield put(actions.user.findPasswordSuccess(data));
   } catch (e) {
     yield put(actions.user.findPasswordFailure({ message: e.message }));
   }

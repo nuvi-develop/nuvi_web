@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styled from "styled-components";
 
+import api from "api";
+
 export default function UpdatePassword() {
-  const [updated, setUpdated] = useState(false);
+  const submitHanlder = async values => {
+    await api.userApi
+      .updateUserPassword()
+      .catch(err => console.log("err", err));
+  };
   return (
-    <Formik>
+    <Formik
+      initialValues={{
+        password: "",
+        passwordConfirm: ""
+      }}
+      onSubmit={submitHanlder}
+    >
       <Form>
         <Field
           name="password"
@@ -33,9 +45,7 @@ export default function UpdatePassword() {
           }}
           placeholder="비밀번호 확인"
         />
-        <button onClick={() => setUpdated(true)}>update</button>
-        {updated && <div> updated!</div>}
-        <a href="http://localhost:3000/daily">daily</a>
+        <button type="submit">update</button>
       </Form>
     </Formik>
   );

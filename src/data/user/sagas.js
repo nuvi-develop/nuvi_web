@@ -83,7 +83,7 @@ export function* register(action) {
     }
     const userData = res.data;
     yield put(actions.user.registerSuccess(userData));
-    yield put(actions.modal.setModal(true));
+    yield put(actions.modal.setModal({ contents: true }));
   } catch (e) {
     yield put(actions.user.registerFailure({ message: e.message }));
   }
@@ -103,13 +103,13 @@ export function* whoAmI(action) {
   }
 }
 
-export function* findPassword(action) {
+export function* giveTempPassword(action) {
   try {
-    yield put(actions.user.findPasswordLoading());
+    yield put(actions.user.giveTempPasswordLoading());
 
-    const { tempPasswordInfo, onClick } = action.findPasswordInfo;
+    const { tempPasswordInfo, onClick } = action.giveTempPasswordInfo;
     const { emailAddress, tempPassword } = tempPasswordInfo;
-    yield api.userApi.updateUserPassword({ emailAddress, tempPassword });
+    yield api.userApi.giveTempPassword({ emailAddress, tempPassword });
 
     yield put(
       actions.modal.setModal({
@@ -121,8 +121,20 @@ export function* findPassword(action) {
 
     const res = yield api.mailApi.sendTempPassword(tempPasswordInfo);
     const { data } = res;
-    yield put(actions.user.findPasswordSuccess(data));
+    yield put(actions.user.giveTempPasswordSuccess(data));
   } catch (e) {
-    yield put(actions.user.findPasswordFailure({ message: e.message }));
+    yield put(actions.user.giveTempPasswordFailure({ message: e.message }));
+  }
+}
+
+export function* updatePassword(action) {
+  try {
+    const { updatePasswordInfo } = action;
+    yield put(actions.user.updatePasswordLoading());
+    yield api.userApi.updatePassword(updatePasswordInfo);
+    yield put(actions.user.updatePasswordSuccess(true));
+    yield put(actions.router.push("/profile"));
+  } catch (e) {
+    yield put(actions.user.updatePasswordFailure({ message: e.message }));
   }
 }

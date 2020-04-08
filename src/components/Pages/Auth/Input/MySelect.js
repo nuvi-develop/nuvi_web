@@ -9,7 +9,6 @@ export default function MySelect({ label, ...props }) {
   const [field, meta] = useField(props);
   return (
     <InputContainer>
-      <StyledLabel htmlFor={name}>{label}</StyledLabel>
       <InputWrapper>
         <StyledSelect {...field} {...props}>
           {[{ id: 0, name: "조직명" }, ...options].map(option => (

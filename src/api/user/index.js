@@ -10,8 +10,15 @@ export const api = {
   deleteUser: async userId => {
     return await apiClient.delete(`/api/user/${userId}`);
   },
-  updateUserPassword: async updateInfo => {
-    return await apiClient.put(`/api/user/updateUserPassword`, updateInfo);
+  giveTempPassword: async giveTempPasswordInfo => {
+    return await apiClient.put(
+      `/api/user/giveTempPassword`,
+      giveTempPasswordInfo
+    );
+  },
+
+  updatePassword: async updatePasswordInfo => {
+    return await apiClient.put(`/api/user/updatePassword`, updatePasswordInfo);
   },
   toggleApproved: async userId => {
     return await apiClient.put(`/api/user/toggleApproved/${userId}`);

@@ -17,10 +17,13 @@ export default function Nav({ tabs, initialTab }) {
   const departmentId = user.DepartmentId;
   const departmentName = user.Department.name;
   const logoImage = awsPhotoUrl + `/department/${departmentId}.svg`;
-  console.log("logoImage", logoImage);
 
   const logoutHandler = () => {
     dispatch(actions.user.logout());
+  };
+
+  const goProfileHandler = () => {
+    dispatch(actions.router.push("/profile"));
   };
   return (
     <NavContainer>
@@ -40,9 +43,9 @@ export default function Nav({ tabs, initialTab }) {
         })}
       </NavTopContainer>
       <UserInfoContainer>
-        <UserImage src={logoImage} />
+        <UserImage src={logoImage} onClick={goProfileHandler} />
 
-        <UserName>{departmentName}</UserName>
+        <UserName onClick={goProfileHandler}>{departmentName}</UserName>
         <LogoutText onClick={logoutHandler}>로그아웃</LogoutText>
       </UserInfoContainer>
     </NavContainer>
@@ -94,6 +97,7 @@ const UserInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 `;
 
 const LogoutText = styled.div`

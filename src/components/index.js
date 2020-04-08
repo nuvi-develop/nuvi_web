@@ -33,6 +33,7 @@ import Modal from "./Modal";
 import AdminListItem from "./Pages/Admin/AdminListItem";
 import FindPassword from "./Pages/Auth/FindPassword";
 import UpdatePassword from "./Pages/Auth/UpdatePassword";
+import Profile from "./Pages/Profile";
 
 export {
   Navigation,
@@ -69,5 +70,6 @@ export {
   Modal,
   AdminListItem,
   FindPassword,
-  UpdatePassword
+  UpdatePassword,
+  Profile
 };

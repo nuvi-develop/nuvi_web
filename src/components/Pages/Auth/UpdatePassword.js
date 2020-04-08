@@ -1,60 +1,95 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styled from "styled-components";
+import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
 
 import api from "api";
+import MyTextInput from "./Input/MyTextInput";
+import MyErrorPlaceHolder from "./Input/MyErrorPlaceHolder";
+import { actions, selectors } from "data";
 
 export default function UpdatePassword() {
-  const submitHanlder = async values => {
-    await api.userApi
-      .updateUserPassword()
-      .catch(err => console.log("err", err));
+  const dispatch = useDispatch();
+  const user = useSelector(selectors.user.getUserSession);
+  const updatePasswordStatus = useSelector(
+    selectors.user.getUpdatePasswordStatus
+  );
+  const userId = user.id;
+  const submitHandler = ({ password, newPassword }) => {
+    const updatePasswordInfo = {
+      userId,
+      password,
+      newPassword
+    };
+    dispatch(actions.user.updatePassword(updatePasswordInfo));
   };
+
   return (
     <Formik
       initialValues={{
         password: "",
-        passwordConfirm: ""
+        newPassword: "",
+        newPasswordConfirm: ""
       }}
-      onSubmit={submitHanlder}
+      validationSchema={Yup.object({
+        password: Yup.string().required("필수항목 입니다."),
+        newPassword: Yup.string().required("필수항목 입니다."),
+        newPasswordConfirm: Yup.string()
+          .oneOf([Yup.ref("newPassword"), null], "비밀번호가 다릅니다")
+          .required("필수항목 입니다.")
+      })}
+      onSubmit={submitHandler}
     >
-      <Form>
-        <Field
+      <StyledForm>
+        <StyledMyTextInput
           name="password"
-          style={{
-            width: "430px",
-            backGroundColor: "gray",
-            border: "none",
-            borderBottom: "5px solid gray",
-            color: "white",
-            fontSize: "40px",
-            padding: "5px"
-          }}
-          placeholder="비밀번호"
+          label="기존 비밀번호"
+          type="password"
         />
-        <Field
-          name="passwordConfirm"
-          style={{
-            width: "430px",
-            backGroundColor: "gray",
-            border: "none",
-            borderBottom: "5px solid gray",
-            color: "white",
-            fontSize: "40px",
-            padding: "5px"
-          }}
-          placeholder="비밀번호 확인"
+        <StyledMyTextInput
+          name="newPassword"
+          label="새 비밀번호"
+          type="password"
         />
-        <button type="submit">update</button>
-      </Form>
+        <StyledMyTextInput
+          name="newPasswordConfirm"
+          label="새 비밀번호 확인"
+          type="password"
+        />
+        <MyErrorPlaceHolder message={updatePasswordStatus.error?.message} />
+        <Button type="submit">변경</Button>
+      </StyledForm>
     </Formik>
   );
 }
 
-const Text = styled.div`
-  color: red;
-  font-size: 50px;
-  width: 300px;
-  height: 300px;
-  border: 1px solid black;
+const StyledForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+`;
+
+const Button = styled.button`
+  width: 100px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  background-color: gray;
+  border-radius: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 20px;
+`;
+
+const StyledMyTextInput = styled(MyTextInput)`
+  width: 200px;
+  background-color: white;
+  font-size: 24px;
+  color: black;
+
+  &::placeholder {
+    color: gray;
+  }
 `;

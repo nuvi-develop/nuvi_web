@@ -28,7 +28,7 @@ export default function FindPassword() {
       tempPassword,
       htmlMessage: "<div>임시비밀번호</div>" + tempPassword
     };
-    dispatch(actions.user.findPassword({ tempPasswordInfo, onClick }));
+    dispatch(actions.user.giveTempPassword({ tempPasswordInfo, onClick }));
   };
 
   return (

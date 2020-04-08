@@ -9,9 +9,8 @@ const MyTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <TextInputContainer>
-      <StyledLabel htmlFor={name}>{label}</StyledLabel>
       <InputWrapper>
-        <StyledInput {...field} {...props} />
+        <StyledInput {...field} {...props} placeholder={label} />
         <ErrorPlaceHolder>
           {meta.touched && meta.error ? meta.error : " "}
         </ErrorPlaceHolder>
@@ -54,6 +53,10 @@ const StyledInput = styled.input`
 
   &:-webkit-autofill {
     background-color: ${Colors.gray_1};
+    color: white;
+  }
+
+  &::placeholder {
     color: white;
   }
 `;

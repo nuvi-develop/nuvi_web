@@ -8,5 +8,6 @@ export default function*() {
   yield takeEvery(AT.REGISTER, sagas.register);
   yield takeEvery(AT.WHO_AM_I, sagas.whoAmI);
   yield takeEvery(AT.LOG_OUT, sagas.logout);
-  yield takeEvery(AT.FIND_PASSWORD, sagas.findPassword);
+  yield takeEvery(AT.GIVE_TEMP_PASSWORD, sagas.giveTempPassword);
+  yield takeEvery(AT.UPDATE_PASSWORD, sagas.updatePassword);
 }

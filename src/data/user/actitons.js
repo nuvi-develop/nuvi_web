@@ -55,19 +55,35 @@ export const whoAmISuccess = data => ({
   data
 });
 
-export const findPassword = findPasswordInfo => ({
-  type: AT.FIND_PASSWORD,
-  findPasswordInfo
+export const giveTempPassword = giveTempPasswordInfo => ({
+  type: AT.GIVE_TEMP_PASSWORD,
+  giveTempPasswordInfo
 });
-export const findPasswordLoading = () => ({
-  type: AT.FIND_PASSWORD_LOADING
+export const giveTempPasswordLoading = () => ({
+  type: AT.GIVE_TEMP_PASSWORD_LOADING
 });
-export const findPasswordFailure = error => ({
-  type: AT.FIND_PASSWORD_FAILURE,
+export const giveTempPasswordFailure = error => ({
+  type: AT.GIVE_TEMP_PASSWORD_FAILURE,
   error
 });
-export const findPasswordSuccess = data => ({
-  type: AT.FIND_PASSWORD_SUCCESS,
+export const giveTempPasswordSuccess = data => ({
+  type: AT.GIVE_TEMP_PASSWORD_SUCCESS,
+  data
+});
+
+export const updatePassword = updatePasswordInfo => ({
+  type: AT.UPDATE_PASSWORD,
+  updatePasswordInfo
+});
+export const updatePasswordLoading = () => ({
+  type: AT.UPDATE_PASSWORD_LOADING
+});
+export const updatePasswordFailure = error => ({
+  type: AT.UPDATE_PASSWORD_FAILURE,
+  error
+});
+export const updatePasswordSuccess = data => ({
+  type: AT.UPDATE_PASSWORD_SUCCESS,
   data
 });
 

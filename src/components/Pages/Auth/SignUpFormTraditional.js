@@ -124,7 +124,7 @@ export default function SignUpFormTraditional() {
             <MyTextInput label="담당업무" name="duty" type="text" />
             <MySelect label="조직명" name="orgName" options={departmentList} />
             <StyledButton type="submit">가입신청</StyledButton>
-            {modal && <ApplyRegister />}
+            {modal.contents && <ApplyRegister />}
           </StyledForm>
         ) : step === 3 ? (
           <StyledForm>

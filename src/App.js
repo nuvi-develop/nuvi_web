@@ -13,7 +13,7 @@ import {
   AdminList,
   Error404,
   Error500,
-  UpdatePasswordPage
+  UserProfile
 } from "pages";
 
 function App({ history }) {
@@ -27,6 +27,7 @@ function App({ history }) {
         {/* admin 이고 approved 받는 user 만 접근가능 */}
         <AdminLayout path="/daily" component={Daily} />
         <AdminLayout path="/total" component={Total} />
+        <AdminLayout path="/profile" component={UserProfile} />
 
         {/* master user 만 접근가능 */}
         <MasterLayout path="/adminApply" component={AdminApply} />

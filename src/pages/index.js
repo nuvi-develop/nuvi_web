@@ -6,6 +6,7 @@ import AdminList from "./AdminList";
 import Error404 from "./Error404";
 import Error500 from "./Error500";
 import UpdatePasswordPage from "./UpdatePasswordPage";
+import UserProfile from "./UserProfile";
 
 export {
   Daily,
@@ -15,5 +16,6 @@ export {
   AdminList,
   Error404,
   Error500,
-  UpdatePasswordPage
+  UpdatePasswordPage,
+  UserProfile
 };

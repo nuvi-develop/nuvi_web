@@ -8,7 +8,8 @@ const Initial_State = {
   [AT.LOG_IN]: Remote.NotAsked,
   [AT.REGISTER]: Remote.NotAsked,
   [AT.WHO_AM_I]: Remote.NotAsked,
-  [AT.FIND_PASSWORD]: Remote.NotAsked,
+  [AT.GIVE_TEMP_PASSWORD]: Remote.NotAsked,
+  [AT.UPDATE_PASSWORD]: Remote.NotAsked,
   authMode: "login"
 };
 
@@ -53,14 +54,24 @@ const user = produce((draft, action) => {
       draft[AT.WHO_AM_I] = Remote.Failure(action.error);
       break;
 
-    case AT.FIND_PASSWORD_LOADING:
-      draft[AT.FIND_PASSWORD] = Remote.Loading;
+    case AT.GIVE_TEMP_PASSWORD_LOADING:
+      draft[AT.GIVE_TEMP_PASSWORD] = Remote.Loading;
       break;
-    case AT.FIND_PASSWORD_SUCCESS:
-      draft[AT.FIND_PASSWORD] = Remote.Success(action.data);
+    case AT.GIVE_TEMP_PASSWORD_SUCCESS:
+      draft[AT.GIVE_TEMP_PASSWORD] = Remote.Success(action.data);
       break;
-    case AT.FIND_PASSWORD_FAILURE:
-      draft[AT.FIND_PASSWORD] = Remote.Failure(action.error);
+    case AT.GIVE_TEMP_PASSWORD_FAILURE:
+      draft[AT.GIVE_TEMP_PASSWORD] = Remote.Failure(action.error);
+      break;
+
+    case AT.UPDATE_PASSWORD_LOADING:
+      draft[AT.UPDATE_PASSWORD] = Remote.Loading;
+      break;
+    case AT.UPDATE_PASSWORD_SUCCESS:
+      draft[AT.UPDATE_PASSWORD] = Remote.Success(action.data);
+      break;
+    case AT.UPDATE_PASSWORD_FAILURE:
+      draft[AT.UPDATE_PASSWORD] = Remote.Failure(action.error);
       break;
 
     case AT.TOGGLE_AUTH_MODE:

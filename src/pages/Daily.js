@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import {
-  Navigation,
   SummaryContainer,
   ExpectNumber,
   ExpectVolume,
@@ -12,41 +11,22 @@ import {
 import Colors from "theme/colors";
 
 export default function Daily() {
-  const tabs = [
-    { name: "DAILY", route: "/daily" },
-    { name: "TOTAL", route: "/total" }
-  ];
   return (
-    <DefaultLayout>
-      <Navigation
-        tabs={tabs}
-        initialTab={"DAILY"}
-        style={{ gridColumn: `1/2` }}
-      />
-      <DailyContainer style={{ gridColumn: `2/13` }}>
-        <SummaryContainer />
-        <MainContainer style={{ gridColumn: "1 / 3 ", gridRow: "2/6" }}>
-          <ExpectNumber />
-          <ExpectVolume />
-        </MainContainer>
-        <MainContainer
-          style={{ gridColumn: " 3 ", gridRow: "2/6", marginRight: "30px" }}
-        >
-          <LastLunch />
-          <LastDinner />
-        </MainContainer>
-      </DailyContainer>
-    </DefaultLayout>
+    <DailyContainer style={{ gridColumn: `2/13` }}>
+      <SummaryContainer />
+      <MainContainer style={{ gridColumn: "1 / 3 ", gridRow: "2/6" }}>
+        <ExpectNumber />
+        <ExpectVolume />
+      </MainContainer>
+      <MainContainer
+        style={{ gridColumn: " 3 ", gridRow: "2/6", marginRight: "30px" }}
+      >
+        <LastLunch />
+        <LastDinner />
+      </MainContainer>
+    </DailyContainer>
   );
 }
-
-const DefaultLayout = styled.div`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 1fr;
-  gap: 30px;
-  background-color: ${Colors.gray_2};
-`;
 
 const DailyContainer = styled.div`
   display: grid;

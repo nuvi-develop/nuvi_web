@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import {
-  Navigation,
   FilterContainer,
   FavFood,
   FavNotFood,
@@ -18,36 +17,22 @@ export default function Total() {
     { name: "TOTAL", route: "/total" }
   ];
   return (
-    <DefaultLayout>
-      <Navigation
-        tabs={tabs}
-        initialTab="TOTAL"
-        style={{ gridColumn: `1/2` }}
-      />
-      <TotalContainer style={{ gridColumn: `2/13` }}>
-        <FilterContainer />
-        <MainContainer style={{ gridColumn: "1/3", gridRow: "2/6" }}>
-          <FavFood />
-          <FavNotFood />
-        </MainContainer>
-        <MainContainer
-          style={{ gridColumn: "3/5", gridRow: "2/6", marginRight: "30px" }}
-        >
-          <LeftOver />
-          <MadeTooMuch />
-          <Compare />
-        </MainContainer>
-      </TotalContainer>
-    </DefaultLayout>
+    <TotalContainer style={{ gridColumn: `2/13` }}>
+      <FilterContainer />
+      <MainContainer style={{ gridColumn: "1/3", gridRow: "2/6" }}>
+        <FavFood />
+        <FavNotFood />
+      </MainContainer>
+      <MainContainer
+        style={{ gridColumn: "3/5", gridRow: "2/6", marginRight: "30px" }}
+      >
+        <LeftOver />
+        <MadeTooMuch />
+        <Compare />
+      </MainContainer>
+    </TotalContainer>
   );
 }
-
-const DefaultLayout = styled.div`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 30px;
-  background-color: ${Colors.gray_2};
-`;
 
 const TotalContainer = styled.div`
   display: grid;

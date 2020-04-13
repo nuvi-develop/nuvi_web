@@ -20,8 +20,8 @@ const NavItem = styled.div`
   width: 80px;
   text-align: center;
   border-radius: 20px;
-  background-color: ${({ activeItem, title }) =>
-    activeItem === title ? Colors.green_1 : null};
+  background-color: ${({ activePath, to }) =>
+    activePath === to ? Colors.green_1 : null};
 `;
 
 const LinkStyled = styled(Link)`

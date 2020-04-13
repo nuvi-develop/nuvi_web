@@ -1,5 +1,4 @@
-import DefaultLayout from "./DefaultLayout";
-import MasterLayout from "./MasterLayout";
-import AdminLayout from "./AdminLayout";
+import DashBoardLayout from "./DashBoardLayout";
+import AuthLayout from "./AuthLayout";
 
-export { DefaultLayout, MasterLayout, AdminLayout };
+export { DashBoardLayout, AuthLayout };

@@ -4,7 +4,11 @@ import { Route, Redirect } from "react-router-dom";
 
 import { actions, selectors } from "data";
 
-export default function AdminLayout({ component: Component, ...rest }) {
+export default function MasterLayout({
+  component: Component,
+  layout: Layout,
+  ...rest
+}) {
   const dispatch = useDispatch();
   const whoAmIRemote = useSelector(selectors.user.getWhoAmI);
 
@@ -12,19 +16,11 @@ export default function AdminLayout({ component: Component, ...rest }) {
     dispatch(actions.user.whoAmI());
   }, []);
 
-  let Layout = () => (
-    <Route
-      {...rest}
-      render={matchProps => <Component {...matchProps} {...rest} />}
-    />
-  );
   if (whoAmIRemote.data) {
-    const { isAdmin, approved } = whoAmIRemote.data;
-    if (!(isAdmin && approved)) {
-      Layout = () => {
-        dispatch(actions.user.resetAuth());
-        return <Redirect from="" to="/" />;
-      };
+    const { id } = whoAmIRemote.data;
+    if (id !== "master") {
+      dispatch(actions.user.resetAuth());
+      return <Redirect from="" to="/" />;
     }
   }
 
@@ -32,6 +28,15 @@ export default function AdminLayout({ component: Component, ...rest }) {
     NotAsked: () => "loading",
     Loading: () => "loading",
     Failure: () => <Redirect from="" to="/" />,
-    Success: () => <Layout />
+    Success: () => (
+      <Route
+        {...rest}
+        render={matchProps => (
+          <Layout master>
+            <Component {...matchProps} {...rest} />
+          </Layout>
+        )}
+      />
+    )
   });
 }

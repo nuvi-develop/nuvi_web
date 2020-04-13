@@ -18,9 +18,7 @@ export default function Profile() {
   const logoutHandler = () => {
     dispatch(actions.user.logout());
   };
-  const goHomeHandler = () => {
-    dispatch(actions.router.push("/daily"));
-  };
+
   return (
     <Container>
       <UserImage src={logo} />
@@ -32,7 +30,6 @@ export default function Profile() {
       </UpdatePasswordButton>
       {updatePassword && <UpdatePassword />}
       <LogoutText onClick={logoutHandler}>로그아웃</LogoutText>
-      <Button onClick={goHomeHandler}>홈으로</Button>
     </Container>
   );
 }
@@ -43,7 +40,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 50%;
+  width: 100%;
   height: 100vh;
   margin: auto;
 `;

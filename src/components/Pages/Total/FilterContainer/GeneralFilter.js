@@ -15,10 +15,9 @@ export default function DateFilter({ title }) {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 400px;
+  max-width: 400px;
 `;
 
-const FilterTitle = styled.div`
-  font-size: 20px;
+const FilterTitle = styled.h2`
   color: white;
 `;

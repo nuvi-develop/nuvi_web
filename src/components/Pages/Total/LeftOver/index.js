@@ -16,4 +16,9 @@ export default function index() {
 
 const SubContainer = styled.div`
   flex: 1;
+  flex-direction: column;
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+  }
 `;

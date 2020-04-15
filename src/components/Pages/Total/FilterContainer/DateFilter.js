@@ -13,10 +13,13 @@ export default function DateFilter({ title }) {
 }
 
 const Container = styled.div`
-  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 400px;
 `;
 
-const FilterTitle = styled.div`
-  font-size: 20px;
+const FilterTitle = styled.h2`
   color: white;
 `;

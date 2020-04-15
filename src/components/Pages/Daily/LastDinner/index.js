@@ -16,7 +16,7 @@ export default function LastDinner() {
           { title: "잔식", color: "#96D1A5" }
         ]}
       />
-      <BarChart width={"99%"} height={300} />
+      <BarChart width={"99%"} height={250} />
     </SubContainer>
   );
 }

@@ -13,16 +13,16 @@ export default function Summary({
   return (
     <SummaryCard>
       <MainTitle>
-        <Title>{title}</Title> <p>{date}</p>
+        <Title>{title}</Title> <h4>{date}</h4>
       </MainTitle>
       <Subtitle>
-        <ContentColumn>
+        <Column>
           <Lunch />
           <ContentRow>
             <Content>{contents.lunch}</Content>
             <Info>{subContents.lunch}</Info>
           </ContentRow>
-        </ContentColumn>
+        </Column>
         <Column>
           <Dinner />
           <ContentRow>
@@ -44,18 +44,23 @@ const SummaryCard = styled.div`
   border-radius: 10px;
   width: 100%;
   padding: 20px 0;
+  margin-bottom: 10px;
+  margin-right: 10px;
+
+  &:last-child {
+    margin-right: 0px;
+  }
 `;
 
 const MainTitle = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   min-width: 300px;
   color: white;
 `;
 
-const Title = styled.h1`
-  margin-right: 30px;
+const Title = styled.h2`
   text-align: center;
 `;
 
@@ -63,7 +68,7 @@ const Subtitle = styled(MainTitle)`
   color: ${Colors.blue_3};
 `;
 
-const Content = styled.h1`
+const Content = styled.h2`
   color: white;
   text-align: center;
 `;

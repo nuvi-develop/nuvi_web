@@ -36,7 +36,7 @@ export default function SimpleBarChart({ width, height }) {
           <LabelList
             position="top"
             dataKey="pv"
-            fontSize={"1vw"}
+            fontSize={"16px"}
             formatter={val => `${val} 인분`}
           />
         </Bar>

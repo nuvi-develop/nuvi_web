@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Colors from "theme/colors";
+import { bp } from "styles/global";
 const nutritions = "/images/nutritions.svg";
 
 export default function AuthLayout({ children }) {
@@ -17,7 +18,7 @@ export default function AuthLayout({ children }) {
 
 const CoverImage = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url(${nutritions});
   background-size: cover;
   z-index: -1;
@@ -29,7 +30,7 @@ const TransparentBlock = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: ${Colors.gray_1};
   opacity: 0.9;
 `;
@@ -37,8 +38,12 @@ const TransparentBlock = styled.div`
 const AuthBlock = styled.div`
   display: flex;
   flex-direction: column;
-  width: 900px;
-  height: 90%;
-  border: 10px solid white;
+  width: 90%;
+  height: 90vh;
+  border: 2px solid white;
   border-radius: 10px;
+
+  @media (min-width: ${bp.xlarge}) {
+    width: 1200px;
+  }
 `;

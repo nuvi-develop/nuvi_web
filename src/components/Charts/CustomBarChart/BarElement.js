@@ -25,13 +25,18 @@ const MainContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 300px;
+  margin-top: 20px;
+
+  @media (min-width: 1200px) {
+    height: 200px;
+  }
 `;
 
 const BarContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 120px;
+  flex: 0 0 100px;
   width: 20px;
   border-radius: 10px;
   background-color: ${Colors.blue_4};
@@ -53,18 +58,19 @@ const Bar = styled.div`
 `;
 
 const Name = styled.div`
-  font-size: 20px;
+  font-size: 16px;
   color: ${Colors.blue_1};
-  margin-bottom: 20px;
+  flex: 1 0 36px;
 `;
 
 const Percentage = styled.div`
-  font-size: 32px;
+  font-size: 16px;
   color: ${Colors.blue_1};
-  margin-bottom: 10px;
+  flex: 1 0 36px;
 `;
 
 const Value = styled.div`
   font-size: 16px;
   color: ${Colors.blue_3};
+  flex: 1 0 36px;
 `;

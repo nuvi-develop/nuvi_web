@@ -21,8 +21,8 @@ export default function CompareComponent() {
     <SubContainer>
       <DefaultTitle component={Title} icon={compare} />
       <GraphContainer>
-        <HalfPieChart width={"50%"} height={200} />
-        <SimpleBarChart width={"50%"} height={200} />
+        <HalfPieChart width={300} height={200} />
+        <SimpleBarChart width={300} height={200} />
       </GraphContainer>
     </SubContainer>
   );
@@ -34,8 +34,14 @@ const SubContainer = styled.div`
 
 const GraphContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
   margin: 20px;
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 const InlineDiv = styled.div`

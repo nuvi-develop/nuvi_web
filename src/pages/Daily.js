@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { bp } from "styles/global";
+
 import {
   SummaryContainer,
   ExpectNumber,
@@ -12,37 +14,52 @@ import Colors from "theme/colors";
 
 export default function Daily() {
   return (
-    <DailyContainer style={{ gridColumn: `2/13` }}>
+    <DailyContainer>
       <SummaryContainer />
-      <MainContainer style={{ gridColumn: "1 / 3 ", gridRow: "2/6" }}>
+      <FirstContainer>
         <ExpectNumber />
         <ExpectVolume />
-      </MainContainer>
-      <MainContainer
-        style={{ gridColumn: " 3 ", gridRow: "2/6", marginRight: "30px" }}
-      >
+      </FirstContainer>
+      <SecondContainer>
         <LastLunch />
         <LastDinner />
-      </MainContainer>
+      </SecondContainer>
     </DailyContainer>
   );
 }
 
 const DailyContainer = styled.div`
-  display: grid;
-  width: 100%;
-  height: 100%;
-  grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  display: flex;
+  flex-direction: column;
+
+  align-items: stretch;
+  align-content: center;
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 `;
 
-const MainContainer = styled.div`
+const FirstContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
   border-radius: 10px;
   padding: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   border: 3px solid white;
+  flex: 1;
+
+  @media (min-width: 1200px) {
+    flex: 2 1 700px;
+    height: 80vh;
+  }
+`;
+
+const SecondContainer = styled(FirstContainer)`
+  @media (min-width: 1200px) {
+    margin-left: 10px;
+    flex: 1 1 350px;
+  }
 `;

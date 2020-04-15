@@ -27,7 +27,7 @@ export default function TrashGraphElement(props) {
 
   return (
     <ElementContainer>
-      <img src={image} alt={rate} />
+      <Image src={image} alt={rate} />
       <Name>{name}</Name>
       <Value>
         {value}
@@ -43,14 +43,20 @@ const ElementContainer = styled.div`
   align-items: center;
   height: 100%;
 `;
-const Name = styled.div`
-  font-size: 20px;
+const Name = styled.h3`
   color: ${Colors.blue_1};
   margin-top: 20px;
 `;
 
-const Value = styled.div`
-  font-size: 32px;
+const Image = styled.img`
+  width: 30px;
+
+  @media (min-width: 1200px) {
+    width: 50px;
+  }
+`;
+
+const Value = styled.h4`
   color: ${Colors.blue_1};
   margin: 10px 0 20px;
 `;

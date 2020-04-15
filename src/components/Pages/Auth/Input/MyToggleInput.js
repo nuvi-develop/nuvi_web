@@ -3,53 +3,36 @@ import styled from "styled-components";
 import { useField } from "formik";
 
 import Colors from "theme/colors";
+import px2vw from "utils";
 
 export default function MyToggleInput({ label, ...props }) {
-  const { name } = props;
   const [field, meta] = useField(props);
   return (
-    <InputContainer>
-      <StyledLabel htmlFor={name}>{label}</StyledLabel>
-      <InputWrapper>
-        <CheckBoxWrapper>
-          <CheckBox id="checkbox" {...field} {...props} />
-          <CheckBoxLabel htmlFor="checkbox" />
-          <Info value={field.value}>
-            {field.value ? "관리자" : "일반사용자"}
-          </Info>
-        </CheckBoxWrapper>
+    <InputWrapper>
+      <CheckBoxWrapper>
+        <CheckBox id="checkbox" {...field} {...props} />
+        <CheckBoxLabel htmlFor="checkbox" />
+        <Info value={field.value}>{field.value ? "관리자" : "일반사용자"}</Info>
+      </CheckBoxWrapper>
 
-        <ErrorPlaceHolder>
-          {meta.touched && meta.error ? meta.error : " "}
-        </ErrorPlaceHolder>
-      </InputWrapper>
-    </InputContainer>
+      <ErrorPlaceHolder>
+        {meta.touched && meta.error ? meta.error : " "}
+      </ErrorPlaceHolder>
+    </InputWrapper>
   );
 }
-
-const InputContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
-`;
-
-const StyledLabel = styled.label`
-  width: 270px;
-  text-align: right;
-  font-size: 50px;
-  color: white;
-  margin-right: 50px;
-`;
 
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 430px;
+  margin-bottom: 5vh;
+  width: 50%;
+  min-width: 250px;
+  max-width: 500px;
 `;
 
 const CheckBoxWrapper = styled.div`
   position: relative;
-  margin-left: 30px;
 `;
 const CheckBoxLabel = styled.label`
   position: absolute;
@@ -92,17 +75,17 @@ const CheckBox = styled.input`
 `;
 
 const Info = styled.div`
+  width: 100px;
   position: absolute;
-  left: 150px;
+  left: 110px;
   bottom: -15px;
   color: ${({ value }) => (value ? Colors.green_1 : Colors.gray_2)};
-  font-size: 32px;
+  font-size: 24px;
   transition: all 0.5s;
 `;
 
 const ErrorPlaceHolder = styled.div`
-  height: 20px;
+  height: 24px;
   font-size: 24px;
-  text-align: right;
   color: ${Colors.green_2};
 `;

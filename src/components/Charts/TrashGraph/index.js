@@ -27,5 +27,4 @@ const GraphContainer = styled.div`
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
-  height: 100%;
 `;

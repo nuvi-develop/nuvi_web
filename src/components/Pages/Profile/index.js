@@ -25,9 +25,11 @@ export default function Profile() {
 
       <UserName>기관: {name}</UserName>
       <UserName>이름:{userName}</UserName>
-      <UpdatePasswordButton onClick={() => setUpdatePassword(prev => !prev)}>
-        비밀번호 업데이트
-      </UpdatePasswordButton>
+      {user.type === "traditional" && (
+        <UpdatePasswordButton onClick={() => setUpdatePassword(prev => !prev)}>
+          비밀번호 업데이트
+        </UpdatePasswordButton>
+      )}
       {updatePassword && <UpdatePassword />}
       <LogoutText onClick={logoutHandler}>로그아웃</LogoutText>
     </Container>

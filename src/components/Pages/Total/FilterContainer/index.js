@@ -22,16 +22,27 @@ export default function FilterContainerComponent() {
 }
 
 const FilterContainer = styled.div`
-  grid-column: 1/5;
-  margin-top: 30px;
-  background-color: ${Colors.blue_1};
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
-  padding: 20px;
-  margin-right: 30px;
+  background-color: ${Colors.blue_1};
+  padding: 15px;
+  width: 100%;
+  margin-bottom: 1vh;
+
+  @media (min-width: 1200px) {
+    height: 16vh;
+  }
 `;
 
 const FilterGroup = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+    width: 90%;
+    align-self: center;
+  }
 `;

@@ -21,12 +21,12 @@ export default function ExpectNumber() {
       <ContentContainer>
         <GraphContainer>
           <Lunch blue />
-          <ComposedChart width={"99%"} height={300} />
+          <ComposedChart width={"99%"} height={250} />
         </GraphContainer>
         <DivideLine />
         <GraphContainer>
           <Dinner blue />
-          <ComposedChart width={"99%"} height={300} />
+          <ComposedChart width={"99%"} height={250} />
         </GraphContainer>
       </ContentContainer>
     </SubContainer>
@@ -38,6 +38,11 @@ const SubContainer = styled.div`
 `;
 const ContentContainer = styled.div`
   display: flex;
+  flex-direction: column;
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+  }
 `;
 
 const GraphContainer = styled.div`

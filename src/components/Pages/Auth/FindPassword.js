@@ -5,11 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import randomstring from "randomstring";
 
 import MyTextInput from "components/Pages/Auth/Input/MyTextInput";
+import StyledButton from "./Button/StyledButton";
 import { actions, selectors } from "data";
-import api from "api";
 import { Modal } from "components";
-
-import Colors from "theme/colors";
 
 export default function FindPassword() {
   const dispatch = useDispatch();
@@ -57,18 +55,6 @@ const StyledForm = styled(Form)`
   justify-content: center;
   align-items: center;
   flex: 1;
-`;
-
-const StyledButton = styled.button`
-  width: 180px;
-  height: 80px;
-  border-radius: 40px;
-  border: 10px solid ${Colors.green_2};
-  background-color: ${Colors.gray_1};
-
-  color: ${Colors.green_2};
-  font-size: 36px;
-  margin: 30px;
 `;
 
 const StyledLabel = styled.div`

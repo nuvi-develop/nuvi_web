@@ -3,52 +3,40 @@ import styled from "styled-components";
 import { useField } from "formik";
 
 import Colors from "theme/colors";
+import px2vw from "utils";
 
 const MyTextInput = ({ label, ...props }) => {
-  const { name } = props;
   const [field, meta] = useField(props);
   return (
-    <TextInputContainer>
-      <InputWrapper>
-        <StyledInput {...field} {...props} placeholder={label} />
-        <ErrorPlaceHolder>
-          {meta.touched && meta.error ? meta.error : " "}
-        </ErrorPlaceHolder>
-      </InputWrapper>
-    </TextInputContainer>
+    <InputWrapper>
+      <StyledInput {...field} {...props} placeholder={label} />
+      <ErrorPlaceHolder>
+        {meta.touched && meta.error ? meta.error : " "}
+      </ErrorPlaceHolder>
+    </InputWrapper>
   );
 };
-
-const TextInputContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
-`;
-
-const StyledLabel = styled.label`
-  width: 270px;
-  text-align: right;
-  font-size: 50px;
-  color: white;
-  margin-right: 50px;
-`;
 
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin-bottom: 5vh;
+  width: 100%;
 `;
 
 const StyledInput = styled.input`
-  width: 430px;
+  width: 50%;
+  min-width: 250px;
+  max-width: 500px;
   background-color: ${Colors.gray_1};
   border: none;
-  border-bottom: 5px solid ${Colors.gray_2};
+  border-bottom: 3px solid ${Colors.gray_2};
   color: white;
-  font-size: 40px;
-  padding: 5px;
+  font-size: 32px;
 
   &:focus {
-    border-bottom: 5px solid ${Colors.green_1};
+    border-bottom: 3px solid ${Colors.green_1};
   }
 
   &:-webkit-autofill {
@@ -62,9 +50,8 @@ const StyledInput = styled.input`
 `;
 
 const ErrorPlaceHolder = styled.div`
-  height: 20px;
+  height: 24px;
   font-size: 24px;
-  text-align: right;
   color: ${Colors.green_2};
 `;
 

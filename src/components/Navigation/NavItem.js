@@ -17,7 +17,7 @@ const NavItem = styled.div`
   font-size: 24px;
   margin-bottom: 20px;
   padding: 10px 20px;
-  width: 80px;
+  width: 120px;
   text-align: center;
   border-radius: 20px;
   background-color: ${({ activePath, to }) =>

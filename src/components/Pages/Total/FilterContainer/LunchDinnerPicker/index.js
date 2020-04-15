@@ -42,7 +42,7 @@ export default function LunchDinnerPicker() {
 
 const DropDownContainer = styled.div`
   position: relative;
-  width: 200px;
+  width: 100%;
 `;
 
 const InputContainer = styled.div`
@@ -55,17 +55,16 @@ const InputContainer = styled.div`
   border-radius: 5px;
 `;
 
-const Input = styled.div`
+const Input = styled.h2`
   color: white;
-  font-size: 32px;
 `;
 const Icon = styled.img`
   display: inline;
 `;
 const Wrapper = styled.div`
-  width: 200px;
+  z-index: 1;
+  width: 100%;
   position: absolute;
-  font-size: 100px;
   background-color: ${Colors.green_2};
   border-radius: 0 0 10px 10px;
 `;
@@ -75,9 +74,8 @@ const ListContainer = styled.div`
   border-top: none;
 `;
 
-const ListItem = styled.div`
+const ListItem = styled.h2`
   color: white;
-  font-size: 24px;
   padding: 10px 20px;
   border-bottom: 2px solid white;
 

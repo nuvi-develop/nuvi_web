@@ -22,7 +22,6 @@ export default function DatePickerComponent() {
     <DatePicker
       selected={startDate}
       onChange={date => {
-        console.log("date", date);
         setStartDate(date);
       }}
       customInput={<CustomInput />}
@@ -31,17 +30,14 @@ export default function DatePickerComponent() {
   );
 }
 
-const Wrapper = styled.div`
-  width: 400px;
-`;
+const Wrapper = styled.div``;
 
 const Icon = styled.img`
   display: inline;
 `;
 
-const Input = styled.div`
+const Input = styled.h2`
   color: white;
-  font-size: 32px;
 `;
 
 const InputContainer = styled.div`

@@ -36,6 +36,11 @@ const DivideLine = styled.div`
 
 const ContentContainer = styled.div`
   display: flex;
+  flex-direction: column;
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+  }
 `;
 
 const GraphContainer = styled.div`

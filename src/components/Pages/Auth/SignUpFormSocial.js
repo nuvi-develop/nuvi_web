@@ -8,6 +8,7 @@ import Colors from "theme/colors";
 import MyTextInput from "./Input/MyTextInput";
 import MyToggleInput from "./Input/MyToggleInput";
 import MySelect from "./Input/MySelect";
+import StyledButton from "./Button/StyledButton";
 import { ApplyRegister } from "components";
 import api from "api";
 import { actions, selectors } from "data";
@@ -87,7 +88,7 @@ export default function SignUpFormSocial() {
       {({ values }) =>
         step === 1 ? (
           <StyledForm>
-            <div>{emailAddress} 에대한 추가정보 기입</div>
+            <Text>{emailAddress} 에대한 추가정보 기입</Text>
             <MyToggleInput label="관리자" name="isAdmin" type="checkbox" />
             <StyledButton type="submit">다음</StyledButton>
           </StyledForm>
@@ -116,6 +117,7 @@ export default function SignUpFormSocial() {
 
 const StyledForm = styled(Form)`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -123,14 +125,8 @@ const StyledForm = styled(Form)`
   margin-right: 100px;
 `;
 
-const StyledButton = styled.button`
-  width: 180px;
-  height: 80px;
-  border-radius: 40px;
-  border: 10px solid ${Colors.green_2};
-  background-color: ${Colors.gray_1};
-  align-self: flex-end;
-  color: ${Colors.green_2};
-  font-size: 36px;
-  margin: 30px;
+const Text = styled.div`
+  color: white;
+  font-size: 32px;
+  margin-bottom: 24px;
 `;

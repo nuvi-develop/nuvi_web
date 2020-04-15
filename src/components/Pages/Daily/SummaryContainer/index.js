@@ -28,11 +28,13 @@ export default function SummaryContainerComponent() {
 }
 
 const SummaryContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  grid-column-start: 1;
-  grid-column-end: 4;
-  margin-top: 30px;
-  margin-right: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+    height: 16vh;
+  }
 `;

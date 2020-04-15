@@ -9,7 +9,7 @@ export default function FavFood() {
   return (
     <SubContainer>
       <DefaultTitle title="선호 음식 TOP 5" icon={good} />
-      <BarHorizontalChart width={"99%"} height={300} />
+      <BarHorizontalChart width={"99%"} height={250} />
     </SubContainer>
   );
 }

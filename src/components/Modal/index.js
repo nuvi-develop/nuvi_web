@@ -29,6 +29,8 @@ export default function ModalComp({ modalInfo, withCancel }) {
 
 const Background = styled.div`
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -40,12 +42,12 @@ const Background = styled.div`
 `;
 
 const Modal = styled.div`
-  width: 660px;
-  height: 400px;
+  width: 300px;
+  height: 230px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   background-color: white;
   border: 1px solid ${Colors.gray_1};
   border-radius: 10px;
@@ -53,13 +55,14 @@ const Modal = styled.div`
 
 const Text = styled.div`
   color: ${Colors.blue_1};
-  width: 80%;
-  font-size: 24px;
+  width: 230px;
+  font-size: 16px;
   text-align: center;
 `;
 
 const ButtonsContainer = styled.div`
   display: flex;
+  margin: 10px;
 `;
 
 const Button = styled.div`
@@ -67,11 +70,11 @@ const Button = styled.div`
   border: 1px solid ${Colors.gray_1};
   border-radius: 10px;
   color: white;
-  font-size: 32px;
-  margin-botton: 10px;
-  width: 200px;
+  font-size: 16px;
+
+  width: 100px;
   height: 60px;
-  margin: 20px;
+  margin: 10px 0;
   text-align: center;
   line-height: 60px;
 `;

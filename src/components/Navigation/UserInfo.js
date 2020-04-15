@@ -58,7 +58,7 @@ const UserInfoContainer = styled.div`
   align-items: center;
   cursor: pointer;
   padding: 10px 20px;
-  width: 80px;
+  width: 120px;
   border-radius: 20px;
   background-color: ${({ activePath, to }) =>
     activePath === to ? Colors.green_1 : null};

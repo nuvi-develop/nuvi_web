@@ -10,6 +10,7 @@ import {
   FindPassword
 } from "components";
 import { selectors, actions } from "data";
+import px2vw from "utils";
 
 export default function Auth() {
   const dispatch = useDispatch();
@@ -59,17 +60,16 @@ export default function Auth() {
 
 const AuthController = styled.div`
   display: flex;
-
   flex-direction: row;
   justify-content: space-around;
-  margin: 50px 50px 100px;
+  margin: 5vh 0;
 `;
 
 const AuthItem = styled.div`
-  font-size: 50px;
+  font-size: 24px;
   color: white;
   text-align: center;
-  width: 300px;
+  width: 30%;
   &:hover {
     cursor: pointer;
   }
@@ -84,8 +84,7 @@ const AuthItem = styled.div`
         mode.startsWith(buttonFor) ? Colors.gray_2 : "white"};
     border-radius: 10px;
     width: ${({ buttonFor, mode }) =>
-      mode.startsWith(buttonFor) ? "300px" : "0px"};
+      mode.startsWith(buttonFor) ? "100%" : "0px"};
     transition: width 0.5s, border 1s;
-    text-align: center;
   }
 `;

@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import GoogleLogin from "react-google-login";
 
@@ -19,7 +20,7 @@ export default function GoogleLoginComponent() {
     dispatch(actions.user.loginSocial({ token }));
   };
   return (
-    <GoogleLogin
+    <StyledGoogleLogin
       clientId={google.oAuthId}
       buttonText="GOOGLE 로그인"
       onSuccess={onSuccess}
@@ -32,3 +33,7 @@ export const onSignOut = () => {
     googleAuth.signOut();
   });
 };
+
+const StyledGoogleLogin = styled(GoogleLogin)`
+  margin: 5vh;
+`;

@@ -116,7 +116,6 @@
   border-radius: 0.3rem;
   display: flex;
   position: relative;
-  width: 300px;
   flex-direction: column;
 }
 
@@ -900,4 +899,10 @@
 .react-datepicker__portal .react-datepicker__navigation--next--disabled:hover {
   border-left-color: #e6e6e6;
   cursor: default;
+}
+
+@media (min-width: 1200px) {
+  .react-datepicker {
+    width: 300px;
+  }
 }

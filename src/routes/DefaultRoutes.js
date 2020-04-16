@@ -4,7 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 
 import { actions, selectors } from "data";
 
-export default function DefaultLayout({ component: Component, ...rest }) {
+export default function DefaultRoutes({ component: Component, ...rest }) {
   const dispatch = useDispatch();
   const whoAmIRemote = useSelector(selectors.user.getWhoAmI);
 

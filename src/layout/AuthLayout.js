@@ -18,7 +18,8 @@ export default function AuthLayout({ children }) {
 
 const CoverImage = styled.div`
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 700px;
   background-image: url(${nutritions});
   background-size: cover;
   z-index: -1;
@@ -30,7 +31,8 @@ const TransparentBlock = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 700px;
   background-color: ${Colors.gray_1};
   opacity: 0.9;
 `;
@@ -40,6 +42,7 @@ const AuthBlock = styled.div`
   flex-direction: column;
   width: 90%;
   height: 90vh;
+  min-height: 550px;
   border: 2px solid white;
   border-radius: 10px;
 

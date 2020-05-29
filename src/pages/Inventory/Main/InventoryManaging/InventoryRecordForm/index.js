@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { Formik, Form } from "formik";
 
 import GeneralInput from "./Input/GeneralInput";
+
 import Colors from "theme/colors";
+import { Button } from "theme/style";
 
 export default function InventoryRecordFormComp() {
   const submitHander = values => {
@@ -13,7 +15,7 @@ export default function InventoryRecordFormComp() {
     <Container>
       <Formik
         initialValues={{
-          drecordDateate: new Date(),
+          recordDate: new Date(),
           order: 0,
           use: 0,
           cost: 0
@@ -27,6 +29,7 @@ export default function InventoryRecordFormComp() {
               name="recordDate"
               type="text"
               placeholer={0}
+              selector
             />
             <GeneralInput
               label="주문량 (kg)"
@@ -68,17 +71,12 @@ const StyledForm = styled(Form)`
   justify-content: space-between;
 `;
 
-const SubmitButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const SubmitButton = styled(Button)`
   align-self: flex-end;
   width: 150px;
   height: 50px;
   font-size: 24px;
   color: white;
   background-color: ${Colors.blue_1};
-  border-radius: 20px;
-  border: none;
   margin-top: 30px;
 `;

@@ -6,6 +6,9 @@ import Colors from "theme/colors";
 import SearchList from "./SearchList";
 import CurrentIngredient from "./CurrentIngredient";
 import InventoryRecordForm from "./InventoryRecordForm";
+import LogList from "./LogList";
+import LogChart from "./LogChart";
+import NavButton from "./NavButton";
 
 const mockSearchList = [{ name: "보리" }, { name: "쌀" }];
 
@@ -21,7 +24,11 @@ export default function InventoryManaging() {
         <InventoryRecordForm />
       </SubContainer>
       <Divider />
-      <SubContainer />
+      <SubContainer>
+        <LogList />
+        <LogChart />
+        <NavButton />
+      </SubContainer>
     </MainContainer>
   );
 }
@@ -38,7 +45,9 @@ const MainContainer = styled.div`
 const SubContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   flex: 1;
+  padding: 20px;
 `;
 const Divider = styled.div`
   border: solid 1px ${Colors.gray_1};

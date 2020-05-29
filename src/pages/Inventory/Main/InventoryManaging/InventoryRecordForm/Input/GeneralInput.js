@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { useField } from "formik";
+import NavButton from "../../NavButton";
 
-export default function GeneralInputComp(props) {
+export default function GeneralInputComp({ selector, ...props }) {
   const [field, meta] = useField(props);
   return (
     <Container>
       <Label>{props.label}</Label>
       <StyledInput {...field} {...props} />
+      {selector ? <NavButton noCurrent /> : <Placeholder />}
     </Container>
   );
 }
@@ -28,4 +30,8 @@ const StyledInput = styled.input`
   width: 150px;
   border: ;
   text-align: center;
+`;
+
+const Placeholder = styled.div`
+  height: 40px;
 `;

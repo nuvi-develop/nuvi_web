@@ -14,7 +14,8 @@ import {
   AdminList,
   Error404,
   Error500,
-  UserProfile
+  UserProfile,
+  Inventory
 } from "pages";
 
 function App({ history }) {
@@ -35,6 +36,11 @@ function App({ history }) {
         {/* admin 이고 approved 받는 user 만 접근가능 */}
         <AdminRoutes path="/daily" layout={DashBoardLayout} component={Daily} />
         <AdminRoutes path="/total" layout={DashBoardLayout} component={Total} />
+        <AdminRoutes
+          path="/inventory"
+          layout={DashBoardLayout}
+          component={Inventory}
+        />
         <AdminRoutes
           path="/profile"
           layout={DashBoardLayout}

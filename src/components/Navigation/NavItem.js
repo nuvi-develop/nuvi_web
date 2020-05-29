@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import Colors from "theme/colors";
 
 export default function NavItemComponent(props) {
-  const { to, onClick, title } = props;
+  const { to, title } = props;
   return (
-    <LinkStyled to={to} onClick={onClick}>
+    <LinkStyled to={to}>
       <NavItem {...props}>{title}</NavItem>
     </LinkStyled>
   );

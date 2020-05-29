@@ -34,6 +34,8 @@ import AdminListItem from "./Pages/Admin/AdminListItem";
 import FindPassword from "./Pages/Auth/FindPassword";
 import UpdatePassword from "./Pages/Auth/UpdatePassword";
 import Profile from "./Pages/Profile";
+import SimpleInput from "./Input/SimpleInput";
+import AddInput from "./Input/AddInput";
 
 export {
   Navigation,
@@ -71,5 +73,7 @@ export {
   AdminListItem,
   FindPassword,
   UpdatePassword,
-  Profile
+  Profile,
+  SimpleInput,
+  AddInput
 };

@@ -12,7 +12,8 @@ export default function DashBoardLayout({ children, master }) {
 
   let tabs = [
     { name: "DAILY", route: "/daily" },
-    { name: "TOTAL", route: "/total" }
+    { name: "TOTAL", route: "/total" },
+    { name: "재고관리", route: "/inventory" }
   ];
 
   if (master) {
@@ -68,6 +69,7 @@ const MenuButton = styled.img`
   width: 30px;
   margin: 5px;
   align-self: flex-start;
+  cursor: pointer;
 `;
 
 const Contents = styled.div`

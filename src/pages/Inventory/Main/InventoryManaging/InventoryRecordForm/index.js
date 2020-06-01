@@ -79,4 +79,5 @@ const SubmitButton = styled(Button)`
   color: white;
   background-color: ${Colors.blue_1};
   margin-top: 30px;
+  cursor: pointer;
 `;

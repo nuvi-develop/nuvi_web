@@ -8,7 +8,9 @@ const colors = {
   green_deep_1: "#57AC87",
   green_deep_2: "#4C7765",
   gray_1: "#797A7D",
-  gray_2: "#E2E4EA"
+  gray_2: "#E2E4EA",
+  pink: "#EF6686",
+  yellow: "#FCC613"
 };
 
 export default colors;

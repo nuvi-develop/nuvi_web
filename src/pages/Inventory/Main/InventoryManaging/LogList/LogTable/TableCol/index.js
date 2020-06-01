@@ -7,8 +7,8 @@ export default function TableCol({ label, data }) {
   return (
     <Container>
       <Label>{label}</Label>
-      {data.map(d => (
-        <Content>{d}</Content>
+      {data.map((d, i) => (
+        <Content key={`d_${i}`}>{d}</Content>
       ))}
     </Container>
   );

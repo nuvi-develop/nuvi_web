@@ -1,21 +1,30 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { useTabs } from "hooks/pages/useTabs";
+import { actions, selectors } from "data";
 
 export default function SubTabNavigation() {
-  const tabs = { MANAGING: "MANAGING", TOTAL: "TOTAL" };
-  const [tab, setTab] = useState(tabs.MANAGING);
+  const dispatch = useDispatch();
+  const currentTab = useSelector(selectors.inventory.getCurrentTab);
+
+  const inventoryTabs = {
+    MANAGING_INGREDIENTS: "MANAGING_INGREDIENTS",
+    TOTAL_INGREDIENTS: "TOTAL_INGREDIENTS"
+  };
 
   return (
     <SubTabContainer>
       <SubTab
-        onClick={() => setTab(tabs.MANAGING)}
-        isCurrent={tab === tabs.MANAGING}
+        onClick={() => dispatch(actions.inventory.toggleTabManaging())}
+        isCurrent={currentTab === inventoryTabs.MANAGING_INGREDIENTS}
       >
         재고 관리
       </SubTab>
-      <SubTab onClick={() => setTab(tabs.TOTAL)} isCurrent={tab === tabs.TOTAL}>
+      <SubTab
+        onClick={() => dispatch(actions.inventory.toggleTabTotal())}
+        isCurrent={currentTab === inventoryTabs.TOTAL_INGREDIENTS}
+      >
         전체 재료
       </SubTab>
     </SubTabContainer>

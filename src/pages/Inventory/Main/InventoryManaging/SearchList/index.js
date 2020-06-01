@@ -7,7 +7,7 @@ export default function SearchListComp({ searchList }) {
   return (
     <Container>
       {searchList.map(ingredient => (
-        <Ingredient ingredient={ingredient} />
+        <Ingredient ingredient={ingredient} key={ingredient.name} />
       ))}
     </Container>
   );

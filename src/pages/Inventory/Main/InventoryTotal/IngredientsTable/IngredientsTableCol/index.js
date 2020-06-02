@@ -30,7 +30,7 @@ const Label = styled.div`
 const Ingredient = styled(Row)`
   justify-content: center;
   align-items: center;
-  width: 200px;
+  width: 150px;
   height: 70px;
   border-radius: 30px;
   margin: 20px;

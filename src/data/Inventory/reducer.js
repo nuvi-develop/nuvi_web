@@ -8,7 +8,8 @@ const inventoryTabs = {
 };
 
 const INITIAL_STATE = {
-  currentTab: inventoryTabs.MANAGING_INGREDIENTS
+  currentTab: inventoryTabs.MANAGING_INGREDIENTS,
+  currentIngredients: []
 };
 
 export default produce((draft, action) => {

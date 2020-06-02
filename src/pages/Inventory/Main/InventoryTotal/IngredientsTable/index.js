@@ -11,22 +11,28 @@ const rightButton = process.env.PUBLIC_URL + "/icons/basics/rightButton.svg";
 
 export default function IngredientsTableComp() {
   const [colOffset, setColOffset] = useState(0);
-  const columnNumber = 6;
+  const columnNumber = 7;
   const slicedData = mockData.slice(0 + colOffset, columnNumber + colOffset);
+  const hiddenColLength = mockData.length - columnNumber - colOffset;
 
   return (
     <Container>
-      <Navigator
-        src={leftButton}
-        onClick={() => setColOffset(prev => prev - 1)}
-      />
+      {colOffset !== 0 && (
+        <Navigator
+          src={leftButton}
+          onClick={() => setColOffset(prev => prev - 1)}
+        />
+      )}
+
       {slicedData.map(data => (
         <IngredientsTableCol data={data} key={data.category} />
       ))}
-      <Navigator
-        src={rightButton}
-        onClick={() => setColOffset(prev => prev + 1)}
-      />
+      {hiddenColLength !== 0 && (
+        <Navigator
+          src={rightButton}
+          onClick={() => setColOffset(prev => prev + 1)}
+        />
+      )}
     </Container>
   );
 }

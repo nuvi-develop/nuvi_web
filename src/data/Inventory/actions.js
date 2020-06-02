@@ -7,3 +7,8 @@ export const toggleTabManaging = () => ({
 export const toggleTabTotal = () => ({
   type: AT.TOGGLE_TAB_TOTAl
 });
+
+export const setCurrentIngredients = payload => ({
+  type: AT.SET_CURRENT_INGREDIENTS,
+  payload
+});

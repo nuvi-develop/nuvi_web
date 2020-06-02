@@ -7,12 +7,12 @@ export const api = {
       `api/inventory/allIngredient/departmentId/${departmentId}?limit=${limitedRecord}`
     );
   },
-  getFilterdIngredients: async ({ name, categoryId, limit }) => {
+  getFilterdIngredients: async ({ name, categoryId, departmentId, limit }) => {
     const limitedRecord = limit ? limit : 10;
-    const nameFilter = name ? name : null;
-    const categoryFilter = categoryId ? categoryId : null;
+    const nameFilter = name ? name : " ";
+    const categoryFilter = categoryId ? categoryId : "all";
     return await apiClient.get(
-      `api/inventory/name/${nameFilter}/categoryId/${categoryFilter}?limit=${limitedRecord}`
+      `api/inventory/departmentId/${departmentId}/name/${nameFilter}/categoryId/${categoryFilter}?limit=${limitedRecord}`
     );
   },
   getIngredientByPk: async ({ ingredientId, limit }) => {

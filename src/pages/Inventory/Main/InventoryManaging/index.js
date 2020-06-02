@@ -2,33 +2,37 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { SimpleInput, AddInput } from "components";
 import { actions, selectors } from "data";
 
 import Colors from "theme/colors";
-import SearchList from "./SearchList";
+
 import CurrentIngredient from "./CurrentIngredient";
 import InventoryRecordForm from "./InventoryRecordForm";
 import LogList from "./LogList";
 import LogChart from "./LogChart";
 import NavButton from "./NavButton";
-
-const mockSearchList = [{ name: "보리" }, { name: "쌀" }];
+import SearchForm from "./SearchForm";
 
 export default function InventoryManaging() {
   const dispatch = useDispatch();
   const departmentId = useSelector(selectors.user.getDepartmentId);
+  const { category, ingredientName } = useSelector(
+    selectors.inventory.getCurrentSearchingInfo
+  );
 
   useEffect(() => {
-    dispatch(actions.inventory.loadManagingPage({ departmentId }));
-  }, []);
+    dispatch(
+      actions.inventory.loadManagingPage({
+        departmentId,
+        name: ingredientName,
+        category
+      })
+    );
+  }, [category, ingredientName, departmentId, dispatch]);
   return (
     <MainContainer>
       <SubContainer>
-        <SimpleInput label="재료명으로 검색" />
-        <SimpleInput label="분류로 검색" />
-        <AddInput label="재료 추가" />
-        <SearchList searchList={mockSearchList} />
+        <SearchForm />
         <CurrentIngredient />
         <InventoryRecordForm />
       </SubContainer>

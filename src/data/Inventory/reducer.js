@@ -10,7 +10,11 @@ const inventoryTabs = {
 const INITIAL_STATE = {
   currentTab: inventoryTabs.MANAGING_INGREDIENTS,
   ingredients: [],
-  currentIngredient: null
+  currentIngredient: null,
+  categories: [],
+
+  currentSearchingCategory: "all",
+  currentSearchingIngredient: null
 };
 
 export default produce((draft, action) => {
@@ -26,6 +30,15 @@ export default produce((draft, action) => {
       break;
     case AT.SET_INGREDIENTS:
       draft.ingredients = action.payload;
+      break;
+    case AT.SET_CATEGORIES:
+      draft.categories = action.payload;
+      break;
+    case AT.SET_CURRENT_SEARCHING_CATEGORY:
+      draft.currentSearchingCategory = action.payload;
+      break;
+    case AT.SET_CURRENT_SEARCHING_INGREDIENT:
+      draft.currentSearchingIngredient = action.payload;
       break;
     default:
       return;

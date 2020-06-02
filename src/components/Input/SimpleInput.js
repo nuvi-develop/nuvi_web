@@ -1,9 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+import { actions } from "data";
+
 export default function SimpleInput(props) {
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       value: ""
@@ -12,8 +17,8 @@ export default function SimpleInput(props) {
 
   const handleChange = e => {
     formik.handleChange(e);
-    const { value } = formik.values;
-    console.log("value", value);
+    const { value } = e.target;
+    dispatch(actions.inventory.setCurrentSearchingIngredient(value));
   };
   return (
     <TextInput
@@ -42,6 +47,9 @@ const Container = styled.div`
 
 const StyledInput = styled.input`
   width: 300px;
+  height: 32px;
+  font-size: 16px;
+  border: solid 1px ${({ theme }) => theme.gray_2};
 `;
 
 const Label = styled.div`

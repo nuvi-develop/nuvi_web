@@ -36,6 +36,7 @@ import UpdatePassword from "./Pages/Auth/UpdatePassword";
 import Profile from "./Pages/Profile";
 import SimpleInput from "./Input/SimpleInput";
 import AddInput from "./Input/AddInput";
+import DropdownInput from "./Input/DropdownInput";
 
 export {
   Navigation,
@@ -75,5 +76,6 @@ export {
   UpdatePassword,
   Profile,
   SimpleInput,
-  AddInput
+  AddInput,
+  DropdownInput
 };

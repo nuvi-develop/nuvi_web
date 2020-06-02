@@ -22,3 +22,18 @@ export const loadManagingPage = payload => ({
   type: AT.LOAD_MANAGING_PAGE,
   payload
 });
+
+export const setCategories = payload => ({
+  type: AT.SET_CATEGORIES,
+  payload
+});
+
+export const setCurrentSearchingCategory = payload => ({
+  type: AT.SET_CURRENT_SEARCHING_CATEGORY,
+  payload
+});
+
+export const setCurrentSearchingIngredient = payload => ({
+  type: AT.SET_CURRENT_SEARCHING_INGREDIENT,
+  payload
+});

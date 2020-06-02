@@ -15,7 +15,7 @@ export const apiResponseInterceptor = [
     return res;
     // const { response, error } = res.data;
     // if (error) {
-    //   console.log("error1", error);
+    //   console.log("error", error);
     //   return Promise.reject(JSON.stringify(error, null, 2));
     // } else {
     //   return response;

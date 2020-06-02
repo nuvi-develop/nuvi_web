@@ -9,7 +9,8 @@ const inventoryTabs = {
 
 const INITIAL_STATE = {
   currentTab: inventoryTabs.MANAGING_INGREDIENTS,
-  currentIngredients: []
+  ingredients: [],
+  currentIngredient: null
 };
 
 export default produce((draft, action) => {
@@ -19,6 +20,12 @@ export default produce((draft, action) => {
       break;
     case AT.TOGGLE_TAB_TOTAl:
       draft.currentTab = inventoryTabs.TOTAL_INGREDIENTS;
+      break;
+    case AT.SET_CURRENT_INGREDIENT:
+      draft.currentIngredient = action.payload;
+      break;
+    case AT.SET_INGREDIENTS:
+      draft.ingredients = action.payload;
       break;
     default:
       return;

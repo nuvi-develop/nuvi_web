@@ -7,12 +7,18 @@ export const api = {
       `api/inventory/allIngredient/departmentId/${departmentId}?limit=${limitedRecord}`
     );
   },
-  getFilterdIngredients: async ({ name, category, limit }) => {
+  getFilterdIngredients: async ({ name, categoryId, limit }) => {
     const limitedRecord = limit ? limit : 10;
     const nameFilter = name ? name : null;
-    const categoryFilter = category ? category : null;
+    const categoryFilter = categoryId ? categoryId : null;
     return await apiClient.get(
-      `api/inventory/name/${nameFilter}/category/${categoryFilter}?limit=${limitedRecord}`
+      `api/inventory/name/${nameFilter}/categoryId/${categoryFilter}?limit=${limitedRecord}`
+    );
+  },
+  getIngredientByPk: async ({ ingredientId, limit }) => {
+    const limitedRecord = limit ? limit : 10;
+    return await apiClient.get(
+      `api/inventory/ingredient/ingredientId/${ingredientId}?limit=${limitedRecord}`
     );
   },
 
@@ -26,7 +32,7 @@ export const api = {
   getAllInventoryCategory: async ({ departmentId, limit }) => {
     const limitedRecord = limit ? limit : 10;
     return await apiClient.get(
-      `api/inventory/allCategory/departmentId/${departmentId}?limti=${limitedRecord}`
+      `api/inventory/allCategory/departmentId/${departmentId}?limit=${limitedRecord}`
     );
   }
 };

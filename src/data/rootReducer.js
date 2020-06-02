@@ -4,7 +4,7 @@ import user from "./user/reducer";
 import modal from "./modal/reducer";
 import admins from "./admins/reducer";
 import loading from "./loading/reducer";
-import inventory from "./Inventory/reducer";
+import inventory from "./inventory/reducer";
 
 const createRootReducer = history =>
   combineReducers({

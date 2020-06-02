@@ -2,7 +2,8 @@ import { all, fork } from "redux-saga/effects";
 
 import userSaga from "data/user/sagaRegister";
 import adminSaga from "data/admins/sagaRegister";
+import inventorySaga from "data/inventory/sagaRegister";
 
 export default function*() {
-  yield all([fork(userSaga), fork(adminSaga)]);
+  yield all([fork(userSaga), fork(adminSaga), fork(inventorySaga)]);
 }

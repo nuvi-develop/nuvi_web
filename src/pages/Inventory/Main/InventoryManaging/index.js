@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { SimpleInput, AddInput } from "components";
+import { actions, selectors } from "data";
+
 import Colors from "theme/colors";
 import SearchList from "./SearchList";
 import CurrentIngredient from "./CurrentIngredient";
@@ -13,6 +16,12 @@ import NavButton from "./NavButton";
 const mockSearchList = [{ name: "보리" }, { name: "쌀" }];
 
 export default function InventoryManaging() {
+  const dispatch = useDispatch();
+  const departmentId = useSelector(selectors.user.getDepartmentId);
+
+  useEffect(() => {
+    dispatch(actions.inventory.loadManagingPage({ departmentId }));
+  }, []);
   return (
     <MainContainer>
       <SubContainer>

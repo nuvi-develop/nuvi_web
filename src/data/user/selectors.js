@@ -11,3 +11,5 @@ export const getAuthMode = state => state.user.authMode;
 export const getWhoAmI = state => state.user[AT.WHO_AM_I];
 
 export const getUpdatePasswordStatus = state => state.user[AT.UPDATE_PASSWORD];
+
+export const getDepartmentId = state => state.user.userSession?.DepartmentId;

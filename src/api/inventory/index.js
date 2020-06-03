@@ -21,6 +21,17 @@ export const api = {
       `api/inventory/ingredient/ingredientId/${ingredientId}?limit=${limitedRecord}`
     );
   },
+  getIngredientLogsByPk: async ({ ingredientId, limit }) => {
+    const limitedRecord = limit ? limit : 10;
+    return await apiClient.get(
+      `api/inventory/ingredientLogs/ingredientId/${ingredientId}?limit=${limitedRecord}`
+    );
+  },
+  getIngredientRecentLogByPk: async ({ ingredientId, limit }) => {
+    return await apiClient.get(
+      `api/inventory/ingredientRecentLog/ingredientId/${ingredientId}`
+    );
+  },
 
   getInventoryLog: async ({ ingredientId, limit }) => {
     const limitedRecord = limit ? limit : 10;

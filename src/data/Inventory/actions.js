@@ -37,3 +37,8 @@ export const setCurrentSearchingIngredient = payload => ({
   type: AT.SET_CURRENT_SEARCHING_INGREDIENT,
   payload
 });
+
+export const loadCurrentIngredient = payload => ({
+  type: AT.LOAD_CURRENT_INGREDIENT,
+  payload
+});

@@ -1,20 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
+import { selectors } from "data";
 import Colors from "theme/colors";
 
 export default function CurrentIngredientComp() {
+  const currentIngredient = useSelector(
+    selectors.inventory.getCurrentIngredient
+  );
+  const currentStock = currentIngredient?.ingredientRecentLog?.stock || 0;
   return (
     <Container>
-      <Label>현재 재료</Label>
-      <CurrentContainer>
-        <CurrentIngredient>돈목심</CurrentIngredient>
-        <CurrentCategory>고기류</CurrentCategory>
-      </CurrentContainer>
-      <InventoryContainer>
-        <InventoryLabel>현재 재고량</InventoryLabel>
-        <InventoryValue>120kg</InventoryValue>
-      </InventoryContainer>
+      {currentIngredient ? (
+        <>
+          <Label>현재 재료</Label>
+          <CurrentContainer>
+            <CurrentIngredient>{currentIngredient.name}</CurrentIngredient>
+            <CurrentCategory>
+              {currentIngredient.InventoryCategory.name}
+            </CurrentCategory>
+          </CurrentContainer>
+          <InventoryContainer>
+            <InventoryLabel>현재 재고량</InventoryLabel>
+            <InventoryValue>{currentStock}kg</InventoryValue>
+          </InventoryContainer>
+        </>
+      ) : (
+        <Label>재료를 선택해 주세요</Label>
+      )}
     </Container>
   );
 }

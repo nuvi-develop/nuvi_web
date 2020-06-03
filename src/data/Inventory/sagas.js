@@ -22,7 +22,21 @@ export function* loadInventoryCategories(action) {
   yield put(actions.inventory.setCategories(categories));
 }
 
-export function* loadCurrentIngredient() {}
+export function* loadCurrentIngredient(action) {
+  const { ingredientId } = action.payload;
+  const ingredientRes = yield api.inventory.getIngredientByPk({ ingredientId });
+  const ingredientRecentLogRes = yield api.inventory.getIngredientRecentLogByPk(
+    { ingredientId }
+  );
+  const currentIngredient = ingredientRes.data;
+  const ingredientRecentLog = ingredientRecentLogRes.data;
+  yield put(
+    actions.inventory.setCurrentIngredient({
+      ...currentIngredient,
+      ingredientRecentLog
+    })
+  );
+}
 
 export function* loadManagingPage(action) {
   yield loadInventoryCategories(action);

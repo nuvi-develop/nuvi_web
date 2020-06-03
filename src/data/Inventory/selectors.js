@@ -2,8 +2,7 @@ export const getCurrentTab = state => state.inventory.currentTab;
 
 export const getIngredients = state => state.inventory.ingredients;
 
-export const getCurrentIngredients = state =>
-  state.inventory.currentIngredients;
+export const getCurrentIngredient = state => state.inventory.currentIngredient;
 
 export const getCategories = state => state.inventory.categories;
 

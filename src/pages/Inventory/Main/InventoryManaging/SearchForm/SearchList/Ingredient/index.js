@@ -8,7 +8,9 @@ import Colors from "theme/colors";
 export default function IngredientComp({ ingredient }) {
   const dispatch = useDispatch();
   const onIngredientClickHandler = () => {
-    dispatch(actions.inventory.setCurrentIngredient(ingredient));
+    dispatch(
+      actions.inventory.loadCurrentIngredient({ ingredientId: ingredient.id })
+    );
   };
   return (
     <Container onClick={onIngredientClickHandler}>

@@ -8,7 +8,7 @@ export default function TableCol({ label, data }) {
     <Container>
       <Label>{label}</Label>
       {data.map((d, i) => (
-        <Content key={`d_${i}`}>{d}</Content>
+        <Content key={d.id}>{d.data}</Content>
       ))}
     </Container>
   );

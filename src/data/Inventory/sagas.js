@@ -38,6 +38,16 @@ export function* loadCurrentIngredient(action) {
   );
 }
 
+export function* loadIngredientLogs(action) {
+  const { ingredientId, offset } = action.payload;
+  const logsRes = yield api.inventory.getIngredientLogsByPk({
+    ingredientId,
+    offset
+  });
+  const logs = logsRes.data;
+  yield put(actions.inventory.setCurrentIngredientLogs(logs));
+}
+
 export function* loadManagingPage(action) {
   yield loadInventoryCategories(action);
   yield loadFilteredIngredients(action);

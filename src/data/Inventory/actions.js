@@ -42,3 +42,13 @@ export const loadCurrentIngredient = payload => ({
   type: AT.LOAD_CURRENT_INGREDIENT,
   payload
 });
+
+export const loadIngredientLogs = payload => ({
+  type: AT.LOAD_INGREDIENT_LOGS,
+  payload
+});
+
+export const setCurrentIngredientLogs = payload => ({
+  type: AT.SET_CURRENT_INGREDIENT_LOGS,
+  payload
+});

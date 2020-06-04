@@ -8,9 +8,8 @@ import Colors from "theme/colors";
 
 import CurrentIngredient from "./CurrentIngredient";
 import InventoryRecordForm from "./InventoryRecordForm";
-import LogList from "./LogList";
-import LogChart from "./LogChart";
-import NavButton from "./NavButton";
+import Log from "./Log";
+
 import SearchForm from "./SearchForm";
 
 export default function InventoryManaging() {
@@ -38,9 +37,7 @@ export default function InventoryManaging() {
       </SubContainer>
       <Divider />
       <SubContainer>
-        <LogList />
-        <LogChart />
-        <NavButton />
+        <Log />
       </SubContainer>
     </MainContainer>
   );
@@ -50,7 +47,7 @@ const MainContainer = styled.div`
   display: flex;
   background-color: white;
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px 20px;
   margin-bottom: 10px;
   flex: 1;
 `;

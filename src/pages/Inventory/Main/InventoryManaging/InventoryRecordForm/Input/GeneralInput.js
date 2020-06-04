@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useField } from "formik";
-import NavButton from "../../NavButton";
+import NavButton from "../../Log/NavButton";
 
 export default function GeneralInputComp({ selector, ...props }) {
   const [field, meta] = useField(props);
@@ -9,7 +9,7 @@ export default function GeneralInputComp({ selector, ...props }) {
     <Container>
       <Label>{props.label}</Label>
       <StyledInput {...field} {...props} />
-      {selector ? <NavButton noCurrent /> : <Placeholder />}
+      {selector ? <NavButton /> : <Placeholder />}
     </Container>
   );
 }

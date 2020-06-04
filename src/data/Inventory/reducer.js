@@ -12,7 +12,7 @@ const INITIAL_STATE = {
   ingredients: [],
   currentIngredient: null,
   categories: [],
-
+  currentIngredientLogs: [],
   currentSearchingCategory: "all",
   currentSearchingIngredient: null
 };
@@ -39,6 +39,9 @@ export default produce((draft, action) => {
       break;
     case AT.SET_CURRENT_SEARCHING_INGREDIENT:
       draft.currentSearchingIngredient = action.payload;
+      break;
+    case AT.SET_CURRENT_INGREDIENT_LOGS:
+      draft.currentIngredientLogs = action.payload;
       break;
     default:
       return;

@@ -6,12 +6,19 @@ import { Row } from "theme/style";
 const backButton = process.env.PUBLIC_URL + "/icons/basics/backButton.svg";
 const frontButton = process.env.PUBLIC_URL + "/icons/basics/frontButton.svg";
 
-export default function NavButtonComp({ noCurrent }) {
+export default function NavButtonComp({ value, setValue, isLastPage }) {
+  const onBackClickHandler = () => {
+    setValue(prev => (prev !== 1 ? prev - 1 : prev));
+  };
+
+  const onFrontClickHandler = () => {
+    setValue(prev => (isLastPage ? prev : prev + 1));
+  };
   return (
     <Container>
-      <ImageButton src={backButton} />
-      {!noCurrent && <Current>1 </Current>}
-      <ImageButton src={frontButton} />
+      <ImageButton src={backButton} onClick={onBackClickHandler} />
+      {value && <Current>{value} </Current>}
+      <ImageButton src={frontButton} onClick={onFrontClickHandler} />
     </Container>
   );
 }

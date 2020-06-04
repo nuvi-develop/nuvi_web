@@ -12,6 +12,7 @@ import {
 import styled from "styled-components";
 
 import Colors from "theme/colors";
+import { mapForChart } from "utils/pages/inventory";
 
 const mockData = [
   { recordDate: "5월 7일", order: 25, use: 30, inventory: 36 },
@@ -20,10 +21,11 @@ const mockData = [
   { recordDate: "5월 10일", order: 89, use: 36, inventory: 37 }
 ];
 
-export default function LogChartComp({ data }) {
+export default function LogChartComp({ logs }) {
+  const mapedData = mapForChart(logs);
   return (
     <ResponsiveContainer width={"99%"} height={300}>
-      <LineChart data={mockData}>
+      <LineChart data={mapedData}>
         <XAxis dataKey="recordDate" />
         <YAxis />
         <CartesianGrid strokeDashArray="3 3" />
@@ -44,7 +46,7 @@ export default function LogChartComp({ data }) {
         <Line
           type="monotone"
           name="재고"
-          dataKey="inventory"
+          dataKey="stock"
           stroke={Colors.gray_1}
           activeDot={{ r: 8 }}
         />

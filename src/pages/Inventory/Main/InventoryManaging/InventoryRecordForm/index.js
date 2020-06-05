@@ -1,26 +1,36 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
 
 import GeneralInput from "./Input/GeneralInput";
 import DateInput from "./Input/DateInput";
 
-import { selectors } from "data";
+import { selectors, actions } from "data";
 import Colors from "theme/colors";
 import { Button } from "theme/style";
 
 export default function InventoryRecordFormComp() {
+  const dispatch = useDispatch();
   const currentIngredient = useSelector(
     selectors.inventory.getCurrentIngredient
   );
 
-  const currentStock = currentIngredient?.ingredientRecentLog?.stock;
+  const currentStock = +currentIngredient?.ingredientRecentLog?.stock;
   const currentIngredientId = currentIngredient?.id;
 
   const submitHander = values => {
-    console.log("values", values);
-    console.log("clicked");
+    const { recordDate, order, use, cost } = values;
+    const ingredientLogInfo = {
+      recordDate,
+      order: +order,
+      use: +use,
+      cost: +cost,
+      stock: +currentStock - +use + +order,
+      InventoryIngredientId: currentIngredientId
+    };
+
+    dispatch(actions.inventory.addIngredientLog({ ingredientLogInfo }));
   };
   return (
     currentIngredient && (

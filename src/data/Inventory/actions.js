@@ -67,3 +67,13 @@ export const setIngredientsOfCategories = payload => ({
   type: AT.SET_INGREDIENTS_OF_CATEGORIES,
   payload
 });
+
+export const addIngredientLog = payload => ({
+  type: AT.ADD_INGREDIENT_LOG,
+  payload
+});
+
+export const addIngredient = payload => ({
+  type: AT.ADD_INGREDIENT,
+  payload
+});

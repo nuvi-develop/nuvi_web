@@ -47,5 +47,14 @@ export const api = {
     return await apiClient.get(
       `api/inventory/ingredientsOfCategories/departmentId/${departmentId}/name/${nameFilter}?limit=${limitedRecord}&offeset=${offsetRecord}`
     );
+  },
+  addIngredientLog: async ({ ingredientLogInfo }) => {
+    console.log("ingredientLogInfo", ingredientLogInfo);
+    return await apiClient.post(`api/inventory/ingredientLog`, {
+      ingredientLogInfo
+    });
+  },
+  addIngredient: async ({ IngredientInfo }) => {
+    return await apiClient.post(`api/inventory/ingredient`, IngredientInfo);
   }
 };

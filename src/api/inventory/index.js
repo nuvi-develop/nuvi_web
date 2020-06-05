@@ -39,5 +39,13 @@ export const api = {
     return await apiClient.get(
       `api/inventory/allCategory/departmentId/${departmentId}?limit=${limitedRecord}`
     );
+  },
+  getIngredientsOfCategories: async ({ departmentId, name, limit, offset }) => {
+    const limitedRecord = limit ? limit : 10;
+    const offsetRecord = offset ? offset : 0;
+    const nameFilter = name ? name : " ";
+    return await apiClient.get(
+      `api/inventory/ingredientsOfCategories/departmentId/${departmentId}/name/${nameFilter}?limit=${limitedRecord}&offeset=${offsetRecord}`
+    );
   }
 };

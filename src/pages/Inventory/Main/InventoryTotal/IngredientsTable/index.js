@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { Row } from "theme/style";
+import { selectors } from "data";
 
 import IngredientsTableCol from "./IngredientsTableCol";
 import mockData from "./mockData";
@@ -11,9 +13,17 @@ const rightButton = process.env.PUBLIC_URL + "/icons/basics/rightButton.svg";
 
 export default function IngredientsTableComp() {
   const [colOffset, setColOffset] = useState(0);
+  const ingredientsOfCategories = useSelector(
+    selectors.inventory.getIngredientsOfCategories
+  );
+
   const columnNumber = 7;
-  const slicedData = mockData.slice(0 + colOffset, columnNumber + colOffset);
-  const hiddenColLength = mockData.length - columnNumber - colOffset;
+  const slicedData = ingredientsOfCategories.slice(
+    0 + colOffset,
+    columnNumber + colOffset
+  );
+  const hiddenColLength =
+    ingredientsOfCategories.length - columnNumber - colOffset;
 
   return (
     <Container>
@@ -25,7 +35,7 @@ export default function IngredientsTableComp() {
       )}
 
       {slicedData.map(data => (
-        <IngredientsTableCol data={data} key={data.category} />
+        <IngredientsTableCol data={data} key={data.category.id} />
       ))}
       {hiddenColLength !== 0 && (
         <Navigator

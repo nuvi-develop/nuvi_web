@@ -16,3 +16,6 @@ export const getCurrentSearchingInfo = state => ({
 
 export const getCurrentIngredientLogs = state =>
   state.inventory.currentIngredientLogs;
+
+export const getIngredientsOfCategories = state =>
+  state.inventory.ingredientsOfCategories;

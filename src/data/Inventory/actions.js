@@ -52,3 +52,18 @@ export const setCurrentIngredientLogs = payload => ({
   type: AT.SET_CURRENT_INGREDIENT_LOGS,
   payload
 });
+
+export const loadTotalPage = payload => ({
+  type: AT.LOAD_TOTAL_PAGE,
+  payload
+});
+
+export const loadIngredientsOfCategories = payload => ({
+  type: AT.LOAD_INGREDIENTS_OF_CATEOGRIES,
+  payload
+});
+
+export const setIngredientsOfCategories = payload => ({
+  type: AT.SET_INGREDIENTS_OF_CATEGORIES,
+  payload
+});

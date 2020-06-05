@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { SimpleInput } from "components";
 import { Row, Col } from "theme/style";
+import { actions, selectors } from "data";
 
 import LabelBox from "./LabelBox";
 import IngredientsTable from "./IngredientsTable";
 
 export default function InventoryTotalComp() {
+  const dispatch = useDispatch();
+  const { ingredientName } = useSelector(
+    selectors.inventory.getCurrentSearchingInfo
+  );
+  console.log("ingredientName", ingredientName);
+  useEffect(() => {
+    dispatch(actions.inventory.loadTotalPage({ name: ingredientName }));
+  }, [ingredientName, dispatch]);
   return (
     <MainContainer>
       <SubContainer>

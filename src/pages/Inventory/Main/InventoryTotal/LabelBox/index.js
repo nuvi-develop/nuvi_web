@@ -9,22 +9,22 @@ export default function LabelBoxComp() {
     <Container>
       <CompHolder>
         <Circle color={Colors.pink} />
-        <Label>부족</Label>
+        <Label>부족 (0~20kg)</Label>
       </CompHolder>
       <CompHolder>
         <Circle color={Colors.yellow} />
-        <Label>보통</Label>
+        <Label>보통 (20~50kg)</Label>
       </CompHolder>
       <CompHolder>
         <Circle color={Colors.green_deep_1} />
-        <Label>여유</Label>
+        <Label>여유 (50kg~) </Label>
       </CompHolder>
     </Container>
   );
 }
 
 const Container = styled(Row)`
-  width: 500px;
+  width: 50%;
   justify-content: space-between;
 `;
 
@@ -40,7 +40,7 @@ const Circle = styled.div`
 `;
 
 const Label = styled.div`
-  font-size: 32px;
+  font-size: 24px;
   color: ${Colors.gray_1};
   margin-left: 10px;
 `;

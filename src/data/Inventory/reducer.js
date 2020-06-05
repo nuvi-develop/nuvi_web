@@ -10,6 +10,7 @@ const inventoryTabs = {
 const INITIAL_STATE = {
   currentTab: inventoryTabs.MANAGING_INGREDIENTS,
   ingredients: [],
+  ingredientsOfCategories: [],
   currentIngredient: null,
   categories: [],
   currentIngredientLogs: [],
@@ -42,6 +43,9 @@ export default produce((draft, action) => {
       break;
     case AT.SET_CURRENT_INGREDIENT_LOGS:
       draft.currentIngredientLogs = action.payload;
+      break;
+    case AT.SET_INGREDIENTS_OF_CATEGORIES:
+      draft.ingredientsOfCategories = action.payload;
       break;
     default:
       return;

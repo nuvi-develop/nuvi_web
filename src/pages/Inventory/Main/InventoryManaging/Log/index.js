@@ -26,8 +26,10 @@ export default function LogComp() {
   return (
     <Container>
       <LogList />
-      <LogChart logs={logs} />
-      <NavButton value={page} setValue={setPage} isLastPage={isLastPage} />
+      {ingredientId && <LogChart logs={logs} />}
+      {ingredientId && (
+        <NavButton value={page} setValue={setPage} isLastPage={isLastPage} />
+      )}
     </Container>
   );
 }

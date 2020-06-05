@@ -24,7 +24,7 @@ export default function LabelBoxComp() {
 }
 
 const Container = styled(Row)`
-  width: 50%;
+  width: 600px;
   justify-content: space-between;
 `;
 
@@ -40,7 +40,7 @@ const Circle = styled.div`
 `;
 
 const Label = styled.div`
-  font-size: 24px;
+  font-size: 16px;
   color: ${Colors.gray_1};
   margin-left: 10px;
 `;

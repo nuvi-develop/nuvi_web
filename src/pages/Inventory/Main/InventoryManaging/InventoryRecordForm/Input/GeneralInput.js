@@ -3,13 +3,12 @@ import styled from "styled-components";
 import { useField } from "formik";
 import NavButton from "../../Log/NavButton";
 
-export default function GeneralInputComp({ selector, ...props }) {
+export default function GeneralInputComp(props) {
   const [field, meta] = useField(props);
   return (
     <Container>
       <Label>{props.label}</Label>
       <StyledInput {...field} {...props} />
-      {selector ? <NavButton /> : <Placeholder />}
     </Container>
   );
 }
@@ -18,6 +17,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin: 0px 20px;
 `;
 
 const Label = styled.div`

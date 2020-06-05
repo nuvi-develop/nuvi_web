@@ -28,10 +28,11 @@ export default function IngredientsTableColComp({ data }) {
 
 const Container = styled(Col)`
   align-items: center;
+  flex: 1;
 `;
 
 const Label = styled.div`
-  font-size: 40px;
+  font-size: 24px;
   color: ${Colors.gray_1};
 `;
 

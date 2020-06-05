@@ -37,6 +37,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex: 1;
   height: 150px;
   background-color: ${Colors.green_2};
   border-radius: 20px;

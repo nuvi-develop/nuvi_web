@@ -1,59 +1,74 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
 
 import GeneralInput from "./Input/GeneralInput";
+import DateInput from "./Input/DateInput";
 
+import { selectors } from "data";
 import Colors from "theme/colors";
 import { Button } from "theme/style";
 
 export default function InventoryRecordFormComp() {
+  const currentIngredient = useSelector(
+    selectors.inventory.getCurrentIngredient
+  );
+
+  const currentStock = currentIngredient?.ingredientRecentLog?.stock;
+  const currentIngredientId = currentIngredient?.id;
+
   const submitHander = values => {
     console.log("values", values);
+    console.log("clicked");
   };
   return (
-    <Container>
-      <Formik
-        initialValues={{
-          recordDate: new Date(),
-          order: 0,
-          use: 0,
-          cost: 0
-        }}
-        onSubmit={submitHander}
-      >
-        <>
-          <StyledForm>
-            <GeneralInput
-              label="날짜"
-              name="recordDate"
-              type="text"
-              placeholer={0}
-              selector
-            />
-            <GeneralInput
-              label="주문량 (kg)"
-              name="order"
-              type="text"
-              placeholer={0}
-            />
-            <GeneralInput
-              label="사용량 (kg)"
-              name="use"
-              type="text"
-              placeholer={0}
-            />
-            <GeneralInput
-              label="비용 (원/단위)"
-              name="cost"
-              type="text"
-              placeholer={0}
-            />
-          </StyledForm>
-          <SubmitButton type="submit">기록하기</SubmitButton>
-        </>
-      </Formik>
-    </Container>
+    currentIngredient && (
+      <Container>
+        <Formik
+          initialValues={{
+            recordDate: new Date(),
+            order: "",
+            use: "",
+            cost: ""
+          }}
+          onSubmit={submitHander}
+        >
+          <>
+            <StyledForm>
+              <FormContainer>
+                <DateInput
+                  label="날짜"
+                  name="recordDate"
+                  type="text"
+                  placeholer={0}
+                  selector
+                />
+                <GeneralInput
+                  label="주문량 (kg)"
+                  name="order"
+                  type="text"
+                  placeholer={0}
+                />
+                <GeneralInput
+                  label="사용량 (kg)"
+                  name="use"
+                  type="text"
+                  placeholer={0}
+                />
+                <GeneralInput
+                  label="비용 (원/단위)"
+                  name="cost"
+                  type="text"
+                  placeholer={0}
+                />
+              </FormContainer>
+              <SubmitButton type="submit">기록하기</SubmitButton>
+            </StyledForm>
+          </>
+        </Formik>
+      </Container>
+    )
   );
 }
 
@@ -65,10 +80,15 @@ const Container = styled.div`
   padding: 10px;
 `;
 
-const StyledForm = styled(Form)`
+const FormContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+const StyledForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
 `;
 
 const SubmitButton = styled(Button)`

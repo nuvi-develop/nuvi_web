@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import styled, { keyframes } from "styled-components";
-
-import { actions } from "data";
+import styled from "styled-components";
+import { useField } from "formik";
 
 import { CSS } from "theme/style";
 
 const downArrow = process.env.PUBLIC_URL + "/icons/downArrowGray.svg";
 
-export default function DropdownInputComp({ options, label }) {
-  const dispatch = useDispatch();
-  const [value, setValue] = useState("all");
+export default function DropdownInputComp({ options, label, ...props }) {
+  const [field, meta, helpers] = useField(props);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleList = () => {
@@ -18,25 +15,23 @@ export default function DropdownInputComp({ options, label }) {
   };
 
   const onSelect = option => {
-    setValue(option.name);
-    dispatch(actions.inventory.setCurrentSearchingCategory(option));
+    helpers.setValue(option);
+
     toggleList();
   };
-
-  const optionsIncludingAll = [{ id: 0, name: "all" }, ...options];
 
   return (
     <Container>
       <Label>{label}</Label>
       <DropDownContainer>
         <InputContainer onClick={toggleList}>
-          <Input>{value}</Input>
+          <Input>{meta.value.name}</Input>
           <Icon src={downArrow} isOpen={isOpen} alt="arrow" />
         </InputContainer>
         {isOpen && (
           <Wrapper>
             <ListContainer>
-              {optionsIncludingAll.map(option => (
+              {options.map(option => (
                 <ListItem
                   key={option.name}
                   onClick={onSelect.bind(this, option)}
@@ -52,18 +47,8 @@ export default function DropdownInputComp({ options, label }) {
   );
 }
 
-const rotate = keyframes`
-  from{
-    transform: 
-  }
-  to{
-    transform: 
-  }
-`;
-
 const Container = styled.div`
   display: flex;
-  margin-bottom: 10px;
   max-width: 500px;
 `;
 
@@ -101,7 +86,6 @@ const Wrapper = styled.div`
   width: 100%;
   position: absolute;
   background-color: white;
-  z-index: 2;
   ${CSS.boxShadow.default}
 `;
 
@@ -115,7 +99,7 @@ const ListItem = styled.div`
 `;
 
 const Label = styled.div`
-  width: 150px;
   display: flex;
   align-items: center;
+  margin-right: 10px;
 `;

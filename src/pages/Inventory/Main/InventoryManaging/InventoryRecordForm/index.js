@@ -16,7 +16,7 @@ export default function InventoryRecordFormComp() {
     selectors.inventory.getCurrentIngredient
   );
 
-  const currentStock = +currentIngredient?.ingredientRecentLog?.stock;
+  const currentStock = +currentIngredient?.ingredientRecentLog?.stock || 0;
   const currentIngredientId = currentIngredient?.id;
 
   const submitHander = values => {

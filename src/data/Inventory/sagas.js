@@ -68,11 +68,15 @@ export function* addIngredientLog(action) {
     ingredientLogInfo
   });
   const ingredientId = ingredientLogRes.data.InventoryIngredientId;
-  console.log("ingredientLogRes", ingredientLogRes);
   yield loadIngredientLogs({ payload: { ingredientId } });
+  yield loadCurrentIngredient({ payload: { ingredientId } });
 }
 
-export function* addIngredient(action) {}
+export function* addIngredient(action) {
+  const { ingredientInfo } = action.payload;
+  console.log("action", action);
+  yield api.inventory.addIngredient({ ingredientInfo });
+}
 
 export function* loadManagingPage(action) {
   yield loadInventoryCategories(action);

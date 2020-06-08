@@ -54,7 +54,7 @@ export const api = {
       ingredientLogInfo
     });
   },
-  addIngredient: async ({ IngredientInfo }) => {
-    return await apiClient.post(`api/inventory/ingredient`, IngredientInfo);
+  addIngredient: async ({ ingredientInfo }) => {
+    return await apiClient.post(`api/inventory/ingredient`, { ingredientInfo });
   }
 };

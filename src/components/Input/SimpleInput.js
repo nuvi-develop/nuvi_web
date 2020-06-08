@@ -43,10 +43,11 @@ const TextInput = ({ label, ...props }) => {
 const Container = styled.div`
   display: flex;
   margin-bottom: 10px;
+  max-width: 500px;
 `;
 
 const StyledInput = styled.input`
-  width: 300px;
+  flex: 1;
   height: 32px;
   font-size: 16px;
   border: solid 1px ${({ theme }) => theme.gray_2};

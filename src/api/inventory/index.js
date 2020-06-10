@@ -56,5 +56,10 @@ export const api = {
   },
   addIngredient: async ({ ingredientInfo }) => {
     return await apiClient.post(`api/inventory/ingredient`, { ingredientInfo });
+  },
+  editIngredientLog: async ({ editLogInfo }) => {
+    return await apiClient.patch(`api/inventory/ingredientLog`, {
+      editLogInfo
+    });
   }
 };

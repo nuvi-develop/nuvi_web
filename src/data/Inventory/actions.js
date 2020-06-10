@@ -77,3 +77,8 @@ export const addIngredient = payload => ({
   type: AT.ADD_INGREDIENT,
   payload
 });
+
+export const editIngredientLog = payload => ({
+  type: AT.EDIT_INGREDIENT_LOG,
+  payload
+});

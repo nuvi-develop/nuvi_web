@@ -1,17 +1,20 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { actions } from "data";
+import { actions, selectors } from "data";
 
 export default function SimpleInput(props) {
   const dispatch = useDispatch();
+  const searchingInfo = useSelector(
+    selectors.inventory.getCurrentSearchingInfo
+  );
 
   const formik = useFormik({
     initialValues: {
-      value: ""
+      value: searchingInfo.ingredientName
     }
   });
 

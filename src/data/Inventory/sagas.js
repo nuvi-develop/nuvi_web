@@ -87,3 +87,8 @@ export function* loadTotalPage(action) {
   yield loadInventoryCategories(action);
   yield loadIngredientsOfCategories(action);
 }
+
+export function* editIngredientLog(action) {
+  const { editLogInfo } = action.payload;
+  yield api.inventory.editIngredientLog({ editLogInfo });
+}

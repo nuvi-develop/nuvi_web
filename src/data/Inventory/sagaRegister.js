@@ -9,4 +9,5 @@ export default function*() {
   yield takeEvery(AT.LOAD_TOTAL_PAGE, sagas.loadTotalPage);
   yield takeEvery(AT.ADD_INGREDIENT_LOG, sagas.addIngredientLog);
   yield takeEvery(AT.ADD_INGREDIENT, sagas.addIngredient);
+  yield takeEvery(AT.EDIT_INGREDIENT_LOG, sagas.editIngredientLog);
 }

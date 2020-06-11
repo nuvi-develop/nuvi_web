@@ -9,7 +9,7 @@ export default function CurrentIngredientComp() {
   const currentIngredient = useSelector(
     selectors.inventory.getCurrentIngredient
   );
-  const currentStock = currentIngredient?.ingredientRecentLog?.stock || 0;
+  const currentStock = currentIngredient?.InventoryLogs[0]?.currentStock || 0;
   return (
     <Container>
       {currentIngredient ? (

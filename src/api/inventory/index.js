@@ -28,6 +28,7 @@ export const api = {
       `api/inventory/ingredientLogs/ingredientId/${ingredientId}?limit=${limitedRecord}&offset=${offsetRecord}`
     );
   },
+  //TODO, 지우기
   getIngredientRecentLogByPk: async ({ ingredientId }) => {
     return await apiClient.get(
       `api/inventory/ingredientRecentLog/ingredientId/${ingredientId}`
@@ -61,5 +62,11 @@ export const api = {
     return await apiClient.patch(`api/inventory/ingredientLog`, {
       editLogInfo
     });
+  },
+
+  getIngredientCurrentStock: async ({ ingredientId, recordDate }) => {
+    return await apiClient.get(
+      `api/inventory/ingredientCurrentStock/ingredientId/${ingredientId}/recordDate/${recordDate}`
+    );
   }
 };

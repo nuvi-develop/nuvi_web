@@ -1,5 +1,7 @@
 import { format } from "date-fns";
 
+import api from "api";
+
 export const reduceForTable = arr =>
   arr.reduce(
     (obj, record) => {
@@ -21,15 +23,25 @@ export const reduceForTable = arr =>
     }
   );
 
-export const mapForChart = arr =>
-  arr
-    .map(record => {
-      const formatedDate = format(new Date(record.recordDate), "MM/dd");
-      const newRecorde = {
-        ...record,
-        recordDate: formatedDate
-      };
+export const mapForChart = async arr =>
+  await Promise.all(
+    arr
+      .map(async record => {
+        const { recordDate, InventoryIngredientId } = record;
+        const currentStockRes = await api.inventory.getIngredientCurrentStock({
+          ingredientId: InventoryIngredientId,
+          recordDate
+        });
+        const currentStock = currentStockRes?.data?.currentStock;
 
-      return newRecorde;
-    })
-    .reverse();
+        const formatedDate = format(new Date(record.recordDate), "MM/dd");
+        const newRecord = {
+          ...record,
+          stock: currentStock,
+          recordDate: formatedDate
+        };
+
+        return newRecord;
+      })
+      .reverse()
+  );

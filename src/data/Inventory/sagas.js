@@ -32,6 +32,8 @@ export function* loadCurrentIngredient(action) {
   );
   const currentIngredient = ingredientRes.data;
   const ingredientRecentLog = ingredientRecentLogRes.data;
+  //TODO
+  //ingredientRecentLog 안쓰는값이므로 지우기.
   yield put(
     actions.inventory.setCurrentIngredient({
       ...currentIngredient,
@@ -90,5 +92,8 @@ export function* loadTotalPage(action) {
 
 export function* editIngredientLog(action) {
   const { editLogInfo } = action.payload;
+  const ingredientId = yield select(selectors.inventory.getCurrentIngredientId);
   yield api.inventory.editIngredientLog({ editLogInfo });
+  yield loadIngredientLogs({ payload: { ingredientId } });
+  yield loadCurrentIngredient({ payload: { ingredientId } });
 }

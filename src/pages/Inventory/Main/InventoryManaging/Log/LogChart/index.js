@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   LineChart,
   Line,
@@ -9,20 +9,17 @@ import {
   Legend,
   ResponsiveContainer
 } from "recharts";
-import styled from "styled-components";
 
 import Colors from "theme/colors";
 import { mapForChart } from "utils/pages/inventory";
 
-const mockData = [
-  { recordDate: "5월 7일", order: 25, use: 30, inventory: 36 },
-  { recordDate: "5월 8일", order: 32, use: 38, inventory: 7 },
-  { recordDate: "5월 9일", order: 62, use: 86, inventory: 82 },
-  { recordDate: "5월 10일", order: 89, use: 36, inventory: 37 }
-];
-
 export default function LogChartComp({ logs }) {
-  const mapedData = mapForChart(logs);
+  const [mapedData, setMapedData] = useState([]);
+
+  useEffect(() => {
+    mapForChart(logs).then(maped => setMapedData(maped));
+  }, [logs]);
+
   return (
     <ResponsiveContainer width={"99%"} height={300}>
       <LineChart data={mapedData}>

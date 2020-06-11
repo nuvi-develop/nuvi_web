@@ -15,8 +15,6 @@ export default function LogListComp() {
   const logs = useSelector(selectors.inventory.getCurrentIngredientLogs);
   const logsForTable = reduceForTable(logs);
 
-  console.log("logsForTable", logsForTable);
-
   return (
     <Container>
       <LogListHead isEditing={isEditing} setIsEditing={setIsEditing} />

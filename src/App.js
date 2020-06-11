@@ -22,7 +22,6 @@ function App({ history }) {
   return (
     <Router history={history}>
       <Switch>
-        {/* 누구나 접근가능한 public route */}
         <Route
           exact
           path="/"
@@ -32,8 +31,6 @@ function App({ history }) {
             </AuthLayout>
           )}
         />
-
-        {/* admin 이고 approved 받는 user 만 접근가능 */}
         <AdminRoutes path="/daily" layout={DashBoardLayout} component={Daily} />
         <AdminRoutes path="/total" layout={DashBoardLayout} component={Total} />
         <AdminRoutes
@@ -46,8 +43,6 @@ function App({ history }) {
           layout={DashBoardLayout}
           component={UserProfile}
         />
-
-        {/* master user 만 접근가능 */}
         <MasterRoutes
           path="/adminApply"
           layout={DashBoardLayout}
@@ -58,8 +53,6 @@ function App({ history }) {
           layout={DashBoardLayout}
           component={AdminList}
         />
-
-        {/* error 처리 */}
         <Route path="/500" component={Error500} />
         <Route path="/" component={Error404} />
       </Switch>

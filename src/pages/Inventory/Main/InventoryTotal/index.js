@@ -1,33 +1,49 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { SimpleInput } from "components";
-import { Row, Col } from "theme/style";
+import { Row, Col, Button } from "theme/style";
+import Colors from "theme/colors";
 import { actions, selectors } from "data";
 
 import LabelBox from "./LabelBox";
 import IngredientsTable from "./IngredientsTable";
 
+export const EditingContext = createContext({
+  isEditing: false,
+  setIsEditing: () => {}
+});
+
 export default function InventoryTotalComp() {
   const dispatch = useDispatch();
+  const [isEditing, setIsEditing] = useState(false);
   const { ingredientName } = useSelector(
     selectors.inventory.getCurrentSearchingInfo
   );
-  console.log("ingredientName", ingredientName);
+  const toggleEditHandler = () => {
+    setIsEditing(prev => !prev);
+  };
   useEffect(() => {
     dispatch(actions.inventory.loadTotalPage({ name: ingredientName }));
   }, [ingredientName, dispatch]);
   return (
-    <MainContainer>
-      <SubContainer>
-        <Header>
-          <SimpleInput label="재료명으로 검색" />
-          <LabelBox />
-        </Header>
-        <IngredientsTable />
-      </SubContainer>
-    </MainContainer>
+    <EditingContext.Provider value={{ isEditing, setIsEditing }}>
+      <MainContainer>
+        <SubContainer>
+          <Header>
+            <SubHeader>
+              <SimpleInput label="재료명으로 검색" />
+              <EditButton onClick={toggleEditHandler}>
+                {isEditing ? "완료" : "재료 수정"}
+              </EditButton>
+            </SubHeader>
+            <LabelBox />
+          </Header>
+          <IngredientsTable />
+        </SubContainer>
+      </MainContainer>
+    </EditingContext.Provider>
   );
 }
 
@@ -46,4 +62,15 @@ const SubContainer = styled(Col)`
 
 const Header = styled(Row)`
   justify-content: space-between;
+`;
+
+const SubHeader = styled(Col)``;
+
+const EditButton = styled(Button)`
+  padding: 2px 4px;
+  width: 100px;
+  cursor: pointer;
+  border: solid 1px ${Colors.gray_1};
+  border-radius: 20px;
+  margin-left: 5px;
 `;

@@ -73,5 +73,11 @@ export const api = {
     return await apiClient.delete(
       `api/inventory/ingredientLog/ingredientLogId/${id}`
     );
+  },
+
+  deleteIngredient: async ({ id }) => {
+    return await apiClient.delete(
+      `api/inventory/ingredient/ingredientId/${id}`
+    );
   }
 };

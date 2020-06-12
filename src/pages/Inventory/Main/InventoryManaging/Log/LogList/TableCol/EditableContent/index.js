@@ -57,10 +57,11 @@ export default function EditableContentComp({ d, name }) {
 }
 
 export const ContentDiv = ({ d, setCurrentIndex, currentIndex }) => {
+  const dispatch = useDispatch();
   const [showDelete, setShowDelete] = useState(false);
   const onDeleteHandler = async () => {
     const { id } = d;
-    await api.inventory.deleteIngredientLog({ id });
+    dispatch(actions.inventory.deleteIngredientLog({ id }));
   };
 
   return (

@@ -79,8 +79,25 @@ export function* addIngredientLog(action) {
 
 export function* addIngredient(action) {
   const { ingredientInfo } = action.payload;
-  console.log("action", action);
   yield api.inventory.addIngredient({ ingredientInfo });
+}
+
+export function* deleteIngredientLog(action) {
+  const { id } = action.payload;
+  yield api.inventory.deleteIngredientLog({ id });
+  yield resetManagingPage();
+}
+
+export function* deleteIngredient(action) {
+  const { id } = action.payload;
+  yield api.inventory.deleteIngredient({ id });
+  yield loadIngredientsOfCategories({ payload: { name: "" } });
+}
+
+export function* resetManagingPage() {
+  const ingredientId = yield select(selectors.inventory.getCurrentIngredientId);
+  yield loadIngredientLogs({ payload: { ingredientId } });
+  yield loadCurrentIngredient({ payload: { ingredientId } });
 }
 
 export function* loadManagingPage(action) {
@@ -95,8 +112,7 @@ export function* loadTotalPage(action) {
 
 export function* editIngredientLog(action) {
   const { editLogInfo } = action.payload;
-  const ingredientId = yield select(selectors.inventory.getCurrentIngredientId);
+
   yield api.inventory.editIngredientLog({ editLogInfo });
-  yield loadIngredientLogs({ payload: { ingredientId } });
-  yield loadCurrentIngredient({ payload: { ingredientId } });
+  yield resetManagingPage();
 }

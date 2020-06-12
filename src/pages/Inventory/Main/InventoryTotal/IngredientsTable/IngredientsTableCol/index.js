@@ -1,6 +1,8 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
+import { actions } from "data";
 import { Row, Col, Button } from "theme/style";
 import Colors from "theme/colors";
 import api from "api";
@@ -8,9 +10,10 @@ import api from "api";
 import { EditingContext } from "../../index";
 
 export default function IngredientsTableColComp({ data }) {
+  const dispatch = useDispatch();
   const { category, ingredients } = data;
   const onDeleteHandler = async ({ id }) => {
-    await api.inventory.deleteIngredient({ id });
+    dispatch(actions.inventory.deleteIngredient({ id }));
   };
 
   return (

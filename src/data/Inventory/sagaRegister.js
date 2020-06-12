@@ -10,4 +10,6 @@ export default function*() {
   yield takeEvery(AT.ADD_INGREDIENT_LOG, sagas.addIngredientLog);
   yield takeEvery(AT.ADD_INGREDIENT, sagas.addIngredient);
   yield takeEvery(AT.EDIT_INGREDIENT_LOG, sagas.editIngredientLog);
+  yield takeEvery(AT.DELETE_INGREDIENT_LOG, sagas.deleteIngredientLog);
+  yield takeEvery(AT.DELETE_INGREDIENT, sagas.deleteIngredient);
 }

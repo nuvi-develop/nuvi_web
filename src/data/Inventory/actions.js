@@ -82,3 +82,13 @@ export const editIngredientLog = payload => ({
   type: AT.EDIT_INGREDIENT_LOG,
   payload
 });
+
+export const deleteIngredientLog = payload => ({
+  type: AT.DELETE_INGREDIENT_LOG,
+  payload
+});
+
+export const deleteIngredient = payload => ({
+  type: AT.DELETE_INGREDIENT,
+  payload
+});

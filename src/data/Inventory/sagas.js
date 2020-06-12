@@ -5,11 +5,14 @@ import { actions, selectors } from "data";
 
 export function* loadFilteredIngredients(action) {
   const { name, limit } = action.payload;
-  const category = yield select(selectors.inventory.getCurrentSearchingInfo);
+  const searchingInfo = yield select(
+    selectors.inventory.getCurrentSearchingInfo
+  );
   const departmentId = yield select(selectors.user.getDepartmentId);
+
   const res = yield api.inventory.getFilterdIngredients({
     name,
-    categoryId: category.id,
+    categoryId: searchingInfo.category.id,
     departmentId,
     limit
   });

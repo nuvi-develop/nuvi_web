@@ -5,6 +5,9 @@ import styled from "styled-components";
 import { actions } from "data";
 import { Button } from "theme/style";
 import Colors from "theme/colors";
+import api from "api";
+
+import { IndexContext } from "../../LogTableDisplay";
 
 export default function EditableContentComp({ d, name }) {
   const dispatch = useDispatch();
@@ -28,34 +31,71 @@ export default function EditableContentComp({ d, name }) {
   };
 
   return (
-    <Container>
-      {isEditing ? (
-        <EditInput value={inputValue} onChange={onChangeInputHanlder} />
-      ) : (
-        <Content key={d.id} onClick={() => setIsEditing(true)}>
-          {d.data}
-        </Content>
-      )}
+    <IndexContext.Consumer>
+      {({ setCurrentIndex, currentIndex }) => (
+        <Container
+          onMouseOver={() => setCurrentIndex(d.id)}
+          currentIndex={currentIndex}
+          onMouseLeave={() => setCurrentIndex(null)}
+          dId={d.id}
+        >
+          {isEditing ? (
+            <EditInput value={inputValue} onChange={onChangeInputHanlder} />
+          ) : (
+            <Content key={d.id} onClick={() => setIsEditing(true)}>
+              {d.data}
+            </Content>
+          )}
 
-      {isEditing && (
-        <EditButton onClick={onEditCompletHandler}>완료</EditButton>
+          {isEditing && (
+            <EditButton onClick={onEditCompletHandler}>완료</EditButton>
+          )}
+        </Container>
       )}
-    </Container>
+    </IndexContext.Consumer>
   );
 }
 
-export const ContentDiv = ({ d }) => (
-  <Container>
-    <div key={d.id}>{d.data}</div>
-  </Container>
-);
+export const ContentDiv = ({ d, setCurrentIndex, currentIndex }) => {
+  const [showDelete, setShowDelete] = useState(false);
+  const onDeleteHandler = async () => {
+    const { id } = d;
+    await api.inventory.deleteIngredientLog({ id });
+  };
+
+  return (
+    <IndexContext.Consumer>
+      {({ setCurrentIndex, currentIndex }) => (
+        <Container
+          onClick={() => setShowDelete(prev => !prev)}
+          onMouseLeave={() => {
+            setShowDelete(false);
+            setCurrentIndex(null);
+          }}
+          onMouseOver={() => setCurrentIndex(d.id)}
+          currentIndex={currentIndex}
+          dId={d.id}
+        >
+          <div key={d.id}>{d.data}</div>
+          {showDelete && (
+            <EditButton onClick={onDeleteHandler}>삭제</EditButton>
+          )}
+        </Container>
+      )}
+    </IndexContext.Consumer>
+  );
+};
 
 const Container = styled.div`
   display: flex;
   margin-bottom: 10px;
   height: 24px;
+  cursor: pointer;
+  background-color: ${({ currentIndex, dId }) =>
+    currentIndex === dId ? Colors.gray_2 : null};
+  padding: 2px;
+  border-radius: 3px;
 `;
-
 const Content = styled.div`
   cursor: pointer;
 `;

@@ -10,14 +10,12 @@ import LogListHead from "./LogListHead";
 import LogTableDisplay from "./LogTableDisplay";
 
 export default function LogListComp() {
-  const [isEditing, setIsEditing] = useState(false);
-
   const logs = useSelector(selectors.inventory.getCurrentIngredientLogs);
   const logsForTable = reduceForTable(logs);
 
   return (
     <Container>
-      <LogListHead isEditing={isEditing} setIsEditing={setIsEditing} />
+      <LogListHead />
       <LogTableDisplay logsForTable={logsForTable} />
     </Container>
   );

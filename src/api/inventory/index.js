@@ -68,5 +68,10 @@ export const api = {
     return await apiClient.get(
       `api/inventory/ingredientCurrentStock/ingredientId/${ingredientId}/recordDate/${recordDate}`
     );
+  },
+  deleteIngredientLog: async ({ id }) => {
+    return await apiClient.delete(
+      `api/inventory/ingredientLog/ingredientLogId/${id}`
+    );
   }
 };

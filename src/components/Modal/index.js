@@ -12,16 +12,18 @@ export default function ModalComp({ modalInfo, withCancel }) {
     <Background>
       <Modal>
         <Text>{contents}</Text>
-        <ButtonsContainer>
-          <Button onClick={onClick}>{buttonName}</Button>
-          {withCancel && (
-            <CancleButton
-              onClick={() => dispatch(actions.modal.setModal(false))}
-            >
-              취소
-            </CancleButton>
-          )}
-        </ButtonsContainer>
+        {buttonName && (
+          <ButtonsContainer>
+            <Button onClick={onClick}>{buttonName}</Button>
+            {withCancel && (
+              <CancleButton
+                onClick={() => dispatch(actions.modal.setModal(false))}
+              >
+                취소
+              </CancleButton>
+            )}
+          </ButtonsContainer>
+        )}
       </Modal>
     </Background>
   );

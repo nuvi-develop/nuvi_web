@@ -8,3 +8,8 @@ export const setModal = modal => ({
 export const clearModal = () => ({
   type: AT.CLEAR_MODAL
 });
+
+export const modalUpAndGo = payload => ({
+  type: AT.MODAL_UP_AND_GO,
+  payload
+});

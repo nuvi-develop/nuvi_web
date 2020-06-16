@@ -79,7 +79,13 @@ export function* addIngredientLog(action) {
 
 export function* addIngredient(action) {
   const { ingredientInfo } = action.payload;
-  yield api.inventory.addIngredient({ ingredientInfo });
+  const res = yield api.inventory.addIngredient({ ingredientInfo });
+  const createdIngredientId = res.data.createdIngredient.id;
+
+  yield put(actions.modal.modalUpAndGo({ contents: "재료가 생성되었습니다." }));
+  yield loadCurrentIngredient({
+    payload: { ingredientId: createdIngredientId }
+  });
 }
 
 export function* deleteIngredientLog(action) {

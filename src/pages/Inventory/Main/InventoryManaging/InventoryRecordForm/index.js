@@ -21,7 +21,7 @@ export default function InventoryRecordFormComp() {
   const submitHander = values => {
     const { recordDate, order, use, cost } = values;
     const ingredientLogInfo = {
-      recordDate: new Date(),
+      recordDate,
       order: +order,
       use: +use,
       cost: +cost,

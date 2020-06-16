@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import Colors from "theme/colors";
 import { actions } from "data";
 
-export default function ModalComp({ modalInfo, withCancel }) {
+export default function ConditionalModal({ modalInfo, withCancel }) {
   const dispatch = useDispatch();
   const { onClick, contents, buttonName, style } = modalInfo;
   console.log("style", style);

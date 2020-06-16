@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { selectors } from "data";
+import { Modal } from "components";
 
 import SubTabNavigation from "./SubTabNavigation";
 import InventoryManaging from "./Main/InventoryManaging";
@@ -15,6 +16,7 @@ const inventoryTabs = {
 
 export default function Inventory() {
   const currentTab = useSelector(selectors.inventory.getCurrentTab);
+  const modal = useSelector(selectors.modal.getModal);
   return (
     <InventoryContainer>
       <SubTabNavigation />
@@ -23,6 +25,7 @@ export default function Inventory() {
       ) : (
         <InventoryTotal />
       )}
+      {modal.contents && <Modal modalInfo={modal} withCancel />}
     </InventoryContainer>
   );
 }

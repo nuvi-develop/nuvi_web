@@ -13,7 +13,16 @@ export default function IngredientsTableColComp({ data }) {
   const dispatch = useDispatch();
   const { category, ingredients } = data;
   const onDeleteHandler = async ({ id }) => {
-    dispatch(actions.inventory.deleteIngredient({ id }));
+    dispatch(
+      actions.modal.setModal({
+        contents: "해당 재료를 제거하시겠습니까?",
+        onClick: () => {
+          dispatch(actions.inventory.deleteIngredient({ id }));
+          dispatch(actions.modal.setModal(false));
+        },
+        buttonName: "제거"
+      })
+    );
   };
 
   return (

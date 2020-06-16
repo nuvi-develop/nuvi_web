@@ -16,7 +16,7 @@ export default function AddInput({ label }) {
       <Label>{label}</Label>
 
       <Image src={plus} onClick={toggleAddHandler} isAdding={isAdding} />
-      {isAdding && <AddForm />}
+      {isAdding && <AddForm toggleAddHandler={toggleAddHandler} />}
     </Container>
   );
 }

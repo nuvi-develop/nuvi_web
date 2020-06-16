@@ -10,18 +10,20 @@ import Colors from "theme/colors";
 import DropdownInput from "./DropdownInput";
 import SimpleInput from "./SimpleInput";
 
-export default function AddFormComp() {
+export default function AddFormComp({ toggleAddHandler }) {
   const dispatch = useDispatch();
   const categories = useSelector(selectors.inventory.getCategories);
   const departmentId = useSelector(selectors.user.getDepartmentId);
 
-  const onSubmitHandler = values => {
+  const onSubmitHandler = (values, { resetForm }) => {
     const ingredientInfo = {
       name: values.ingredient,
       InventoryCategoryId: values.category.id,
       DepartmentId: departmentId
     };
     dispatch(actions.inventory.addIngredient({ ingredientInfo }));
+    toggleAddHandler();
+    resetForm();
   };
   return (
     <Container>

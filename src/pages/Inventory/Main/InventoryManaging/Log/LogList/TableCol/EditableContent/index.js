@@ -66,7 +66,16 @@ export const ContentDiv = ({ d, setCurrentIndex, currentIndex }) => {
   const [showDelete, setShowDelete] = useState(false);
   const onDeleteHandler = async () => {
     const { id } = d;
-    dispatch(actions.inventory.deleteIngredientLog({ id }));
+    dispatch(
+      actions.modal.setModal({
+        contents: "해당 로그를 제거하시겠습니까?",
+        onClick: () => {
+          dispatch(actions.inventory.deleteIngredientLog({ id }));
+          dispatch(actions.modal.setModal(false));
+        },
+        buttonName: "제거"
+      })
+    );
   };
 
   return (

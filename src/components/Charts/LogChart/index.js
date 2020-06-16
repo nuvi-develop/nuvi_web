@@ -22,7 +22,7 @@ export default function LogChartComp({ logs, height }) {
 
   return (
     <ResponsiveContainer width={"99%"} height={height ? height : 250}>
-      <LineChart data={mapedData}>
+      <LineChart data={mapedData} margin={{ top: 30 }}>
         <XAxis dataKey="recordDate" />
         <YAxis />
         <CartesianGrid strokeDashArray="3 3" />

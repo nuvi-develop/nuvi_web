@@ -15,12 +15,15 @@ export default function IngredientsTableColComp({ data }) {
   const onDeleteHandler = async ({ id }) => {
     dispatch(
       actions.modal.setModal({
-        contents: "해당 재료를 제거하시겠습니까?",
-        onClick: () => {
-          dispatch(actions.inventory.deleteIngredient({ id }));
-          dispatch(actions.modal.setModal(false));
-        },
-        buttonName: "제거"
+        modalType: "CONDITIONAL",
+        modalProps: {
+          contents: "해당 재료를 제거하시겠습니까?",
+          onClick: () => {
+            dispatch(actions.inventory.deleteIngredient({ id }));
+            dispatch(actions.modal.clearModal());
+          },
+          buttonName: "제거"
+        }
       })
     );
   };

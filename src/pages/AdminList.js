@@ -41,7 +41,6 @@ export default function AdminList() {
           />
         ))}
       </MainContainer>
-      {modal.contents && <Modal modalInfo={modal} withCancel />}
     </MasterContainer>
   );
 }

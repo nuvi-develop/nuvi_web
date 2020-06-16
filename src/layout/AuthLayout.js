@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import Colors from "theme/colors";
 import { bp } from "styles/global";
+import { Modal } from "components";
+
 const nutritions = "/images/nutritions.svg";
 
 export default function AuthLayout({ children }) {
@@ -12,6 +14,7 @@ export default function AuthLayout({ children }) {
       <TransparentBlock>
         <AuthBlock>{children}</AuthBlock>
       </TransparentBlock>
+      <Modal />
     </>
   );
 }

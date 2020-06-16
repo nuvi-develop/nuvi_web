@@ -8,7 +8,8 @@ export function* modalUpAndGo(action) {
   const { contents } = action.payload;
   yield put(
     actions.modal.setModal({
-      contents
+      modalType: "INFO",
+      modalProps: { contents }
     })
   );
   yield delay(1000);

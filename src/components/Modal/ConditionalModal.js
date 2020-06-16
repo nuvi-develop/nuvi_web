@@ -5,29 +5,19 @@ import { useDispatch } from "react-redux";
 import Colors from "theme/colors";
 import { actions } from "data";
 
-export default function ConditionalModal({ modalInfo, withCancel }) {
+export default function ConditionalModal({ onClick, contents, buttonName }) {
   const dispatch = useDispatch();
-  const { onClick, contents, buttonName, style } = modalInfo;
-  console.log("style", style);
-
   return (
     <Background>
-      <Modal style={style}>
-        {typeof contents === "function" ? (
-          <CompWrapper>{contents()}</CompWrapper>
-        ) : (
-          <Text>{contents}</Text>
-        )}
+      <Modal>
+        <Text>{contents}</Text>
         {buttonName && (
           <ButtonsContainer>
             <Button onClick={onClick}>{buttonName}</Button>
-            {withCancel && (
-              <CancleButton
-                onClick={() => dispatch(actions.modal.setModal(false))}
-              >
-                취소
-              </CancleButton>
-            )}
+
+            <CancleButton onClick={() => dispatch(actions.modal.clearModal())}>
+              취소
+            </CancleButton>
           </ButtonsContainer>
         )}
       </Modal>
@@ -59,9 +49,6 @@ const Modal = styled.div`
   background-color: white;
   border: 1px solid ${Colors.gray_1};
   border-radius: 10px;
-  && {
-    ${({ style }) => style}
-  }
 `;
 
 const Text = styled.div`

@@ -18,7 +18,7 @@ export default function InventoryRecordFormComp() {
 
   const currentIngredientId = currentIngredient?.id;
 
-  const submitHander = values => {
+  const submitHander = (values, { resetForm }) => {
     const { recordDate, order, use, cost } = values;
     const ingredientLogInfo = {
       recordDate,
@@ -30,6 +30,7 @@ export default function InventoryRecordFormComp() {
     };
 
     dispatch(actions.inventory.addIngredientLog({ ingredientLogInfo }));
+    resetForm();
   };
   return (
     currentIngredient && (

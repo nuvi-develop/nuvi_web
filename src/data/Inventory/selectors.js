@@ -19,3 +19,6 @@ export const getCurrentIngredientLogs = state =>
 
 export const getIngredientsOfCategories = state =>
   state.inventory.ingredientsOfCategories;
+
+export const getIngredientLogsForDetailGraph = state =>
+  state.inventory.ingredientLogsForDetailGraph;

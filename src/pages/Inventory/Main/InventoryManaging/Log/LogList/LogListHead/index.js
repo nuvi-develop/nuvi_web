@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { Row } from "theme/style";
 import { actions, selectors } from "data";
+import Colors from "theme/colors";
 
 import LogChart from "../../LogChart";
 
@@ -13,15 +14,13 @@ export default function LogListHead() {
   const showGraphHandler = () => {
     dispatch(
       actions.modal.setModal({
-        contents: () => <LogChart logs={logs} />,
-        onClick: () => {
-          dispatch(actions.modal.setModal(false));
-        },
-        style: {
-          width: "90%",
-          height: " 70%"
-        },
-        buttonName: "확인"
+        modalType: "GRAPH",
+        modalProps: {
+          contents: () => <LogChart logs={logs} />,
+          onClick: () => {
+            dispatch(actions.modal.clearModal(false));
+          }
+        }
       })
     );
   };
@@ -48,4 +47,8 @@ const Label = styled.div`
 
 const ShowGraphoButton = styled.div`
   cursor: pointer;
+  margin: 3px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: ${Colors.gray_2};
 `;

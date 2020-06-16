@@ -1,41 +1,32 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
 
-import Colors from "theme/colors";
-import { actions } from "data";
+import { selectors } from "data";
 
-export default function ModalComp({ modalInfo, withCancel }) {
-  const dispatch = useDispatch();
-  const { onClick, contents, buttonName, style } = modalInfo;
-  console.log("style", style);
+import ConditionalModal from "./ConditionalModal";
+import InfoModal from "./InfoModal";
+import ApplyRegister from "./ApplyRegister";
+import GraphModal from "./GraphModal";
 
-  return (
-    <Background>
-      <Modal style={style}>
-        {typeof contents === "function" ? (
-          <CompWrapper>{contents()}</CompWrapper>
-        ) : (
-          <Text>{contents}</Text>
-        )}
-        {buttonName && (
-          <ButtonsContainer>
-            <Button onClick={onClick}>{buttonName}</Button>
-            {withCancel && (
-              <CancleButton
-                onClick={() => dispatch(actions.modal.setModal(false))}
-              >
-                취소
-              </CancleButton>
-            )}
-          </ButtonsContainer>
-        )}
-      </Modal>
-    </Background>
-  );
+const MODAL_COMPONENTS = {
+  CONDITIONAL: ConditionalModal,
+  INFO: InfoModal,
+  APPLY_REGISTER_MODAL: ApplyRegister,
+  GRAPH: GraphModal
+};
+
+export default function Modal() {
+  const { modalType, modalProps } = useSelector(selectors.modal.getModal);
+  const SpecificModal = modalType ? MODAL_COMPONENTS[modalType] : null;
+  return modalType ? (
+    <Container>
+      <SpecificModal {...modalProps} />
+    </Container>
+  ) : null;
 }
 
-const Background = styled.div`
+const Container = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -49,52 +40,17 @@ const Background = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-const Modal = styled.div`
-  width: 300px;
-  height: 230px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  border: 1px solid ${Colors.gray_1};
-  border-radius: 10px;
-  && {
-    ${({ style }) => style}
-  }
-`;
-
-const Text = styled.div`
-  color: ${Colors.blue_1};
-  width: 230px;
-  font-size: 16px;
-  text-align: center;
-`;
-
-const ButtonsContainer = styled.div`
-  display: flex;
-  margin: 10px;
-`;
-
-const Button = styled.div`
-  background-color: ${Colors.blue_1};
-  border: 1px solid ${Colors.gray_1};
-  border-radius: 10px;
-  color: white;
-  font-size: 16px;
-
-  width: 100px;
-  height: 60px;
-  margin: 10px 0;
-  text-align: center;
-  line-height: 60px;
-`;
-
-const CancleButton = styled(Button)`
-  background-color: pink;
-`;
-
-const CompWrapper = styled.div`
-  width: 90%;
-  height: 300px;
-`;
+// const Modal = styled.div`
+//   width: 300px;
+//   height: 230px;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   background-color: white;
+//   border: 1px solid ${Colors.gray_1};
+//   border-radius: 10px;
+//   && {
+//     ${({ style }) => style}
+//   }
+// `;

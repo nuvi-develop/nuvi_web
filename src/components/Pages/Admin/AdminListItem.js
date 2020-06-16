@@ -18,26 +18,32 @@ export default function AdminListItem({
   const approveHandler = async () => {
     dispatch(
       actions.modal.setModal({
-        contents: approved
-          ? "관리자 자격을 박탈하시겠습니까?"
-          : "관리자로 승인하시겠습니까?",
-        onClick: () => {
-          dispatch(actions.admins.toggleApproved(userId));
-          dispatch(actions.modal.setModal(false));
-        },
-        buttonName: approved ? "박탈" : "승인"
+        modelType: "CONDITIONAL",
+        modelProps: {
+          contents: approved
+            ? "관리자 자격을 박탈하시겠습니까?"
+            : "관리자로 승인하시겠습니까?",
+          onClick: () => {
+            dispatch(actions.admins.toggleApproved(userId));
+            dispatch(actions.modal.clearModal());
+          },
+          buttonName: approved ? "박탈" : "승인"
+        }
       })
     );
   };
   const deleteHandler = async () => {
     dispatch(
       actions.modal.setModal({
-        contents: "해당 신청과 사용자를 제거하시겠습니까?",
-        onClick: () => {
-          dispatch(actions.admins.deleteAdmin(userId));
-          dispatch(actions.modal.setModal(false));
-        },
-        buttonName: "제거"
+        modelType: "CONDITIONAL",
+        modelProps: {
+          contents: "해당 신청과 사용자를 제거하시겠습니까?",
+          onClick: () => {
+            dispatch(actions.admins.deleteAdmin(userId));
+            dispatch(actions.modal.clearModal());
+          },
+          buttonName: "제거"
+        }
       })
     );
   };

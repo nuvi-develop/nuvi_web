@@ -1,8 +1,8 @@
 import * as AT from "data/rootActionTypes";
 
-export const setModal = modal => ({
+export const setModal = payload => ({
   type: AT.SET_MODAL,
-  modal
+  payload
 });
 
 export const clearModal = () => ({

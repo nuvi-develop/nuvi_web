@@ -41,7 +41,6 @@ export default function FindPassword() {
           <StyledLabel>가입한 이메일을 입력합니다.</StyledLabel>
           <MyTextInput label="이메일" name="emailAddress" type="text" />
           <StyledButton type="submit">전송</StyledButton>
-          {modal.contents && <Modal modalInfo={modal} />}
         </StyledForm>
       </Formik>
     </>

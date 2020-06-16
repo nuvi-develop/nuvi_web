@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { Navigation } from "components";
+import { Navigation, Modal } from "components";
 import DropDown from "components/DropDown";
 import Colors from "theme/colors";
 
@@ -42,6 +42,7 @@ export default function DashBoardLayout({ children, master }) {
         <MenuButton src={menu} alt={"menu"} onClick={menuClickHandler} />
       </MenuWrapper>
       <Contents>{children}</Contents>
+      <Modal />
     </Layout>
   );
 }

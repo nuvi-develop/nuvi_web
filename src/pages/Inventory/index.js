@@ -25,7 +25,6 @@ export default function Inventory() {
       ) : (
         <InventoryTotal />
       )}
-      {modal.contents && <Modal modalInfo={modal} withCancel />}
     </InventoryContainer>
   );
 }

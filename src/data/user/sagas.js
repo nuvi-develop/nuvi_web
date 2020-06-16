@@ -83,7 +83,7 @@ export function* register(action) {
     }
     const userData = res.data;
     yield put(actions.user.registerSuccess(userData));
-    yield put(actions.modal.setModal({ contents: true }));
+    yield put(actions.modal.setModal({ modalType: "APPLY_REGISTER_MODAL" }));
   } catch (e) {
     yield put(actions.user.registerFailure({ message: e.message }));
   }
@@ -113,9 +113,12 @@ export function* giveTempPassword(action) {
 
     yield put(
       actions.modal.setModal({
-        onClick,
-        contents: `${tempPasswordInfo.emailAddress} 수신함을 확인해 주세요.`,
-        buttonName: "확인"
+        modalType: "CONDITIONAL",
+        modalProps: {
+          onClick,
+          contents: `${tempPasswordInfo.emailAddress} 수신함을 확인해 주세요.`,
+          buttonName: "확인"
+        }
       })
     );
 

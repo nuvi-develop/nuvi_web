@@ -55,6 +55,16 @@ export function* loadIngredientLogs(action) {
   yield put(actions.inventory.setCurrentIngredientLogs(logs));
 }
 
+export function* loadIngredientLogsForDetailGraph(action) {
+  const { ingredientId, limit } = action.payload;
+  const logsRes = yield api.inventory.getIngredientLogsByPk({
+    ingredientId,
+    limit
+  });
+  const logs = logsRes.data;
+  yield put(actions.inventory.setIngredientLogsForDetailGraph(logs));
+}
+
 export function* loadIngredientsOfCategories(action) {
   const { name } = action.payload;
   const departmentId = yield select(selectors.user.getDepartmentId);
@@ -75,6 +85,9 @@ export function* addIngredientLog(action) {
   const ingredientId = ingredientLogRes.data.InventoryIngredientId;
   yield loadIngredientLogs({ payload: { ingredientId } });
   yield loadCurrentIngredient({ payload: { ingredientId } });
+  yield put(
+    actions.modal.modalUpAndGo({ contents: "재료에 로그를가 추가하였습니다.." })
+  );
 }
 
 export function* addIngredient(action) {

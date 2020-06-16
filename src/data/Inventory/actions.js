@@ -92,3 +92,12 @@ export const deleteIngredient = payload => ({
   type: AT.DELETE_INGREDIENT,
   payload
 });
+
+export const loadIngredientLogsForDetailGraph = payload => ({
+  type: AT.LOAD_INGREDIENT_LOGS_FOR_DETAIL_GRAPH,
+  payload
+});
+export const setIngredientLogsForDetailGraph = payload => ({
+  type: AT.SET_INGREDIENT_LOGS_FOR_DETAIL_GRAPH,
+  payload
+});

@@ -44,8 +44,9 @@ export default function AddFormComp() {
 
 const Container = styled.div`
   display: flex;
+
   align-items: center;
-  width: 400px;
+  align-self: flex-start;
   margin-left: 20px;
 `;
 
@@ -60,7 +61,7 @@ const SubmitButton = styled(Button)`
 
 const StyledForm = styled(Form)`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  width: 100%;
+  align-items: flex-start;
 `;

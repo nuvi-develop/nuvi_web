@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { Row } from "theme/style";
+import { Row, Col } from "theme/style";
 import { selectors } from "data";
+import { useColNumber } from "hooks/pages/useWindowSize";
 
 import IngredientsTableCol from "./IngredientsTableCol";
-import mockData from "./mockData";
 
 const leftButton = process.env.PUBLIC_URL + "/icons/basics/leftbutton.svg";
 const rightButton = process.env.PUBLIC_URL + "/icons/basics/rightButton.svg";
@@ -17,7 +17,7 @@ export default function IngredientsTableComp() {
     selectors.inventory.getIngredientsOfCategories
   );
 
-  const columnNumber = 7;
+  const columnNumber = useColNumber(180);
   const slicedData = ingredientsOfCategories.slice(
     0 + colOffset,
     columnNumber + colOffset
@@ -37,7 +37,7 @@ export default function IngredientsTableComp() {
       {slicedData.map(data => (
         <IngredientsTableCol data={data} key={data.category.id} />
       ))}
-      {hiddenColLength !== 0 && (
+      {hiddenColLength > 0 && (
         <Navigator
           src={rightButton}
           onClick={() => setColOffset(prev => prev + 1)}
@@ -55,5 +55,6 @@ const Container = styled(Row)`
 
 const Navigator = styled.img`
   cursor: pointer;
-  //   align-self: flex-start;
+  align-self: flex-start;
+  width: 30px;
 `;

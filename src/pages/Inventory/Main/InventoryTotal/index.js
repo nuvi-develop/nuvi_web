@@ -28,8 +28,8 @@ export default function InventoryTotalComp() {
     dispatch(actions.inventory.loadTotalPage({ name: ingredientName }));
   }, [ingredientName, dispatch]);
   return (
-    <EditingContext.Provider value={{ isEditing, setIsEditing }}>
-      <MainContainer>
+    <MainContainer>
+      <EditingContext.Provider value={{ isEditing, setIsEditing }}>
         <SubContainer>
           <Header>
             <SubHeader>
@@ -42,8 +42,8 @@ export default function InventoryTotalComp() {
           </Header>
           <IngredientsTable />
         </SubContainer>
-      </MainContainer>
-    </EditingContext.Provider>
+      </EditingContext.Provider>
+    </MainContainer>
   );
 }
 
@@ -60,8 +60,12 @@ const SubContainer = styled(Col)`
   padding: 20px;
 `;
 
-const Header = styled(Row)`
+const Header = styled(Col)`
   justify-content: space-between;
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+  }
 `;
 
 const SubHeader = styled(Col)``;

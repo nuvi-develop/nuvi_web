@@ -37,11 +37,14 @@ const Container = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  flex: 1;
-  height: 150px;
+  height: 100px;
   background-color: ${Colors.green_2};
   border-radius: 20px;
-  margin: 30px 0;
+  margin: 10px 0;
+
+  @media (min-width: 1200px) {
+    height: 20%;
+  }
 `;
 
 const Label = styled.div`

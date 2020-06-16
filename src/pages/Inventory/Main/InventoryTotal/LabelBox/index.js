@@ -26,6 +26,11 @@ export default function LabelBoxComp() {
 const Container = styled(Row)`
   width: 600px;
   justify-content: space-between;
+  margin-top: 20px;
+
+  @media (min-width: 1200px) {
+    margin-top: 0px;
+  }
 `;
 
 const CompHolder = styled(Row)`

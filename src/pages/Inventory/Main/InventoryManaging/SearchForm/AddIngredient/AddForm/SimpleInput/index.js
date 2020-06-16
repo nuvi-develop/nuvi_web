@@ -14,7 +14,7 @@ export default function TextInput({ label, ...props }) {
 
 const Container = styled.div`
   display: flex;
-  max-width: 500px;
+  margin-bottom: 10px;
 `;
 
 const StyledInput = styled.input`
@@ -25,6 +25,7 @@ const StyledInput = styled.input`
 
 const Label = styled.div`
   display: flex;
+  width: 50px;
   align-items: center;
   margin-right: 10px;
 `;

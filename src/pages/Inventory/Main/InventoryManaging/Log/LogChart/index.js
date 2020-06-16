@@ -21,7 +21,7 @@ export default function LogChartComp({ logs }) {
   }, [logs]);
 
   return (
-    <ResponsiveContainer width={"99%"} height={300}>
+    <ResponsiveContainer width={"99%"} height={250}>
       <LineChart data={mapedData}>
         <XAxis dataKey="recordDate" />
         <YAxis />

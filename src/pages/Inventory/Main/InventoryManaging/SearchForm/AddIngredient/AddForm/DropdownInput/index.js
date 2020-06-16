@@ -49,7 +49,8 @@ export default function DropdownInputComp({ options, label, ...props }) {
 
 const Container = styled.div`
   display: flex;
-  max-width: 500px;
+  width: 300px;
+  margin-bottom: 10px;
 `;
 
 const DropDownContainer = styled.div`
@@ -92,7 +93,7 @@ const Wrapper = styled.div`
 const ListContainer = styled.div``;
 
 const ListItem = styled.div`
-  font-size: 24px;
+  font-size: 16px;
   &:hover {
     background-color: ${({ theme }) => theme.blue_3};
   }
@@ -102,4 +103,5 @@ const Label = styled.div`
   display: flex;
   align-items: center;
   margin-right: 10px;
+  width: 50px;
 `;

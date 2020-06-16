@@ -18,6 +18,5 @@ const Container = styled.div`
   flex-wrap: wrap;
   align-items: flex-start;
   align-content: flex-start;
-  height: 200px;
-  //   background-color: gray;
+  min-height: 150px;
 `;

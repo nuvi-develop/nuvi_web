@@ -25,7 +25,7 @@ export default function LogComp() {
   }, [ingredientId, dispatch, page]);
   return (
     <Container>
-      <LogList />
+      <LogList logs={logs} />
       {ingredientId && <LogChart logs={logs} />}
       {ingredientId && (
         <NavButton value={page} setValue={setPage} isLastPage={isLastPage} />

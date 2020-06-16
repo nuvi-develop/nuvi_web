@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { actions, selectors } from "data";
-
 import Colors from "theme/colors";
+import { Row, Col, Button } from "theme/style";
 
 import CurrentIngredient from "./CurrentIngredient";
 import InventoryRecordForm from "./InventoryRecordForm";
@@ -43,18 +43,20 @@ export default function InventoryManaging() {
   );
 }
 
-const MainContainer = styled.div`
-  display: flex;
+const MainContainer = styled(Col)`
   background-color: white;
   border-radius: 10px;
   padding: 10px 20px;
   margin-bottom: 10px;
   flex: 1;
+  min-height: 80vh;
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+  }
 `;
 
-const SubContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+const SubContainer = styled(Col)`
   justify-content: space-between;
   flex: 1;
   padding: 20px;

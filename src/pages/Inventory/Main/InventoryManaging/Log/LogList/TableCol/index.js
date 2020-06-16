@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Col } from "theme/style";
 import EditableContent, { ContentDiv } from "./EditableContent";
 
-export default function TableCol({ label, data, name }) {
+export default function TableCol({ label, data, name, disabled }) {
   return (
     <Container>
       <Label>{label}</Label>
@@ -12,7 +12,7 @@ export default function TableCol({ label, data, name }) {
         name === "recordDate" ? (
           <ContentDiv key={d.id} d={d} />
         ) : (
-          <EditableContent key={d.id} d={d} name={name} />
+          <EditableContent key={d.id} d={d} name={name} disabled={disabled} />
         )
       )}
     </Container>

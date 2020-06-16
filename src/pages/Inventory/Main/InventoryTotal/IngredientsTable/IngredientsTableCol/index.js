@@ -61,7 +61,9 @@ const Container = styled(Col)`
 `;
 
 const Label = styled.div`
+  text-align: center;
   font-size: 24px;
+  width: 155px;
   color: ${Colors.gray_1};
 `;
 

@@ -8,8 +8,9 @@ import Colors from "theme/colors";
 import api from "api";
 
 import { IndexContext } from "../../LogTableDisplay";
+import EditInput from "../EditInput";
 
-export default function EditableContentComp({ d, name }) {
+export default function EditableContentComp({ d, name, disabled }) {
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputValue] = useState(d.data || 0);
@@ -39,16 +40,20 @@ export default function EditableContentComp({ d, name }) {
           onMouseLeave={() => setCurrentIndex(null)}
           dId={d.id}
         >
-          {isEditing ? (
-            <EditInput value={inputValue} onChange={onChangeInputHanlder} />
+          {isEditing && !disabled ? (
+            <EditInput
+              value={inputValue}
+              onChange={onChangeInputHanlder}
+              onBlur={() => setIsEditing(false)}
+            />
           ) : (
             <Content key={d.id} onClick={() => setIsEditing(true)}>
               {d.data}
             </Content>
           )}
 
-          {isEditing && (
-            <EditButton onClick={onEditCompletHandler}>완료</EditButton>
+          {isEditing && !disabled && (
+            <EditButton onMouseDown={onEditCompletHandler}>완료</EditButton>
           )}
         </Container>
       )}
@@ -99,10 +104,6 @@ const Container = styled.div`
 `;
 const Content = styled.div`
   cursor: pointer;
-`;
-
-const EditInput = styled.input`
-  width: 50px;
 `;
 
 const EditButton = styled(Button)`

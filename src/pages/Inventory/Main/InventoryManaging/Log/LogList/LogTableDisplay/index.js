@@ -9,9 +9,8 @@ export const IndexContext = createContext({
   setCurrentIndex: () => {}
 });
 
-export default function LogTableDisplay({ logsForTable }) {
+export default function LogTableDisplay({ logsForTable, disabled }) {
   const [currentIndex, setCurrentIndex] = useState(null);
-
   return (
     <IndexContext.Provider value={{ currentIndex, setCurrentIndex }}>
       <Container>
@@ -22,6 +21,12 @@ export default function LogTableDisplay({ logsForTable }) {
         />
         <TableCol label="주문량 (kg)" data={logsForTable.order} name="order" />
         <TableCol label="사용량 (kg)" data={logsForTable.use} name="use" />
+        <TableCol
+          label="재고량 (kg)"
+          data={logsForTable.stock}
+          name="stock"
+          disabled
+        />
         <TableCol label="비용 (원/단위)" data={logsForTable.cost} name="cost" />
       </Container>
     </IndexContext.Provider>

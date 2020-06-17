@@ -35,7 +35,7 @@ export default function SignUpFormTraditional() {
     const userRegisterInfo = {
       emailAddress: values.emailAddress,
       password: values.password,
-      isAdmin: values.isAdmin,
+      isAdmin: true,
       name: values.name,
       type: "traditional",
       DepartmentId: values.orgName
@@ -48,7 +48,7 @@ export default function SignUpFormTraditional() {
         emailAddress: "",
         password: "",
         passwordConfirm: "",
-        isAdmin: false,
+        // isAdmin: true,
         orgName: "",
         name: "",
         duty: "",
@@ -76,7 +76,7 @@ export default function SignUpFormTraditional() {
         passwordConfirm: Yup.string()
           .oneOf([Yup.ref("password"), null], "비밀번호가 다릅니다")
           .required("필수항목 입니다."),
-        isAdmin: Yup.boolean().required("필수항목 입니다."),
+        // isAdmin: Yup.boolean().required("필수항목 입니다."),
         ...(step === 2
           ? {
               name: Yup.string().required("필수항목 입니다."),
@@ -97,12 +97,12 @@ export default function SignUpFormTraditional() {
             }
           : {})
       })}
-      onSubmit={values => {
+      onSubmit={async values => {
         step === 1
-          ? values.isAdmin
-            ? setStep(2)
-            : setStep(3)
-          : step === 2 && submitHandler(values);
+          ? // ? values.isAdmin
+            setStep(2)
+          : // : setStep(3)
+            step === 2 && (await submitHandler(values));
       }}
     >
       {({ values }) =>
@@ -115,7 +115,7 @@ export default function SignUpFormTraditional() {
               name="passwordConfirm"
               type="password"
             />
-            <MyToggleInput label="관리자" name="isAdmin" type="checkbox" />
+            {/* <MyToggleInput label="관리자" name="isAdmin" type="checkbox" /> */}
             <StyledButton type="submit">다음</StyledButton>
           </StyledForm>
         ) : step === 2 ? (

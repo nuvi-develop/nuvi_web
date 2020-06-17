@@ -74,8 +74,10 @@ export function* register(action) {
   try {
     const { userRegisterInfo } = action;
     const { type } = userRegisterInfo;
+    console.log("type", type);
     let res;
     yield put(actions.user.registerLoading());
+    console.log("came here");
     if (type === "social") {
       res = yield api.authApi.registerSocial(userRegisterInfo);
     } else {
@@ -83,8 +85,15 @@ export function* register(action) {
     }
     const userData = res.data;
     yield put(actions.user.registerSuccess(userData));
-    yield put(actions.modal.setModal({ modalType: "APPLY_REGISTER_MODAL" }));
+    yield put(
+      actions.modal.setModal({
+        modalType: "APPLY_REGISTER_MODAL",
+        modalProps: {}
+      })
+    );
   } catch (e) {
+    console.log("e.status", e.status);
+    console.log("e.message", e.message);
     yield put(actions.user.registerFailure({ message: e.message }));
   }
 }

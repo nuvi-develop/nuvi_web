@@ -18,8 +18,8 @@ export default function AdminListItem({
   const approveHandler = async () => {
     dispatch(
       actions.modal.setModal({
-        modelType: "CONDITIONAL",
-        modelProps: {
+        modalType: "CONDITIONAL",
+        modalProps: {
           contents: approved
             ? "관리자 자격을 박탈하시겠습니까?"
             : "관리자로 승인하시겠습니까?",
@@ -35,8 +35,8 @@ export default function AdminListItem({
   const deleteHandler = async () => {
     dispatch(
       actions.modal.setModal({
-        modelType: "CONDITIONAL",
-        modelProps: {
+        modalType: "CONDITIONAL",
+        modalProps: {
           contents: "해당 신청과 사용자를 제거하시겠습니까?",
           onClick: () => {
             dispatch(actions.admins.deleteAdmin(userId));

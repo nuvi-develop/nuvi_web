@@ -31,6 +31,10 @@ export default function AdminRoutes({
     if (!(isAdmin && approved)) {
       Routes = () => {
         dispatch(actions.user.resetAuth());
+        dispatch(
+          actions.modal.modalUpAndGo({ contents: "어드민 승인이 필요합니다." })
+        );
+
         return <Redirect from="" to="/" />;
       };
     }

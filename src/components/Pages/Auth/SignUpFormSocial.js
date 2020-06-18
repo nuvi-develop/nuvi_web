@@ -46,7 +46,7 @@ export default function SignUpFormSocial() {
   return (
     <Formik
       initialValues={{
-        isAdmin: false,
+        isAdmin: true,
         orgName: "",
         name: "",
         duty: "",
@@ -56,7 +56,7 @@ export default function SignUpFormSocial() {
         job: ""
       }}
       validationSchema={Yup.object({
-        isAdmin: Yup.boolean().required("필수항목 입니다."),
+        // isAdmin: Yup.boolean().required("필수항목 입니다."),
         ...(step === 2
           ? {
               name: Yup.string().required("필수항목 입니다."),
@@ -89,7 +89,7 @@ export default function SignUpFormSocial() {
         step === 1 ? (
           <StyledForm>
             <Text>{emailAddress} 에대한 추가정보 기입</Text>
-            <MyToggleInput label="관리자" name="isAdmin" type="checkbox" />
+            {/* <MyToggleInput label="관리자" name="isAdmin" type="checkbox" /> */}
             <StyledButton type="submit">다음</StyledButton>
           </StyledForm>
         ) : step === 2 ? (

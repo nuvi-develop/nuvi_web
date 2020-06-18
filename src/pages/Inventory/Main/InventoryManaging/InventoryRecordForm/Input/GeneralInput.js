@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { useField } from "formik";
+
 import NavButton from "../../Log/NavButton";
+import Colors from "theme/colors";
 
 export default function GeneralInputComp(props) {
   const [field, meta] = useField(props);
@@ -9,6 +11,9 @@ export default function GeneralInputComp(props) {
     <Container>
       <Label>{props.label}</Label>
       <StyledInput {...field} {...props} />
+      <ErrorPlaceHolder>
+        {meta.touched && meta.error && <div>{meta.error}</div>}
+      </ErrorPlaceHolder>
     </Container>
   );
 }
@@ -35,4 +40,11 @@ const StyledInput = styled.input`
 
 const Placeholder = styled.div`
   height: 40px;
+`;
+
+const ErrorPlaceHolder = styled.div`
+  margin-top: 5px;
+  height: 16px;
+  font-size: 16px;
+  color: ${Colors.green_2};
 `;

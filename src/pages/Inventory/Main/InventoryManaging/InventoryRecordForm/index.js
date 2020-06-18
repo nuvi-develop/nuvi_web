@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
+import * as Yup from "yup";
 
 import GeneralInput from "./Input/GeneralInput";
 import DateInput from "./Input/DateInput";
@@ -42,6 +43,17 @@ export default function InventoryRecordFormComp() {
             use: "",
             cost: ""
           }}
+          validationSchema={Yup.object().shape({
+            order: Yup.number()
+              .typeError("숫자만 입력가능합니다.")
+              .required("필수항목 입니다."),
+            use: Yup.number()
+              .typeError("숫자만 입력가능합니다.")
+              .required("필수항목 입니다."),
+            cost: Yup.number()
+              .typeError("숫자만 입력가능합니다.")
+              .required("필수항목 입니다.")
+          })}
           onSubmit={submitHander}
         >
           <>

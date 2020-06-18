@@ -37,6 +37,7 @@ export default function DateInputComp(props) {
         <Current>{formatedDate}</Current>
         <ImageButton src={frontButton} onClick={onFrontClickHandler} />
       </DateInputContainer>
+      <ErrorPlaceHolder />
     </Container>
   );
 }
@@ -63,4 +64,10 @@ const Current = styled.div`
 
 const ImageButton = styled.img`
   cursor: pointer;
+`;
+
+const ErrorPlaceHolder = styled.div`
+  margin-top: 5px;
+  height: 16px;
+  font-size: 16px;
 `;

@@ -48,9 +48,9 @@ export default function LoginForm() {
           {/* <MyToggleInput label="관리자" name="isAdmin" type="checkbox" /> */}
           <MyErrorPlaceHolder message={loginStatus.error?.message} />
           <StyledButton type="submit">로그인</StyledButton>
-          <FindPassword onClick={findPasswordHandler}>
+          {/* <FindPassword onClick={findPasswordHandler}>
             비밀번호를 잊어버리셨나요?
-          </FindPassword>
+          </FindPassword> */}
           <GoogleLogin />
         </StyledForm>
       </Formik>

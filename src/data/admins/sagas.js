@@ -19,6 +19,15 @@ export function* getAdmins(action) {
     yield put(actions.admins.getAdminsLoading);
     const res = yield api.userApi.getAdminList();
     const adminList = res.data;
+    // class Admin {
+    //   constructor(props) {
+    //     this.id = props.id;
+    //   }
+    // }
+    // res.data.map((admin) => {
+    //   return new Admin(admin);
+    // })
+
     yield put(actions.admins.getAdminsSuccess(adminList));
   } catch (e) {
     yield put(actions.admins.getAdminsFailure({ message: e.message }));

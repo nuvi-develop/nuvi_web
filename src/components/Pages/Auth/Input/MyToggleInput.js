@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useField } from "formik";
 
 import Colors from "theme/colors";
-import px2vw from "utils";
 
 export default function MyToggleInput({ label, ...props }) {
   const [field, meta] = useField(props);

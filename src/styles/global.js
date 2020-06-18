@@ -9,6 +9,11 @@ export const bp = {
   xlarge: "1200px"
 };
 
+const onLargeScreen = css =>
+  `@media (min-width: 1200px){
+        ${css}
+    }`;
+
 export const Global = createGlobalStyle`
 * {
     margin: 0;
@@ -26,6 +31,9 @@ export const Global = createGlobalStyle`
     @media (min-width: ${bp.xLarge}) {
         font-size: ${px2vw(16)}
     }
+    ${onLargeScreen(`
+        
+    `)}
 }
 `;
 

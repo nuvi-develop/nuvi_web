@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
 import { createBrowserHistory } from "history";
 import { routerMiddleware } from "connected-react-router";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 import { createRootReducer } from "./rootReducer";
 import rootSaga from "./rootSaga";
@@ -11,14 +12,13 @@ const history = createBrowserHistory();
 const rootReducer = createRootReducer(history);
 const sagaMiddleware = createSagaMiddleware();
 
+const env = process.env.NODE_ENV;
+const composer = env === "production" ? compose : composeWithDevTools;
+
 const configureStore = () => {
   const store = createStore(
     rootReducer,
-    compose(
-      applyMiddleware(thunk, sagaMiddleware, routerMiddleware(history)),
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
+    composer(applyMiddleware(thunk, sagaMiddleware, routerMiddleware(history)))
   );
 
   sagaMiddleware.run(rootSaga);

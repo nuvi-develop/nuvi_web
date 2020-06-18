@@ -12,6 +12,6 @@ export function* modalUpAndGo(action) {
       modalProps: { contents }
     })
   );
-  yield delay(1000);
+  yield delay(500);
   yield put(actions.modal.clearModal());
 }

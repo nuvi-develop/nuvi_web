@@ -120,6 +120,9 @@ export function* giveTempPassword(action) {
     const { emailAddress, tempPassword } = tempPasswordInfo;
     yield api.userApi.giveTempPassword({ emailAddress, tempPassword });
 
+    const res = yield api.mailApi.sendTempPassword(tempPasswordInfo);
+    const { data } = res;
+    yield put(actions.user.giveTempPasswordSuccess(data));
     yield put(
       actions.modal.setModal({
         modalType: "CONDITIONAL",
@@ -130,12 +133,17 @@ export function* giveTempPassword(action) {
         }
       })
     );
-
-    const res = yield api.mailApi.sendTempPassword(tempPasswordInfo);
-    const { data } = res;
-    yield put(actions.user.giveTempPasswordSuccess(data));
   } catch (e) {
     yield put(actions.user.giveTempPasswordFailure({ message: e.message }));
+    yield put(
+      actions.modal.setModal({
+        modalType: "CONDITIONAL",
+        modalProps: {
+          contents: `메일 전송에 실패하였습니다.`,
+          buttonName: "확인"
+        }
+      })
+    );
   }
 }
 

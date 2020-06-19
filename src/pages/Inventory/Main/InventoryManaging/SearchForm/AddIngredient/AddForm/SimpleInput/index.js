@@ -2,12 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { useField } from "formik";
 
+import Colors from "theme/colors";
+
 export default function TextInput({ label, ...props }) {
   const [field, meta] = useField(props);
   return (
     <Container>
       <Label>{label}</Label>
       <StyledInput {...field} {...props} placheholder={""} />
+      {meta.touched && meta.error && (
+        <ErrorPlaceHolder>{meta.error}</ErrorPlaceHolder>
+      )}
     </Container>
   );
 }
@@ -15,6 +20,7 @@ export default function TextInput({ label, ...props }) {
 const Container = styled.div`
   display: flex;
   margin-bottom: 10px;
+  align-items: center;
 `;
 
 const StyledInput = styled.input`
@@ -28,4 +34,11 @@ const Label = styled.div`
   width: 50px;
   align-items: center;
   margin-right: 10px;
+`;
+
+const ErrorPlaceHolder = styled.div`
+  margin-left: 10px;
+  height: 16px;
+  font-size: 16px;
+  color: ${Colors.green_2};
 `;

@@ -2,10 +2,12 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
+import * as Yup from "yup";
 
 import { actions, selectors } from "data";
 import { Button } from "theme/style";
 import Colors from "theme/colors";
+import api from "api";
 
 import DropdownInput from "./DropdownInput";
 import SimpleInput from "./SimpleInput";
@@ -32,6 +34,22 @@ export default function AddFormComp({ toggleAddHandler }) {
           ingredient: "",
           category: { id: 1, name: "잡곡류" }
         }}
+        validate={async values => {
+          const errors = {};
+          const { ingredient } = values;
+          const isSameIngredient = await api.inventory.isSameIngredient({
+            ingredient
+          });
+          if (isSameIngredient.data) {
+            errors.ingredient = "이미 등록된 재료이름 입니다.";
+          }
+          return errors;
+        }}
+        validationSchema={Yup.object({
+          ingredient: Yup.string()
+            .typeError("문자 형식이어야 합니다.")
+            .required("필수항목 입니다.")
+        })}
         onSubmit={onSubmitHandler}
       >
         <StyledForm>

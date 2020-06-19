@@ -79,5 +79,11 @@ export const api = {
     return await apiClient.delete(
       `api/inventory/ingredient/ingredientId/${id}`
     );
+  },
+
+  isSameIngredient: async ({ ingredient }) => {
+    return await apiClient.get(
+      `api/inventory/isSame/ingredientName/${ingredient}`
+    );
   }
 };

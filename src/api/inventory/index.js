@@ -82,8 +82,9 @@ export const api = {
   },
 
   isSameIngredient: async ({ ingredient }) => {
+    const ingredientName = ingredient ? ingredient : "";
     return await apiClient.get(
-      `api/inventory/isSame/ingredientName/${ingredient}`
+      `api/inventory/isSame/ingredientName?ingredientName=${ingredientName}`
     );
   }
 };

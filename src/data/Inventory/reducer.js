@@ -16,7 +16,7 @@ const INITIAL_STATE = {
   currentIngredientLogs: [],
   ingredientLogsForDetailGraph: [],
   currentSearchingCategory: "all",
-  currentSearchingIngredient: null
+  currentSearchingIngredient: ""
 };
 
 export default produce((draft, action) => {

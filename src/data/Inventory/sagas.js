@@ -52,7 +52,10 @@ export function* loadIngredientLogs(action) {
     offset
   });
   const logs = logsRes.data;
-  yield put(actions.inventory.setCurrentIngredientLogs(logs));
+  const filteredLogs = logs.filter(
+    log => !(log.order === 0 && log.use === 0 && log.cost === 0)
+  );
+  yield put(actions.inventory.setCurrentIngredientLogs(filteredLogs));
 }
 
 export function* loadIngredientLogsForDetailGraph(action) {
@@ -71,6 +74,7 @@ export function* loadIngredientsOfCategories(action) {
   const ingredientsOfCategoriesRes = yield api.inventory.getIngredientsOfCategories(
     { departmentId, name }
   );
+  console.log("ingredientsOfCategoriesRes", ingredientsOfCategoriesRes);
   const ingredientsOfCategories = ingredientsOfCategoriesRes.data;
   yield put(
     actions.inventory.setIngredientsOfCategories(ingredientsOfCategories)

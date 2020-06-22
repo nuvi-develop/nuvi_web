@@ -14,7 +14,7 @@ export default function SearchFormComp() {
 
   return (
     <Container>
-      <SimpleInput label="재료명으로 검색" value="" />
+      <SimpleInput label="재료명으로 검색" />
       <DropdownInput label="분류로 검색" options={categories} />
       <AddIngredient label="재료 추가" />
       <SearchList searchList={ingredients} />

@@ -23,7 +23,13 @@ export default function GraphModal() {
   }, [logsLimit, ingredientId, dispatch]);
   return (
     <Container>
-      <Title>상세 그래프</Title>
+      <Header>
+        <Title>상세 그래프</Title>
+        <ExitButton onClick={() => dispatch(actions.modal.clearModal())}>
+          나가기
+        </ExitButton>
+      </Header>
+
       <NumberContainer>
         최근
         <Number isSelected={logsLimit === 10} onClick={() => setLogsLimit(10)}>
@@ -40,10 +46,8 @@ export default function GraphModal() {
         </Number>
         건의 데이터 입니다.
       </NumberContainer>
+
       <LogChart logs={logsForDetailGraph} height={500} />
-      <ExitButton onClick={() => dispatch(actions.modal.clearModal())}>
-        나가기
-      </ExitButton>
     </Container>
   );
 }
@@ -57,6 +61,12 @@ const Container = styled.div`
   background-color: white;
   border: 1px solid ${Colors.gray_1};
   border-radius: 10px;
+`;
+
+const Header = styled.div`
+  display: flex;
+  align-self: stretch;
+  justify-content: space-between;
 `;
 
 const Title = styled.div`

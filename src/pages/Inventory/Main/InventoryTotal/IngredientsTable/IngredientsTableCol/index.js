@@ -42,6 +42,7 @@ export default function IngredientsTableColComp({ data }) {
             )
             .map(ingredient => {
               const { currentStock } = ingredient.InventoryLogs[0];
+
               return (
                 <IngredientContiner
                   key={ingredient.id}

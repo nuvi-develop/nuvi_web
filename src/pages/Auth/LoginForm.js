@@ -4,14 +4,11 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 
-import Colors from "theme/colors";
 import MyTextInput from "./Input/MyTextInput";
 import MyErrorPlaceHolder from "./Input/MyErrorPlaceHolder";
 import GoogleLogin from "./Social/GoogleLogin";
 import StyledButton from "./Button/StyledButton";
 import { actions, selectors } from "data";
-import colors from "theme/colors";
-import px2vw from "utils";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -21,9 +18,6 @@ export default function LoginForm() {
     dispatch(actions.user.loginTraditional(userLoginInfo));
   };
 
-  const findPasswordHandler = async () => {
-    dispatch(actions.user.toggleAuthMode("findPassword"));
-  };
   return (
     <>
       <Formik

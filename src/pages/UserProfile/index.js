@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Profile } from "components";
+import Profile from "./Profile";
 
 export default function UserProfile() {
   return <Profile />;

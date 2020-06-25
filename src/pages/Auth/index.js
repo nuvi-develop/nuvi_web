@@ -3,14 +3,11 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
 import Colors from "theme/colors";
-import {
-  LoginForm,
-  SignUpFormTraditional,
-  SignUpFormSocial,
-  FindPassword
-} from "components";
+import LoginForm from "./LoginForm";
+import SignUpFormSocial from "./SignUpFormSocial";
+import SignUpFormTraditional from "./SignUpFormTraditional";
+import FindPassword from "./FindPassword";
 import { selectors, actions } from "data";
-import px2vw from "utils";
 
 export default function Auth() {
   const dispatch = useDispatch();

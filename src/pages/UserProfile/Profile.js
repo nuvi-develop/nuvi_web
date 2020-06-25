@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { Formik, Form, Field } from "formik";
 
 import { selectors, actions } from "data";
 import Colors from "theme/colors";
-import { UpdatePassword } from "components";
+import UpdatePassword from "../UpdatePasswordPage";
 
 export default function Profile() {
   const [updatePassword, setUpdatePassword] = useState(false);

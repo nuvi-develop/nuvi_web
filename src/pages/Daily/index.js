@@ -1,16 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import { bp } from "styles/global";
-
-import {
-  SummaryContainer,
-  ExpectNumber,
-  ExpectVolume,
-  LastLunch,
-  LastDinner
-} from "components";
-import Colors from "theme/colors";
+import SummaryContainer from "./SummaryContainer";
+import ExpectNumber from "./ExpectNumber";
+import ExpectVolume from "./ExpectVolume";
+import LastLunch from "./LastLunch";
+import LastDinner from "./LastDinner";
 
 export default function Daily() {
   return (

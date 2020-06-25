@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import {
-  FilterContainer,
-  FavFood,
-  FavNotFood,
-  LeftOver,
-  MadeTooMuch,
-  Compare
-} from "components";
+import Compare from "./Compare";
+import FavFood from "./FavFood";
+import FavNotFood from "./FavNotFood";
+import LeftOver from "./LeftOver";
+import MadeTooMuch from "./MadeTooMuch";
+import FilterContainer from "./FilterContainer";
 
 export default function Total() {
   return (

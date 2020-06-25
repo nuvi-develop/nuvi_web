@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Navigation, DefaultTitle, AdminListItem, Modal } from "components";
-import Colors from "theme/colors";
-import api from "api";
+import { DefaultTitle, AdminListItem } from "components";
 import { actions, selectors } from "data";
 
-export default function Master() {
+export default function AdminList() {
   const dispatch = useDispatch();
-  const waitingAdminList = useSelector(selectors.admins.getWaitingAdmins);
-  const modal = useSelector(selectors.modal.getModal);
+  const adminList = useSelector(selectors.admins.getAdmins);
+
   useEffect(() => {
-    dispatch(actions.admins.getWaitingAdmins());
+    dispatch(actions.admins.getAdmins());
   }, []);
   return (
     <MasterContainer style={{ gridColumn: `2/13` }}>
       <MainContainer>
-        <DefaultTitle title="관리자 신청내역" />
+        <DefaultTitle title="현재 관리자 리스트" />
         <AdminListItem
           contents={{
             org: "조직명",
@@ -25,7 +23,7 @@ export default function Master() {
             name: "이름"
           }}
         />
-        {waitingAdminList.map(waitingAdmin => (
+        {adminList.map(waitingAdmin => (
           <AdminListItem
             key={waitingAdmin.emailAddress}
             contents={{
@@ -36,8 +34,8 @@ export default function Master() {
               approved: waitingAdmin.approved,
               createdAt: waitingAdmin.createdAt
             }}
-            approveButton
             deleteButton
+            approveButton
           />
         ))}
       </MainContainer>

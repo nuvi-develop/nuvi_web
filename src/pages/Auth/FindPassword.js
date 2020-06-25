@@ -1,17 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import randomstring from "randomstring";
 
-import MyTextInput from "components/Pages/Auth/Input/MyTextInput";
+import MyTextInput from "./Input/MyTextInput";
 import StyledButton from "./Button/StyledButton";
-import { actions, selectors } from "data";
-import { Modal } from "components";
+import { actions } from "data";
 
 export default function FindPassword() {
   const dispatch = useDispatch();
-  const modal = useSelector(selectors.modal.getModal);
   const submitHandler = values => {
     const { emailAddress } = values;
     const onClick = () => {

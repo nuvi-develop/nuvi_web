@@ -1,12 +1,11 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import styled from "styled-components";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 
-import api from "api";
-import MyTextInput from "./Input/MyTextInput";
-import MyErrorPlaceHolder from "./Input/MyErrorPlaceHolder";
+import MyTextInput from "../Auth/Input/MyTextInput";
+import MyErrorPlaceHolder from "../Auth/Input/MyErrorPlaceHolder";
 import { actions, selectors } from "data";
 
 export default function UpdatePassword() {

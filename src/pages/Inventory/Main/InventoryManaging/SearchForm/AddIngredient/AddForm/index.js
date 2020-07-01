@@ -15,12 +15,14 @@ import SimpleInput from "./SimpleInput";
 export default function AddFormComp({ toggleAddHandler }) {
   const dispatch = useDispatch();
   const categories = useSelector(selectors.inventory.getCategories);
+  const units = useSelector(selectors.inventory.getUnits);
   const departmentId = useSelector(selectors.user.getDepartmentId);
 
   const onSubmitHandler = (values, { resetForm }) => {
     const ingredientInfo = {
       name: values.ingredient,
       InventoryCategoryId: values.category.id,
+      IngredientUnitId: values.unit.id,
       DepartmentId: departmentId
     };
     dispatch(actions.inventory.addIngredient({ ingredientInfo }));
@@ -32,7 +34,8 @@ export default function AddFormComp({ toggleAddHandler }) {
       <Formik
         initialValues={{
           ingredient: "",
-          category: { id: 1, name: "잡곡류" }
+          category: { id: 1, name: "잡곡류" },
+          unit: { id: 1, name: "kg" }
         }}
         validate={async values => {
           const errors = {};
@@ -55,6 +58,7 @@ export default function AddFormComp({ toggleAddHandler }) {
         <StyledForm>
           <SimpleInput name="ingredient" label="재료명" />
           <DropdownInput name="category" label="분류" options={categories} />
+          <DropdownInput name="unit" label="단위" options={units} />
           <SubmitButton type="submit">추가</SubmitButton>
         </StyledForm>
       </Formik>

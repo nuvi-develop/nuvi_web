@@ -35,11 +35,13 @@ export const api = {
     );
   },
 
-  getAllInventoryCategory: async ({ departmentId, limit }) => {
-    const limitedRecord = limit ? limit : 10;
+  getAllInventoryCategory: async ({ departmentId }) => {
     return await apiClient.get(
-      `api/inventory/allCategory/departmentId/${departmentId}?limit=${limitedRecord}`
+      `api/inventory/allCategory/departmentId/${departmentId}`
     );
+  },
+  getAllInventoryUnits: async () => {
+    return await apiClient.get(`api/inventory/allUnits`);
   },
   getIngredientsOfCategories: async ({ departmentId, name, limit, offset }) => {
     const limitedRecord = limit ? limit : 10;
@@ -50,7 +52,6 @@ export const api = {
     );
   },
   addIngredientLog: async ({ ingredientLogInfo }) => {
-    console.log("ingredientLogInfo", ingredientLogInfo);
     return await apiClient.post(`api/inventory/ingredientLog`, {
       ingredientLogInfo
     });

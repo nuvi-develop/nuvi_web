@@ -16,8 +16,12 @@ export default function InventoryRecordFormComp() {
   const currentIngredient = useSelector(
     selectors.inventory.getCurrentIngredient
   );
-
   const currentIngredientId = currentIngredient?.id;
+
+  const ingredientUnit = useSelector(
+    selectors.inventory.getCurrentIngredientUnitName
+  );
+  const unit = ingredientUnit ? ingredientUnit : "kg";
 
   const submitHander = (values, { resetForm }) => {
     const { recordDate, order, use, cost } = values;
@@ -67,13 +71,13 @@ export default function InventoryRecordFormComp() {
                   selector
                 />
                 <GeneralInput
-                  label="주문량 (kg)"
+                  label={`주문량 (${unit})`}
                   name="order"
                   type="text"
                   placeholer={0}
                 />
                 <GeneralInput
-                  label="사용량 (kg)"
+                  label={`사용량 (${unit})`}
                   name="use"
                   type="text"
                   placeholer={0}

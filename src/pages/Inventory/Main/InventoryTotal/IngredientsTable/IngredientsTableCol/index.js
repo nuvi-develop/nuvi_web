@@ -75,18 +75,18 @@ const Container = styled(Col)`
 
 const Label = styled.div`
   text-align: center;
-  font-size: 24px;
-  width: 155px;
+  font-size: 20px;
+  width: 130px;
   color: ${Colors.gray_1};
 `;
 
 const IngredientContiner = styled(Col)`
   justify-content: center;
   align-items: center;
-  width: 150px;
+  width: 130px;
   height: 70px;
   border-radius: 30px;
-  margin: 10px;
+  margin: 5px;
   color: white;
   background-color: ${({ currentStock }) => {
     if (currentStock < 20) {

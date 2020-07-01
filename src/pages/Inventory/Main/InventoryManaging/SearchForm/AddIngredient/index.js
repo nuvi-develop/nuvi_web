@@ -24,7 +24,7 @@ export default function AddInput({ label }) {
 const Container = styled.div`
   display: flex;
   margin-bottom: 10px;
-  height: 120px;
+  height: 150px;
   align-items: center;
 `;
 

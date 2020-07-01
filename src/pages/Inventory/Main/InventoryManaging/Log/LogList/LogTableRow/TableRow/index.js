@@ -5,7 +5,6 @@ import { format } from "date-fns";
 import EditableContent, { ContentDiv } from "./EditableContent";
 
 export default function TableRow({ log }) {
-  console.log("log", log);
   const { id, recordDate, order, use, stock, cost } = log;
 
   return (

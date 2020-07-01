@@ -27,6 +27,12 @@ export function* loadInventoryCategories(action) {
   yield put(actions.inventory.setCategories(categories));
 }
 
+export function* loadInventoryUnits(action) {
+  const res = yield api.inventory.getAllInventoryUnits();
+  const units = res.data;
+  yield put(actions.inventory.setUnits(units));
+}
+
 export function* loadCurrentIngredient(action) {
   const { ingredientId } = action.payload;
   const ingredientRes = yield api.inventory.getIngredientByPk({ ingredientId });
@@ -52,10 +58,8 @@ export function* loadIngredientLogs(action) {
     offset
   });
   const logs = logsRes.data;
-  const filteredLogs = logs.filter(
-    log => !(log.order === 0 && log.use === 0 && log.cost === 0)
-  );
-  yield put(actions.inventory.setCurrentIngredientLogs(filteredLogs));
+
+  yield put(actions.inventory.setCurrentIngredientLogs(logs));
 }
 
 export function* loadIngredientLogsForDetailGraph(action) {
@@ -64,6 +68,7 @@ export function* loadIngredientLogsForDetailGraph(action) {
     ingredientId,
     limit
   });
+
   const logs = logsRes.data;
   yield put(actions.inventory.setIngredientLogsForDetailGraph(logs));
 }
@@ -74,7 +79,7 @@ export function* loadIngredientsOfCategories(action) {
   const ingredientsOfCategoriesRes = yield api.inventory.getIngredientsOfCategories(
     { departmentId, name }
   );
-  console.log("ingredientsOfCategoriesRes", ingredientsOfCategoriesRes);
+
   const ingredientsOfCategories = ingredientsOfCategoriesRes.data;
   yield put(
     actions.inventory.setIngredientsOfCategories(ingredientsOfCategories)
@@ -125,6 +130,7 @@ export function* resetManagingPage() {
 
 export function* loadManagingPage(action) {
   yield loadInventoryCategories(action);
+  yield loadInventoryUnits(action);
   yield loadFilteredIngredients(action);
 }
 

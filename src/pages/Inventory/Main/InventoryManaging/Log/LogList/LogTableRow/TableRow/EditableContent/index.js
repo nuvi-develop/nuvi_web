@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+
+
 import { actions } from "data";
 import { Button } from "theme/style";
 import Colors from "theme/colors";
-import api from "api";
 
 import EditInput from "./EditInput";
 
@@ -17,18 +20,9 @@ export default function EditableContentComp({
 }) {
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
-  const [inputValue, setInputValue] = useState(dataValue || 0);
 
-  useEffect(() => {
-    setInputValue(dataValue);
-  }, [dataValue]);
 
-  const onChangeInputHanlder = e => {
-    e.preventDefault();
-    setInputValue(e.target.value);
-  };
-
-  const onEditCompletHandler = () => {
+  const onEditCompletHandler = ({ inputValue }) => {
     const editLogInfo = {
       logId: dataId,
       oldValue: dataValue,
@@ -42,19 +36,29 @@ export default function EditableContentComp({
   return (
     <Container dId={dataId}>
       {isEditing && !disabled ? (
-        <EditInput
-          value={inputValue}
-          onChange={onChangeInputHanlder}
-          onBlur={() => setIsEditing(false)}
-        />
+
+        <Formik
+          initialValues={{ inputValue: dataValue }}
+          validationSchema={Yup.object().shape({
+            inputValue: Yup.number()
+              .typeError("숫자만 입력 가능합니다.")
+              .required("입력값이 필요합니다.")
+          })}
+          onSubmit={onEditCompletHandler}
+        >
+          {({ submitForm }) => (
+            <StyledForm>
+              <EditInput name="inputValue" onBlur={() => setIsEditing(false)} />
+              <EditButton type="submit" onMouseDown={submitForm}>
+                완료
+              </EditButton>
+            </StyledForm>
+          )}
+        </Formik>
       ) : (
         <Content key={dataId} onClick={() => setIsEditing(true)}>
           {dataValue}
         </Content>
-      )}
-
-      {isEditing && !disabled && (
-        <EditButton onMouseDown={onEditCompletHandler}>완료</EditButton>
       )}
     </Container>
   );
@@ -110,4 +114,9 @@ const EditButton = styled(Button)`
   border: solid 1px ${Colors.gray_1};
   border-radius: 20px;
   margin-left: 2px;
+`;
+
+
+const StyledForm = styled(Form)`
+  display: flex;
 `;

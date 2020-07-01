@@ -5,12 +5,13 @@ import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
 
 export default function LogTable({ logsForTable }) {
-  console.log("logsForTable", logsForTable);
+
   return (
     <Container>
       <TableHeader />
       {logsForTable.map(log => (
-        <TableRow log={log} />
+
+        <TableRow key={log.id} log={log} />
       ))}
     </Container>
   );

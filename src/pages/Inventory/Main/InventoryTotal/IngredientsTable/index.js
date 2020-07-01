@@ -17,7 +17,7 @@ export default function IngredientsTableComp() {
     selectors.inventory.getIngredientsOfCategories
   );
 
-  const columnNumber = useColNumber(180);
+  const columnNumber = useColNumber(150);
   const slicedData = ingredientsOfCategories.slice(
     0 + colOffset,
     columnNumber + colOffset

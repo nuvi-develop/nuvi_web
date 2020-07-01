@@ -13,6 +13,7 @@ const INITIAL_STATE = {
   ingredientsOfCategories: [],
   currentIngredient: null,
   categories: [],
+  units: [],
   currentIngredientLogs: [],
   ingredientLogsForDetailGraph: [],
   currentSearchingCategory: "all",
@@ -35,6 +36,9 @@ export default produce((draft, action) => {
       break;
     case AT.SET_CATEGORIES:
       draft.categories = action.payload;
+      break;
+    case AT.SET_UNITS:
+      draft.units = action.payload;
       break;
     case AT.SET_CURRENT_SEARCHING_CATEGORY:
       draft.currentSearchingCategory = action.payload;

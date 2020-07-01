@@ -28,6 +28,11 @@ export const setCategories = payload => ({
   payload
 });
 
+export const setUnits = payload => ({
+  type: AT.SET_UNITS,
+  payload
+});
+
 export const setCurrentSearchingCategory = payload => ({
   type: AT.SET_CURRENT_SEARCHING_CATEGORY,
   payload

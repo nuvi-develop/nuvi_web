@@ -5,7 +5,6 @@ import { mapForTable } from "utils/pages/inventory";
 import { Col } from "theme/style";
 
 import LogListHead from "./LogListHead";
-import LogTableCol from "./LogTableCol";
 import LogTableRow from "./LogTableRow";
 
 export default function LogListComp({ logs }) {

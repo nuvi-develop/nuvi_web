@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useField } from "formik";
 import { format, add } from "date-fns";
 
+import DatePicker from "components/Input/DatePicker";
+
 const backButton = process.env.PUBLIC_URL + "/icons/basics/backButton.svg";
 const frontButton = process.env.PUBLIC_URL + "/icons/basics/frontButton.svg";
 
@@ -11,32 +13,20 @@ export default function DateInputComp(props) {
   const { value } = meta;
   const { setValue } = helpers;
 
-  const formatedDate = format(new Date(value), "MM/dd/yyyy");
-
-  const onBackClickHandler = () => {
-    setValue(
-      add(new Date(value), {
-        days: -1
-      })
-    );
-  };
-
-  const onFrontClickHandler = () => {
-    setValue(
-      add(new Date(value), {
-        days: 1
-      })
-    );
+  const CustomInput = ({ value, onClick }) => {
+    const formatedDate = format(new Date(value), "yy년 MM월 dd일");
+    return <Current onClick={onClick}>{formatedDate}</Current>;
   };
 
   return (
     <Container>
       <Label>{props.label}</Label>
-      <DateInputContainer>
-        <ImageButton src={backButton} onClick={onBackClickHandler} />
-        <Current>{formatedDate}</Current>
-        <ImageButton src={frontButton} onClick={onFrontClickHandler} />
-      </DateInputContainer>
+      <DatePicker
+        selected={value}
+        CustomInputProp={CustomInput}
+        onChange={date => setValue(date)}
+      />
+
       <ErrorPlaceHolder />
     </Container>
   );
@@ -53,17 +43,12 @@ const Label = styled.div`
   margin-bottom: 20px;
 `;
 
-const DateInputContainer = styled.div`
-  display: flex;
-`;
-
 const Current = styled.div`
   font-size: 16px;
   margin: 0 10px;
-`;
-
-const ImageButton = styled.img`
   cursor: pointer;
+  width: 150px;
+  text-align: center;
 `;
 
 const ErrorPlaceHolder = styled.div`

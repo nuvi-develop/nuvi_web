@@ -59,7 +59,7 @@ const DropDownContainer = styled.div`
 `;
 
 const InputContainer = styled.div`
-  display: felx;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px;
@@ -87,6 +87,7 @@ const Wrapper = styled.div`
   width: 100%;
   position: absolute;
   background-color: white;
+  z-index: 1;
   ${CSS.boxShadow.default}
 `;
 

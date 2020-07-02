@@ -87,5 +87,11 @@ export const api = {
     return await apiClient.get(
       `api/inventory/isSame/ingredientName?ingredientName=${ingredientName}`
     );
+  },
+
+  editIngredientOrder: async ({ movingInfo }) => {
+    return await apiClient.patch(`api/inventory/ingredient/order`, {
+      movingInfo
+    });
   }
 };

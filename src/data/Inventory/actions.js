@@ -106,3 +106,8 @@ export const setIngredientLogsForDetailGraph = payload => ({
   type: AT.SET_INGREDIENT_LOGS_FOR_DETAIL_GRAPH,
   payload
 });
+
+export const moveIngredientCard = payload => ({
+  type: AT.MOVE_INGREDIENT_CARD,
+  payload
+});

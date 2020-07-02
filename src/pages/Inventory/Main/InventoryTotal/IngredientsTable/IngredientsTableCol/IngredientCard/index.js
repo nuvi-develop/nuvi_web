@@ -1,22 +1,55 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { useDrag } from "react-dnd";
+import { useDrag, useDrop } from "react-dnd";
 
 import { actions } from "data";
 import { DragItemTypes } from "constants/index";
 import Colors from "theme/colors";
 import { Row, Col, Button } from "theme/style";
 
-export default function IngredientCard({ ingredient, isEditing }) {
+export default function IngredientCard({
+  ingredient,
+  isEditing,
+  prevIngredient
+}) {
+  const ref = useRef();
   const dispatch = useDispatch();
   const { currentStock } = ingredient.InventoryLogs[0];
-  const [{ isDragging }, drag] = useDrag({
-    item: { type: DragItemTypes.INGREDIENT_CARD },
+
+  const [{ isDragging }, connectDrag] = useDrag({
+    item: {
+      type: DragItemTypes.ingredientCardCategoryOf(
+        ingredient.InventoryCategoryId
+      ),
+      movingIngredientId: ingredient.id
+    },
     collect: monitor => ({
       isDragging: !!monitor.isDragging()
     })
   });
+
+  const [{ isOver }, connectDrop] = useDrop({
+    accept: DragItemTypes.ingredientCardCategoryOf(
+      ingredient.InventoryCategoryId
+    ),
+    drop: item => {
+      const targetIngredientOrder = ingredient.order;
+      const prevIngredientOrder = prevIngredient.order;
+      const middleOrder = (targetIngredientOrder + prevIngredientOrder) / 2;
+      const movingInfo = {
+        movingIngredientId: item.movingIngredientId,
+        newOrder: middleOrder
+      };
+      dispatch(actions.inventory.moveIngredientCard(movingInfo));
+    },
+    collect: monitor => ({
+      isOver: !!monitor.isOver()
+    })
+  });
+
+  connectDrag(ref);
+  connectDrop(ref);
 
   const onDeleteHandler = async ({ id }) => {
     dispatch(
@@ -36,10 +69,10 @@ export default function IngredientCard({ ingredient, isEditing }) {
 
   return (
     <IngredientContiner
-      key={ingredient.id}
       currentStock={currentStock}
-      ref={drag}
+      ref={ref}
       isDragging={isDragging}
+      isOver={isOver}
     >
       <IngredientName> {ingredient.name}</IngredientName>
       <IngredientStock>{currentStock}</IngredientStock>
@@ -77,6 +110,7 @@ const IngredientContiner = styled.div`
       return Colors.green_deep_1;
     }
   }};
+  background-color: ${({ isOver }) => (isOver ? "yellow" : null)};
 `;
 
 const IngredientName = styled(Row)``;

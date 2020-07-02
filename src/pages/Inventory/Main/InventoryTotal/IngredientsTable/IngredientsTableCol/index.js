@@ -9,23 +9,27 @@ import { EditingContext } from "../../index";
 
 export default function IngredientsTableColComp({ data }) {
   const { category, ingredients } = data;
-
-  const orderAddedIngredients = ingredients.map((ingredient, index) => ({
-    ...ingredient,
-    order: index
-  }));
+  const sortedIngredients = ingredients
+    .slice()
+    .sort((a, b) => a.order - b.order);
 
   return (
     <EditingContext.Consumer>
       {({ isEditing, setIsEditing }) => (
         <Container>
           <Label>{category.name}</Label>
-          {orderAddedIngredients
-            .slice()
-            .sort((a, b) => a.order - b.order)
-            .map(ingredient => (
-              <IngredientCard ingredient={ingredient} isEditing={isEditing} />
-            ))}
+          {sortedIngredients.map((ingredient, index) => {
+            const prevIngredient =
+              index !== 0 ? sortedIngredients[index - 1] : { order: 0 };
+            return (
+              <IngredientCard
+                key={ingredient.id}
+                ingredient={ingredient}
+                isEditing={isEditing}
+                prevIngredient={prevIngredient}
+              />
+            );
+          })}
         </Container>
       )}
     </EditingContext.Consumer>

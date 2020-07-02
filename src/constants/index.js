@@ -4,5 +4,6 @@ export const inventoryTabs = {
 };
 
 export const DragItemTypes = {
-  INGREDIENT_CARD: "INGREDIENT_CARD"
+  INGREDIENT_CARD: "INGREDIENT_CARD",
+  ingredientCardCategoryOf: categoryId => `INGREDIENT_CARD_${categoryId}`
 };

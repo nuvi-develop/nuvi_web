@@ -1,6 +1,7 @@
 import produce from "immer";
 
 import * as AT from "./actionTypes";
+import { IngredientCardOrderingMode } from "constants/index";
 
 const inventoryTabs = {
   MANAGING_INGREDIENTS: "MANAGING_INGREDIENTS",
@@ -17,7 +18,8 @@ const INITIAL_STATE = {
   currentIngredientLogs: [],
   ingredientLogsForDetailGraph: [],
   currentSearchingCategory: "all",
-  currentSearchingIngredient: ""
+  currentSearchingIngredient: "",
+  currentIngredientCardOrderingMode: IngredientCardOrderingMode.CUSTOM
 };
 
 export default produce((draft, action) => {
@@ -54,6 +56,9 @@ export default produce((draft, action) => {
       break;
     case AT.SET_INGREDIENT_LOGS_FOR_DETAIL_GRAPH:
       draft.ingredientLogsForDetailGraph = action.payload;
+      break;
+    case AT.SET_CURRENT_INGREDIENT_CARD_ORDERING_MODE:
+      draft.currentIngredientCardOrderingMode = action.payload;
       break;
     default:
       return;

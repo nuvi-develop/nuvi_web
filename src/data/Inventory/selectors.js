@@ -1,3 +1,5 @@
+import { IngredientCardOrderingMode } from "constants/index";
+
 export const getCurrentTab = state => state.inventory.currentTab;
 
 export const getIngredients = state => state.inventory.ingredients;
@@ -27,3 +29,10 @@ export const getIngredientsOfCategories = state =>
 
 export const getIngredientLogsForDetailGraph = state =>
   state.inventory.ingredientLogsForDetailGraph;
+
+export const getCurrentIngredientCardOrderingMode = state =>
+  state.inventory.currentIngredientCardOrderingMode;
+
+export const getIsCurrentIngredientCardOrderingModeCustom = state =>
+  state.inventory.currentIngredientCardOrderingMode?.name ===
+  IngredientCardOrderingMode.CUSTOM.name;

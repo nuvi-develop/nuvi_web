@@ -11,6 +11,7 @@ import { actions, selectors } from "data";
 
 import LabelBox from "./LabelBox";
 import IngredientsTable from "./IngredientsTable";
+import Ordering from "./Ordering";
 
 export const EditingContext = createContext({
   isEditing: false,
@@ -36,6 +37,7 @@ export default function InventoryTotalComp() {
           <SubContainer>
             <Header>
               <SubHeader>
+                <Ordering />
                 <SimpleInput label="재료명으로 검색" />
                 <EditButton onClick={toggleEditHandler}>
                   {isEditing ? "완료" : "재료 수정"}

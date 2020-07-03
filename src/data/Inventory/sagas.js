@@ -148,7 +148,6 @@ export function* editIngredientLog(action) {
 
 export function* moveIngredeintCard(action) {
   const movingInfo = action.payload;
-  console.log("movingInfo", movingInfo);
   yield api.inventory.editIngredientOrder({ movingInfo });
   yield loadIngredientsOfCategories(action);
 }

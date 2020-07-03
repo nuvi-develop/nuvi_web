@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useDrag, useDrop, DragPreviewImage } from "react-dnd";
 
-import { actions } from "data";
+import { actions, selectors } from "data";
 import { DragItemTypes } from "constants/index";
 import Colors from "theme/colors";
 import { Row, Col, Button } from "theme/style";
@@ -16,10 +16,14 @@ export default function IngredientCard({
   isEditing,
   prevIngredient
 }) {
+  const isOrderingCustom = useSelector(
+    selectors.inventory.getIsCurrentIngredientCardOrderingModeCustom
+  );
   const ingredientTargetContainer = useRef();
   const ingredientCardRef = useRef();
   const dispatch = useDispatch();
   const { currentStock } = ingredient.InventoryLogs[0];
+  const ingredientUnit = ingredient.IngredientUnit?.name || "kg";
 
   const [{ isDragging }, connectDrag, preview] = useDrag({
     item: {
@@ -51,9 +55,13 @@ export default function IngredientCard({
       isOver: !!monitor.isOver()
     })
   });
-
-  connectDrag(ingredientCardRef);
-  connectDrop(ingredientTargetContainer);
+  if (isOrderingCustom) {
+    connectDrag(ingredientCardRef);
+    connectDrop(ingredientTargetContainer);
+  } else {
+    connectDrag(null);
+    connectDrop(null);
+  }
 
   const onDeleteHandler = async ({ id }) => {
     dispatch(
@@ -80,9 +88,10 @@ export default function IngredientCard({
           currentStock={currentStock}
           ref={ingredientCardRef}
           isDragging={isDragging}
+          isOrderingCustom={isOrderingCustom}
         >
           <IngredientName> {ingredient.name}</IngredientName>
-          <IngredientStock>{currentStock}</IngredientStock>
+          <IngredientStock>{`${currentStock} ${ingredientUnit}`}</IngredientStock>
           {isEditing && (
             <DeleteButton
               onClick={onDeleteHandler.bind(this, {
@@ -109,7 +118,7 @@ const IngredientContainer = styled.div`
   margin: 0 5px;
   color: white;
   opacity: ${({ isDragging }) => (isDragging ? 0.5 : 1)};
-  cursor: move;
+  cursor: ${({ isOrderingCustom }) => (isOrderingCustom ? "move" : null)};
   background-color: ${({ currentStock }) => {
     if (currentStock < 20) {
       return Colors.pink;

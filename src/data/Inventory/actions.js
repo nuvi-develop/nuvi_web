@@ -111,3 +111,8 @@ export const moveIngredientCard = payload => ({
   type: AT.MOVE_INGREDIENT_CARD,
   payload
 });
+
+export const setCurrentIngredientCardFilteringMode = payload => ({
+  type: AT.SET_CURRENT_INGREDIENT_CARD_ORDERING_MODE,
+  payload
+});

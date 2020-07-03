@@ -1,23 +1,27 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { useDrag, useDrop } from "react-dnd";
+import { useDrag, useDrop, DragPreviewImage } from "react-dnd";
 
 import { actions } from "data";
 import { DragItemTypes } from "constants/index";
 import Colors from "theme/colors";
 import { Row, Col, Button } from "theme/style";
 
+const movingCardImage =
+  process.env.PUBLIC_URL + "/images/ingredientMovingCard.svg";
+
 export default function IngredientCard({
   ingredient,
   isEditing,
   prevIngredient
 }) {
-  const ref = useRef();
+  const ingredientTargetContainer = useRef();
+  const ingredientCardRef = useRef();
   const dispatch = useDispatch();
   const { currentStock } = ingredient.InventoryLogs[0];
 
-  const [{ isDragging }, connectDrag] = useDrag({
+  const [{ isDragging }, connectDrag, preview] = useDrag({
     item: {
       type: DragItemTypes.ingredientCardCategoryOf(
         ingredient.InventoryCategoryId
@@ -48,8 +52,8 @@ export default function IngredientCard({
     })
   });
 
-  connectDrag(ref);
-  connectDrop(ref);
+  connectDrag(ingredientCardRef);
+  connectDrop(ingredientTargetContainer);
 
   const onDeleteHandler = async ({ id }) => {
     dispatch(
@@ -68,36 +72,41 @@ export default function IngredientCard({
   };
 
   return (
-    <IngredientContiner
-      currentStock={currentStock}
-      ref={ref}
-      isDragging={isDragging}
-      isOver={isOver}
-    >
-      <IngredientName> {ingredient.name}</IngredientName>
-      <IngredientStock>{currentStock}</IngredientStock>
-      {isEditing && (
-        <DeleteButton
-          onClick={onDeleteHandler.bind(this, {
-            id: ingredient.id
-          })}
+    <>
+      <DragPreviewImage connect={preview} src={movingCardImage} />
+      <IngredientTargetContainer ref={ingredientTargetContainer}>
+        <IngredientPlaceholder isOver={isOver} />
+        <IngredientContainer
+          currentStock={currentStock}
+          ref={ingredientCardRef}
+          isDragging={isDragging}
         >
-          지우기
-        </DeleteButton>
-      )}
-    </IngredientContiner>
+          <IngredientName> {ingredient.name}</IngredientName>
+          <IngredientStock>{currentStock}</IngredientStock>
+          {isEditing && (
+            <DeleteButton
+              onClick={onDeleteHandler.bind(this, {
+                id: ingredient.id
+              })}
+            >
+              지우기
+            </DeleteButton>
+          )}
+        </IngredientContainer>
+      </IngredientTargetContainer>
+    </>
   );
 }
 
-const IngredientContiner = styled.div`
-  display: flex;
+const IngredientContainer = styled.div`
+  display: ${({ isDragging }) => (isDragging ? "none" : "flex")};
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 130px;
   height: 70px;
   border-radius: 30px;
-  margin: 5px;
+  margin: 0 5px;
   color: white;
   opacity: ${({ isDragging }) => (isDragging ? 0.5 : 1)};
   cursor: move;
@@ -110,6 +119,20 @@ const IngredientContiner = styled.div`
       return Colors.green_deep_1;
     }
   }};
+`;
+
+const IngredientTargetContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const IngredientPlaceholder = styled.div`
+  width: 130px;
+  height: ${({ isOver }) => (isOver ? "70px" : "0")};
+  border: ${({ isOver }) => (isOver ? "3px dotted" : "none")};
+  margin: 5px 0;
+  border-radius: 30px;
   background-color: ${({ isOver }) => (isOver ? "yellow" : null)};
 `;
 

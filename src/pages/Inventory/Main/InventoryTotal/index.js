@@ -1,6 +1,8 @@
 import React, { useEffect, useState, createContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 import { SimpleInput } from "components";
 import { Row, Col, Button } from "theme/style";
@@ -9,6 +11,7 @@ import { actions, selectors } from "data";
 
 import LabelBox from "./LabelBox";
 import IngredientsTable from "./IngredientsTable";
+import Ordering from "./Ordering";
 
 export const EditingContext = createContext({
   isEditing: false,
@@ -28,22 +31,25 @@ export default function InventoryTotalComp() {
     dispatch(actions.inventory.loadTotalPage({ name: ingredientName }));
   }, [ingredientName, dispatch]);
   return (
-    <MainContainer>
-      <EditingContext.Provider value={{ isEditing, setIsEditing }}>
-        <SubContainer>
-          <Header>
-            <SubHeader>
-              <SimpleInput label="재료명으로 검색" />
-              <EditButton onClick={toggleEditHandler}>
-                {isEditing ? "완료" : "재료 수정"}
-              </EditButton>
-            </SubHeader>
-            <LabelBox />
-          </Header>
-          <IngredientsTable />
-        </SubContainer>
-      </EditingContext.Provider>
-    </MainContainer>
+    <DndProvider backend={HTML5Backend}>
+      <MainContainer>
+        <EditingContext.Provider value={{ isEditing, setIsEditing }}>
+          <SubContainer>
+            <Header>
+              <SubHeader>
+                <Ordering />
+                <SimpleInput label="재료명으로 검색" />
+                <EditButton onClick={toggleEditHandler}>
+                  {isEditing ? "완료" : "재료 수정"}
+                </EditButton>
+              </SubHeader>
+              <LabelBox />
+            </Header>
+            <IngredientsTable />
+          </SubContainer>
+        </EditingContext.Provider>
+      </MainContainer>
+    </DndProvider>
   );
 }
 

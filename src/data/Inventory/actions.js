@@ -106,3 +106,13 @@ export const setIngredientLogsForDetailGraph = payload => ({
   type: AT.SET_INGREDIENT_LOGS_FOR_DETAIL_GRAPH,
   payload
 });
+
+export const moveIngredientCard = payload => ({
+  type: AT.MOVE_INGREDIENT_CARD,
+  payload
+});
+
+export const setCurrentIngredientCardFilteringMode = payload => ({
+  type: AT.SET_CURRENT_INGREDIENT_CARD_ORDERING_MODE,
+  payload
+});

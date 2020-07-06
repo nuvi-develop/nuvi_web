@@ -16,4 +16,5 @@ export default function*() {
     AT.LOAD_INGREDIENT_LOGS_FOR_DETAIL_GRAPH,
     sagas.loadIngredientLogsForDetailGraph
   );
+  yield takeEvery(AT.MOVE_INGREDIENT_CARD, sagas.moveIngredeintCard);
 }

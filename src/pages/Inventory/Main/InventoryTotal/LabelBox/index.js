@@ -9,15 +9,15 @@ export default function LabelBoxComp() {
     <Container>
       <CompHolder>
         <Circle color={Colors.pink} />
-        <Label>부족 (0~20kg)</Label>
+        <Label>부족 (0~20(단위))</Label>
       </CompHolder>
       <CompHolder>
         <Circle color={Colors.yellow} />
-        <Label>보통 (20~50kg)</Label>
+        <Label>보통 (20~50(단위))</Label>
       </CompHolder>
       <CompHolder>
         <Circle color={Colors.green_deep_1} />
-        <Label>여유 (50kg~) </Label>
+        <Label>여유 (50(단위)~) </Label>
       </CompHolder>
     </Container>
   );

@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import EditableContent, { ContentDiv } from "./EditableContent";
 
 export default function TableRow({ log }) {
-  const { id, recordDate, order, use, stock, cost } = log;
+  const { id, recordDate, order, use, stock, cost, comment } = log;
 
   return (
     <Container>
@@ -24,13 +24,21 @@ export default function TableRow({ log }) {
       <DataContainer>
         <EditableContent name="cost" dataValue={cost} dataId={id} />
       </DataContainer>
+      <DataContainer>
+        <EditableContent
+          name="comment"
+          dataValue={comment}
+          dataId={id}
+          noValidation
+        />
+      </DataContainer>
     </Container>
   );
 }
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 24% 19% 19% 19% 19%;
+  grid-template-columns: 25% 15% 15% 15% 15% 15%;
   gap: 1px;
   justify-items: center;
   align-items: center;

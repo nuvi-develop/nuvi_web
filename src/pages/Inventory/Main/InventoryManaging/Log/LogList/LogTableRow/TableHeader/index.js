@@ -11,14 +11,12 @@ export default function TableHeader() {
   );
   const unit = ingredientUnit ? ingredientUnit : "kg";
 
-
   return (
     <Container>
       <LabelContainer>
         <Label>날짜</Label>
       </LabelContainer>
       <LabelContainer>
-
         <Label>주문량 ({unit})</Label>
       </LabelContainer>
       <LabelContainer>
@@ -30,13 +28,16 @@ export default function TableHeader() {
       <LabelContainer>
         <Label>비용 (원/단위)</Label>
       </LabelContainer>
+      <LabelContainer>
+        <Label>비고</Label>
+      </LabelContainer>
     </Container>
   );
 }
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 24% 19% 19% 19% 19%;
+  grid-template-columns: 25% 15% 15% 15% 15% 15%;
   gap: 1px;
   justify-items: stretch;
   margin: 10px 0;

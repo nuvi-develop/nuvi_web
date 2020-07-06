@@ -24,12 +24,13 @@ export default function InventoryRecordFormComp() {
   const unit = ingredientUnit ? ingredientUnit : "kg";
 
   const submitHander = (values, { resetForm }) => {
-    const { recordDate, order, use, cost } = values;
+    const { recordDate, order, use, cost, comment } = values;
     const ingredientLogInfo = {
       recordDate,
       order: +order,
       use: +use,
       cost: +cost,
+      comment,
       stockDelta: +order - +use,
       InventoryIngredientId: currentIngredientId
     };
@@ -45,7 +46,8 @@ export default function InventoryRecordFormComp() {
             recordDate: new Date(),
             order: "",
             use: "",
-            cost: ""
+            cost: "",
+            comment: ""
           }}
           validationSchema={Yup.object().shape({
             order: Yup.number()
@@ -85,6 +87,12 @@ export default function InventoryRecordFormComp() {
                 <GeneralInput
                   label="비용 (원/단위)"
                   name="cost"
+                  type="text"
+                  placeholer={0}
+                />
+                <GeneralInput
+                  label="비고"
+                  name="comment"
                   type="text"
                   placeholer={0}
                 />

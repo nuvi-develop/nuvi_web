@@ -33,7 +33,7 @@ const Label = styled.div`
 
 const StyledInput = styled.input`
   outline: none;
-  width: 150px;
+  width: 120px;
   border: ;
   text-align: center;
 `;

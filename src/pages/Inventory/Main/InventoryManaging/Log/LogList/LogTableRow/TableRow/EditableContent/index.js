@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-
 import { actions } from "data";
 import { Button } from "theme/style";
 import Colors from "theme/colors";
@@ -16,34 +15,37 @@ export default function EditableContentComp({
   name,
   dataValue,
   disabled,
-  dataId
+  dataId,
+  noValidation
 }) {
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
-
 
   const onEditCompletHandler = ({ inputValue }) => {
     const editLogInfo = {
       logId: dataId,
       oldValue: dataValue,
-      newValue: +inputValue,
+      newValue: noValidation ? inputValue : +inputValue,
       name
     };
     setIsEditing(false);
     dispatch(actions.inventory.editIngredientLog({ editLogInfo }));
   };
 
+  const valdiation = noValidation
+    ? null
+    : Yup.object().shape({
+        inputValue: Yup.number()
+          .typeError("숫자만 입력 가능합니다.")
+          .required("입력값이 필요합니다.")
+      });
+
   return (
     <Container dId={dataId}>
       {isEditing && !disabled ? (
-
         <Formik
           initialValues={{ inputValue: dataValue }}
-          validationSchema={Yup.object().shape({
-            inputValue: Yup.number()
-              .typeError("숫자만 입력 가능합니다.")
-              .required("입력값이 필요합니다.")
-          })}
+          validationSchema={valdiation}
           onSubmit={onEditCompletHandler}
         >
           {({ submitForm }) => (
@@ -115,7 +117,6 @@ const EditButton = styled(Button)`
   border-radius: 20px;
   margin-left: 2px;
 `;
-
 
 const StyledForm = styled(Form)`
   display: flex;

@@ -18,6 +18,8 @@ import {
   Inventory
 } from "pages";
 
+console.log("process.env", process.env);
+
 function App({ history }) {
   return (
     <Router history={history}>

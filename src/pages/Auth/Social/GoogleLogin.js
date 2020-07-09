@@ -19,11 +19,16 @@ export default function GoogleLoginComponent() {
     const token = googleUser.getAuthResponse().id_token;
     dispatch(actions.user.loginSocial({ token }));
   };
+
+  const onFailure = error => {
+    console.log("error", error);
+  };
   return (
     <StyledGoogleLogin
       clientId={google.oAuthId}
       buttonText="GOOGLE 로그인"
       onSuccess={onSuccess}
+      onFailure={onFailure}
     />
   );
 }

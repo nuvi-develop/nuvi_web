@@ -10,6 +10,8 @@ const local = apiServer.development;
 let url = local;
 if (env === "production") {
   url = creatorLinkCname;
+} else if (env === "staged") {
+  url = apiServer.staagedUrl;
 }
 
 const apiClient = axios.create({

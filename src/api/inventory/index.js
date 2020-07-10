@@ -8,7 +8,7 @@ export const api = {
     );
   },
   getFilterdIngredients: async ({ name, categoryId, departmentId, limit }) => {
-    const limitedRecord = limit ? limit : 10;
+    const limitedRecord = limit ? limit : "nolimit";
     const nameFilter = name ? name : " ";
     const categoryFilter = categoryId ? categoryId : "all";
     return await apiClient.get(

@@ -85,7 +85,7 @@ export default function InventoryRecordFormComp() {
                   placeholer={0}
                 />
                 <GeneralInput
-                  label="비용 (원/단위)"
+                  label={`비용 (원/${unit})`}
                   name="cost"
                   type="text"
                   placeholer={0}

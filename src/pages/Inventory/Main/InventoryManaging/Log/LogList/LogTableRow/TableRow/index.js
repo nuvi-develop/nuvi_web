@@ -7,6 +7,8 @@ import EditableContent, { ContentDiv } from "./EditableContent";
 export default function TableRow({ log }) {
   const { id, recordDate, order, use, stock, cost, comment } = log;
 
+  const newCost = cost && cost % 1 === 0 ? parseInt(cost) : cost;
+
   return (
     <Container>
       <DataContainer>
@@ -22,7 +24,7 @@ export default function TableRow({ log }) {
         <EditableContent name="stock" dataValue={stock} dataId={id} disabled />
       </DataContainer>
       <DataContainer>
-        <EditableContent name="cost" dataValue={cost} dataId={id} />
+        <EditableContent name="cost" dataValue={newCost} dataId={id} />
       </DataContainer>
       <DataContainer>
         <EditableContent

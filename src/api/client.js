@@ -3,8 +3,9 @@ import axios from "axios";
 import { apiRequestInterceptor, apiResponseInterceptor } from "./helpler";
 import { apiServer } from "config";
 
-const env = process.env.REACT_APP_NODE_ENV;
-console.log("env", env);
+const env = process.env.REACT_APP_NODE_ENV
+  ? process.env.REACT_APP_NODE_ENV
+  : process.env.NODE_ENV;
 const creatorLinkCname = apiServer.production;
 const local = apiServer.development;
 let url = local;

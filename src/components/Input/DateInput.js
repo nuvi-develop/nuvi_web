@@ -5,9 +5,6 @@ import { format, add } from "date-fns";
 
 import DatePicker from "components/Input/DatePicker";
 
-const backButton = process.env.PUBLIC_URL + "/icons/basics/backButton.svg";
-const frontButton = process.env.PUBLIC_URL + "/icons/basics/frontButton.svg";
-
 export default function DateInputComp(props) {
   const [field, meta, helpers] = useField(props.name);
   const { value } = meta;

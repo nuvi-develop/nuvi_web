@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useField } from "formik";
 
-import NavButton from "../../Log/NavButton";
 import Colors from "theme/colors";
 
 export default function GeneralInputComp(props) {

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
-import { SimpleInput } from "components";
+import SearchIngredientInput from "components/Input/SimpleInput/SearchIngredientInput";
 import { Row, Col, Button } from "theme/style";
 import Colors from "theme/colors";
 import { actions, selectors } from "data";
@@ -38,7 +38,7 @@ export default function InventoryTotalComp() {
             <Header>
               <SubHeader>
                 <Ordering />
-                <SimpleInput label="재료명으로 검색" />
+                <SearchIngredientInput label="재료명으로 검색" />
                 <EditButton onClick={toggleEditHandler}>
                   {isEditing ? "완료" : "재료 수정"}
                 </EditButton>

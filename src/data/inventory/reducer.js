@@ -17,8 +17,10 @@ const INITIAL_STATE = {
   units: [],
   currentIngredientLogs: [],
   ingredientLogsForDetailGraph: [],
+  ingredientEtcLogsPerDates: {},
   currentSearchingCategory: "all",
   currentSearchingIngredient: "",
+  currentSearchingEtcIngredient: "",
   currentIngredientCardOrderingMode: IngredientCardOrderingMode.CUSTOM
 };
 
@@ -48,6 +50,9 @@ export default produce((draft, action) => {
     case AT.SET_CURRENT_SEARCHING_INGREDIENT:
       draft.currentSearchingIngredient = action.payload;
       break;
+    case AT.SET_CURRENT_SEARCHING_ETC_INGREDIENT:
+      draft.currentSearchingEtcIngredient = action.payload;
+      break;
     case AT.SET_CURRENT_INGREDIENT_LOGS:
       draft.currentIngredientLogs = action.payload;
       break;
@@ -59,6 +64,9 @@ export default produce((draft, action) => {
       break;
     case AT.SET_CURRENT_INGREDIENT_CARD_ORDERING_MODE:
       draft.currentIngredientCardOrderingMode = action.payload;
+      break;
+    case AT.SET_INGREDIENT_ETC_LOGS_PER_DATES:
+      draft.ingredientEtcLogsPerDates = action.payload;
       break;
     default:
       return;

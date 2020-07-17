@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-import GeneralInput from "./Input/GeneralInput";
-import DateInput from "./Input/DateInput";
+import GeneralInput from "components/Input/GeneralInput";
+import DateInput from "components/Input/DateInput";
 
 import { selectors, actions } from "data";
 import Colors from "theme/colors";

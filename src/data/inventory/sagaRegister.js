@@ -17,4 +17,20 @@ export default function*() {
     sagas.loadIngredientLogsForDetailGraph
   );
   yield takeEvery(AT.MOVE_INGREDIENT_CARD, sagas.moveIngredeintCard);
+  yield takeEvery(
+    AT.LOAD_INGREDIENT_ETC_LOGS_PER_DATES,
+    sagas.loadIngredeintEtcLogsPerDates
+  );
+  yield takeEvery(
+    AT.ADD_INGREDIENT_ETC_LOGS_PER_DATES,
+    sagas.addIngredeintEtcLogsPerDates
+  );
+  yield takeEvery(
+    AT.EDIT_INGREDIENT_ETC_LOGS_PER_DATES,
+    sagas.editIngredeintEtcLogsPerDates
+  );
+  yield takeEvery(
+    AT.DELETE_INGREDIENT_ETC_LOGS_PER_DATES,
+    sagas.deleteIngredeintEtcLogsPerDates
+  );
 }

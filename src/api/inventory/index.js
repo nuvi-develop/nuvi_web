@@ -93,5 +93,32 @@ export const api = {
     return await apiClient.patch(`api/inventory/ingredient/order`, {
       movingInfo
     });
+  },
+
+  getIngredientEtcLogsPerDates: async ({ searchingEtcText }) => {
+    const searchingEtcTextFilter = searchingEtcText ? searchingEtcText : " ";
+    return await apiClient.get(
+      `api/inventory/ingredientEtcLogsPerDates?searchingEtcText=${searchingEtcTextFilter}`
+    );
+  },
+
+  addIngredientEtcLogsPerDates: async addEtcLogsInfo => {
+    return await apiClient.post(
+      `api/inventory/ingredientEtcLogsPerDates`,
+      addEtcLogsInfo
+    );
+  },
+  editIngredientEtcLogsPerDates: async editEtcLogsInfo => {
+    return await apiClient.put(
+      `api/inventory/ingredientEtcLogsPerDates`,
+      editEtcLogsInfo
+    );
+  },
+  deleteIngredientEtcLogsPerDates: async deleteEtcLogsInfo => {
+    const { etcIngredientId } = deleteEtcLogsInfo;
+    return await apiClient.delete(
+      `api/inventory/ingredientEtcLogsPerDates/${etcIngredientId}`,
+      deleteEtcLogsInfo
+    );
   }
 };

@@ -21,6 +21,9 @@ export const getCurrentSearchingInfo = state => ({
   ingredientName: state.inventory.currentSearchingIngredient
 });
 
+export const getCurrentEtcSearchText = state =>
+  state.inventory.currentSearchingEtcIngredient;
+
 export const getCurrentIngredientLogs = state =>
   state.inventory.currentIngredientLogs;
 
@@ -36,3 +39,6 @@ export const getCurrentIngredientCardOrderingMode = state =>
 export const getIsCurrentIngredientCardOrderingModeCustom = state =>
   state.inventory.currentIngredientCardOrderingMode?.name ===
   IngredientCardOrderingMode.CUSTOM.name;
+
+export const getIngredientEtcLogsPerDates = state =>
+  state.inventory.ingredientEtcLogsPerDates;

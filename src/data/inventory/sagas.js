@@ -151,3 +151,36 @@ export function* moveIngredeintCard(action) {
   yield api.inventory.editIngredientOrder({ movingInfo });
   yield loadIngredientsOfCategories(action);
 }
+
+export function* loadIngredeintEtcLogsPerDates(action) {
+  const { searchingEtcText } = action.payload;
+  const res = yield api.inventory.getIngredientEtcLogsPerDates({
+    searchingEtcText
+  });
+  const ingredientEtcLogsPerdate = res.data;
+  yield put(
+    actions.inventory.setIngredientEtcLogsPerDates(ingredientEtcLogsPerdate)
+  );
+}
+
+export function* addIngredeintEtcLogsPerDates(action) {
+  const addEtcLogsInfo = action.payload;
+  const res = yield api.inventory.addIngredientEtcLogsPerDates(addEtcLogsInfo);
+  yield loadIngredeintEtcLogsPerDates({ payload: { searchingEtcText: "" } });
+}
+
+export function* editIngredeintEtcLogsPerDates(action) {
+  const editEtcLogsInfo = action.payload;
+  const res = yield api.inventory.editIngredientEtcLogsPerDates(
+    editEtcLogsInfo
+  );
+  yield loadIngredeintEtcLogsPerDates({ payload: { searchingEtcText: "" } });
+}
+
+export function* deleteIngredeintEtcLogsPerDates(action) {
+  const deleteEtcLogsInfo = action.payload;
+  const res = yield api.inventory.deleteIngredientEtcLogsPerDates(
+    deleteEtcLogsInfo
+  );
+  yield loadIngredeintEtcLogsPerDates({ payload: { searchingEtcText: "" } });
+}

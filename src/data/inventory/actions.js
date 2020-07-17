@@ -116,3 +116,31 @@ export const setCurrentIngredientCardFilteringMode = payload => ({
   type: AT.SET_CURRENT_INGREDIENT_CARD_ORDERING_MODE,
   payload
 });
+
+export const loadIngredientEtcLogsPerDates = payload => ({
+  type: AT.LOAD_INGREDIENT_ETC_LOGS_PER_DATES,
+  payload
+});
+
+export const addIngredientEtcLogsPerDates = payload => ({
+  type: AT.ADD_INGREDIENT_ETC_LOGS_PER_DATES,
+  payload
+});
+export const editIngredientEtcLogsPerDates = payload => ({
+  type: AT.EDIT_INGREDIENT_ETC_LOGS_PER_DATES,
+  payload
+});
+export const deleteIngredientEtcLogsPerDates = payload => ({
+  type: AT.DELETE_INGREDIENT_ETC_LOGS_PER_DATES,
+  payload
+});
+
+export const setIngredientEtcLogsPerDates = payload => ({
+  type: AT.SET_INGREDIENT_ETC_LOGS_PER_DATES,
+  payload
+});
+
+export const setCurrentSearchingEtcIngredient = payload => ({
+  type: AT.SET_CURRENT_SEARCHING_ETC_INGREDIENT,
+  payload
+});

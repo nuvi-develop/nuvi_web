@@ -8,12 +8,14 @@ import ConditionalModal from "./ConditionalModal";
 import InfoModal from "./InfoModal";
 import ApplyRegister from "./ApplyRegister";
 import GraphModal from "./GraphModal";
+import EtcIngredientsModal from "./EtcIngredientsModal";
 
 const MODAL_COMPONENTS = {
   CONDITIONAL: ConditionalModal,
   INFO: InfoModal,
   APPLY_REGISTER_MODAL: ApplyRegister,
-  GRAPH: GraphModal
+  GRAPH: GraphModal,
+  ETC_INGREDIENTS: EtcIngredientsModal
 };
 
 export default function Modal() {

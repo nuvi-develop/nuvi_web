@@ -9,6 +9,7 @@ import { selectors } from "data";
 import { IngredientCardOrderingMode } from "constants/index";
 
 import { EditingContext } from "../../index";
+import LinkLabel from "./LinkLabel";
 
 export default function IngredientsTableColComp({ data }) {
   const { category, ingredients } = data;
@@ -31,22 +32,28 @@ export default function IngredientsTableColComp({ data }) {
     <EditingContext.Consumer>
       {({ isEditing, setIsEditing }) => (
         <Container>
-          <Label>{category.name}</Label>
-          {sortedIngredients[currentOrderingMode.name].map(
-            (ingredient, index) => {
-              const prevIngredient =
-                index !== 0
-                  ? sortedIngredients[currentOrderingMode.name][index - 1]
-                  : { order: 0 };
-              return (
-                <IngredientCard
-                  key={ingredient.id}
-                  ingredient={ingredient}
-                  isEditing={isEditing}
-                  prevIngredient={prevIngredient}
-                />
-              );
-            }
+          {category.name === "기타" ? (
+            <LinkLabel>{category.name}</LinkLabel>
+          ) : (
+            <>
+              <Label>{category.name}</Label>
+              {sortedIngredients[currentOrderingMode.name].map(
+                (ingredient, index) => {
+                  const prevIngredient =
+                    index !== 0
+                      ? sortedIngredients[currentOrderingMode.name][index - 1]
+                      : { order: 0 };
+                  return (
+                    <IngredientCard
+                      key={ingredient.id}
+                      ingredient={ingredient}
+                      isEditing={isEditing}
+                      prevIngredient={prevIngredient}
+                    />
+                  );
+                }
+              )}
+            </>
           )}
         </Container>
       )}

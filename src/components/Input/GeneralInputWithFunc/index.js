@@ -19,9 +19,14 @@ export default function GeneralInputWithFuncComp(props) {
   useEffect(() => {
     const orderCostList = stockCostInfo?.orderCostList;
     const costOfUsed = getCostOfUsed({ orderCostList, usedValue: value });
+    console.log("costOfUsed", costOfUsed);
     if (costOfUsed) {
-      const { averageCostForUsed } = costOfUsed;
-      setAutoCalculatedCostInfo({ averageCostForUsed, used: value });
+      const { averageCostForUsed, usingOrder } = costOfUsed;
+      setAutoCalculatedCostInfo({
+        averageCostForUsed,
+        usingOrder,
+        used: value
+      });
     }
   }, [value, stockCostInfo]);
   return (

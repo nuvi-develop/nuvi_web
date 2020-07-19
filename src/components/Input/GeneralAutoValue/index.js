@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import styled from "styled-components";
-import { useField } from "formik";
 
 import Colors from "theme/colors";
 import { selectors } from "data";
 
+import CostOfUsedPopup from "./CostOfUsedPopup";
+
 export default function GeneralAutoValue(props) {
+  const [popup, setPopup] = useState(false);
   const { autoCalculatedCostInfo } = props;
   const { averageCostForUsed, used } = autoCalculatedCostInfo;
 
@@ -24,10 +26,16 @@ export default function GeneralAutoValue(props) {
   }
 
   return (
-    <Container>
+    <Container
+      onMouseOver={() => setPopup(true)}
+      onMouseLeave={() => setPopup(false)}
+    >
       <Label>{props.label}</Label>
       <ValueLabel>{showAutoCalculatedCost}</ValueLabel>
       <ErrorPlaceHolder></ErrorPlaceHolder>
+      {popup && !!averageCostForUsed && (
+        <CostOfUsedPopup autoCalculatedCostInfo={autoCalculatedCostInfo} />
+      )}
     </Container>
   );
 }
@@ -38,6 +46,7 @@ const Container = styled.div`
   align-items: center;
 
   margin: 0px 10px;
+  position: relative;
 `;
 
 const Label = styled.div`

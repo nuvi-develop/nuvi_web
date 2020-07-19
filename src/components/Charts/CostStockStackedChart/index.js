@@ -14,7 +14,6 @@ import { format } from "date-fns";
 import Colors from "theme/colors";
 
 const CostStockStackedChart = ({ data }) => {
-  console.log("data", data);
   const dateFormatedData = data.map(data => {
     const newData = {
       ...data,
@@ -56,6 +55,13 @@ const CostStockStackedChart = ({ data }) => {
 
       <Tooltip />
       <Legend />
+      <Line
+        name="주문량"
+        yAxisId="left"
+        type="monotone"
+        dataKey="order"
+        fill={Colors.blue_1}
+      />
       <Bar
         name="사용량"
         dataKey="used"
@@ -72,12 +78,14 @@ const CostStockStackedChart = ({ data }) => {
         stackId="a"
         fill={Colors.green_1}
       />
+
       <Line
         name="주문비용"
         yAxisId="right"
         type="monotone"
         dataKey="cost"
-        fill={Colors.green_1}
+        fill={Colors.yellow}
+        stroke={Colors.yellow}
       />
     </ComposedChart>
   );

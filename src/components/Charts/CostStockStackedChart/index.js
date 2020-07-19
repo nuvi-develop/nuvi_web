@@ -1,9 +1,7 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import {
-  BarChart,
   ComposedChart,
   Bar,
-  Cell,
   Line,
   XAxis,
   YAxis,
@@ -16,6 +14,7 @@ import { format } from "date-fns";
 import Colors from "theme/colors";
 
 const CostStockStackedChart = ({ data }) => {
+  console.log("data", data);
   const dateFormatedData = data.map(data => {
     const newData = {
       ...data,
@@ -24,6 +23,10 @@ const CostStockStackedChart = ({ data }) => {
 
     return newData;
   });
+
+  const costArray = data.map(data => +data.cost);
+  const maxCost = Math.max(...costArray);
+  const minCost = Math.min(...costArray);
   return (
     <ComposedChart
       width={700}
@@ -32,20 +35,23 @@ const CostStockStackedChart = ({ data }) => {
       margin={{
         top: 20,
         right: 30,
-        left: 20,
+        left: 30,
         bottom: 5
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="recordDate" padding={{ left: 30, right: 30 }} />
-      <YAxis yAxisId="left" />
+      <YAxis
+        yAxisId="left"
+        label={{ value: "재료량", offset: -30, position: "insideLeft" }}
+        padding={{ top: 20 }}
+      />
       <YAxis
         yAxisId="right"
         orientation="right"
-        padding={{ top: 10 }}
-        type="number"
-        domain={["dataMin", "dataMax"]}
-        reversed={true}
+        padding={{ top: 20, bottom: 20 }}
+        label={{ value: "비용", offset: -30, position: "insideRight" }}
+        domain={[minCost, maxCost]}
       />
 
       <Tooltip />

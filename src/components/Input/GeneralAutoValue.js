@@ -19,7 +19,7 @@ export default function GeneralAutoValue(props) {
   if (!averageCostForUsed) {
     showAutoCalculatedCost = "사용량 입력필요";
   }
-  if (currentStock < used) {
+  if (+currentStock < +used) {
     showAutoCalculatedCost = "사용량이 재고량보다 많습니다.";
   }
 

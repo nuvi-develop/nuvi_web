@@ -33,7 +33,7 @@ export default function LogListHead() {
           <ShowGraphoButton onClick={showGraphHandler}>
             그래프 상세 보기
           </ShowGraphoButton>
-          <CsvExportButton>엑셀파일 다운로드</CsvExportButton>
+          {/* <CsvExportButton>엑셀파일 다운로드</CsvExportButton> */}
         </ButtonContaienr>
       )}
     </Container>

@@ -33,6 +33,16 @@ export function* loadInventoryUnits(action) {
   yield put(actions.inventory.setUnits(units));
 }
 
+function* loadStockCostInfo(action) {
+  const { ingredientId, currentStock } = action.payload;
+  const res = yield api.inventory.getIngredientStockCostList({
+    ingredientId,
+    currentStock
+  });
+  const stockCostInfo = res.data;
+  yield put(actions.inventory.setStockCostInfo(stockCostInfo));
+}
+
 export function* loadCurrentIngredient(action) {
   const { ingredientId } = action.payload;
   const ingredientRes = yield api.inventory.getIngredientByPk({ ingredientId });
@@ -41,6 +51,7 @@ export function* loadCurrentIngredient(action) {
   );
   const currentIngredient = ingredientRes.data;
   const ingredientRecentLog = ingredientRecentLogRes.data;
+  const currentStock = currentIngredient.InventoryLogs[0].currentStock;
   //TODO
   //ingredientRecentLog 안쓰는값이므로 지우기.
   yield put(
@@ -49,6 +60,7 @@ export function* loadCurrentIngredient(action) {
       ingredientRecentLog
     })
   );
+  yield loadStockCostInfo({ payload: { ingredientId, currentStock } });
 }
 
 export function* loadIngredientLogs(action) {

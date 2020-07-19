@@ -1,12 +1,29 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { useField } from "formik";
 
 import Colors from "theme/colors";
+import { selectors } from "data";
+import { getCostOfUsed } from "utils/calculator";
 
-export default function GeneralInputComp(props) {
-  const [field, meta, helpers] = useField(props);
+export default function GeneralInputWithFuncComp(props) {
+  const stockCostInfo = useSelector(
+    selectors.inventory.getStockCostInfoForCurrentStock
+  );
 
+  const [field, meta] = useField(props);
+  const { value } = field;
+  const { setAutoCalculatedCostInfo } = props;
+
+  useEffect(() => {
+    const orderCostList = stockCostInfo?.orderCostList;
+    const costOfUsed = getCostOfUsed({ orderCostList, usedValue: value });
+    if (costOfUsed) {
+      const { averageCostForUsed } = costOfUsed;
+      setAutoCalculatedCostInfo({ averageCostForUsed, used: value });
+    }
+  }, [value, stockCostInfo]);
   return (
     <Container>
       <Label>{props.label}</Label>

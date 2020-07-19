@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 import GeneralInput from "components/Input/GeneralInput";
+import GeneralInputWithFunc from "components/Input/GeneralInputWithFunc";
+import GeneralAutoValue from "components/Input/GeneralAutoValue";
 import DateInput from "components/Input/DateInput";
 
 import { selectors, actions } from "data";
@@ -13,6 +15,10 @@ import { Button } from "theme/style";
 
 export default function InventoryRecordFormComp() {
   const dispatch = useDispatch();
+  const [autoCalculatedCostInfo, setAutoCalculatedCostInfo] = useState({
+    averageCostForUsed: 0,
+    used: 0
+  });
   const currentIngredient = useSelector(
     selectors.inventory.getCurrentIngredient
   );
@@ -69,33 +75,29 @@ export default function InventoryRecordFormComp() {
                   label="날짜"
                   name="recordDate"
                   type="text"
-                  placeholer={0}
                   selector
                 />
                 <GeneralInput
                   label={`주문량 (${unit})`}
                   name="order"
                   type="text"
-                  placeholer={0}
                 />
-                <GeneralInput
+                <GeneralInputWithFunc
                   label={`사용량 (${unit})`}
                   name="use"
                   type="text"
-                  placeholer={0}
+                  setAutoCalculatedCostInfo={setAutoCalculatedCostInfo}
+                />
+                <GeneralAutoValue
+                  label={`자동계산비용 (원/${unit})`}
+                  autoCalculatedCostInfo={autoCalculatedCostInfo}
                 />
                 <GeneralInput
                   label={`비용 (원/${unit})`}
                   name="cost"
                   type="text"
-                  placeholer={0}
                 />
-                <GeneralInput
-                  label="비고"
-                  name="comment"
-                  type="text"
-                  placeholer={0}
-                />
+                <GeneralInput label="비고" name="comment" type="text" />
               </FormContainer>
               <SubmitButton type="submit">기록하기</SubmitButton>
             </StyledForm>

@@ -144,3 +144,8 @@ export const setCurrentSearchingEtcIngredient = payload => ({
   type: AT.SET_CURRENT_SEARCHING_ETC_INGREDIENT,
   payload
 });
+
+export const setStockCostInfo = payload => ({
+  type: AT.SET_STOCK_COST_INFO,
+  payload
+});

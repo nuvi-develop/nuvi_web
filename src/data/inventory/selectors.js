@@ -42,3 +42,12 @@ export const getIsCurrentIngredientCardOrderingModeCustom = state =>
 
 export const getIngredientEtcLogsPerDates = state =>
   state.inventory.ingredientEtcLogsPerDates;
+
+export const getStockCostInfoForCurrentStock = state =>
+  state.inventory.stockCostInfo?.OrderCostListForCurrentStock;
+
+export const getStockAverageCost = state =>
+  state.inventory.stockCostInfo?.OrderCostListForCurrentStock?.averageCost;
+
+export const getCurrentStock = state =>
+  state.inventory.currentIngredient?.InventoryLogs[0]?.currentStock;

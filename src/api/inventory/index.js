@@ -120,5 +120,10 @@ export const api = {
       `api/inventory/ingredientEtcLogsPerDates/${etcIngredientId}`,
       deleteEtcLogsInfo
     );
+  },
+  getIngredientStockCostList: async ({ ingredientId, currentStock }) => {
+    return await apiClient.get(
+      `api/inventory/ingredientStockCostList/${ingredientId}/${currentStock}`
+    );
   }
 };

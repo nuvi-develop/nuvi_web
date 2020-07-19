@@ -9,13 +9,15 @@ import InfoModal from "./InfoModal";
 import ApplyRegister from "./ApplyRegister";
 import GraphModal from "./GraphModal";
 import EtcIngredientsModal from "./EtcIngredientsModal";
+import CostStockDetail from "./CostStockDetail";
 
 const MODAL_COMPONENTS = {
   CONDITIONAL: ConditionalModal,
   INFO: InfoModal,
   APPLY_REGISTER_MODAL: ApplyRegister,
   GRAPH: GraphModal,
-  ETC_INGREDIENTS: EtcIngredientsModal
+  ETC_INGREDIENTS: EtcIngredientsModal,
+  COST_STOCK_DETAIL: CostStockDetail
 };
 
 export default function Modal() {

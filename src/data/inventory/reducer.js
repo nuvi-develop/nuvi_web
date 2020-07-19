@@ -21,7 +21,8 @@ const INITIAL_STATE = {
   currentSearchingCategory: "all",
   currentSearchingIngredient: "",
   currentSearchingEtcIngredient: "",
-  currentIngredientCardOrderingMode: IngredientCardOrderingMode.CUSTOM
+  currentIngredientCardOrderingMode: IngredientCardOrderingMode.CUSTOM,
+  stockCostInfo: null
 };
 
 export default produce((draft, action) => {
@@ -67,6 +68,9 @@ export default produce((draft, action) => {
       break;
     case AT.SET_INGREDIENT_ETC_LOGS_PER_DATES:
       draft.ingredientEtcLogsPerDates = action.payload;
+      break;
+    case AT.SET_STOCK_COST_INFO:
+      draft.stockCostInfo = action.payload;
       break;
     default:
       return;

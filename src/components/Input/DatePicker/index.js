@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
 
@@ -9,14 +9,14 @@ const downArrow = "icons/downArrow.svg";
 export default function DatePickerComponent({ CustomInputProp, ...props }) {
   const [startDate, setStartDate] = useState(new Date());
 
-  const CustomInput = ({ value, onClick }) => (
-    <Wrapper>
+  const CustomInput = forwardRef(({ value, onClick }, ref) => (
+    <Wrapper ref={ref}>
       <InputContainer onClick={onClick}>
         <Input>{value}</Input>
         <Icon src={downArrow} alt="arrow" />
       </InputContainer>
     </Wrapper>
-  );
+  ));
 
   return (
     <DatePicker

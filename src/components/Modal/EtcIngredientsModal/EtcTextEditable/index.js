@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Colors from "theme/colors";
 import { actions } from "data";
 
-export default function EtcTextEditable({ log, setSubModal }) {
+export default function EtcTextEditable({ log, setSubModal, ingredientId }) {
   const dispatch = useDispatch();
   const [etcNewInput, setEtcNewInput] = useState(log.logText);
   const [isEditting, setIsEditting] = useState(false);
@@ -29,7 +29,8 @@ export default function EtcTextEditable({ log, setSubModal }) {
     dispatch(
       actions.inventory.editIngredientEtcLogsPerDates({
         etcIngredientId: log.id,
-        newLogText: etcNewInput
+        newLogText: etcNewInput,
+        ingredientId
       })
     );
   };
@@ -42,7 +43,8 @@ export default function EtcTextEditable({ log, setSubModal }) {
           setSubModal({ modalType: null, modalProps: null });
           dispatch(
             actions.inventory.deleteIngredientEtcLogsPerDates({
-              etcIngredientId: log.id
+              etcIngredientId: log.id,
+              ingredientId
             })
           );
         },

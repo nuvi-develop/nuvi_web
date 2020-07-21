@@ -9,8 +9,9 @@ import DateInput from "components/Input/DateInput";
 import { Button } from "theme/style";
 import Colors from "theme/colors";
 
-export default function EtcIngredientAddForm() {
+export default function EtcIngredientAddForm({ ingredient }) {
   const dispatch = useDispatch();
+  const ingredientId = ingredient.id;
   const [showAddFinished, setshowAddFinished] = useState(false);
   const departmentId = useSelector(selectors.user.getDepartmentId);
   const submitHandler = ({ recordDate, etcIngredient }, { resetForm }) => {
@@ -18,7 +19,8 @@ export default function EtcIngredientAddForm() {
       actions.inventory.addIngredientEtcLogsPerDates({
         recordDate,
         etcIngredient,
-        departmentId
+        departmentId,
+        ingredientId
       })
     );
     resetForm();
@@ -46,7 +48,7 @@ export default function EtcIngredientAddForm() {
             <>
               <DateInput label="날짜" name="recordDate" type="text" selector />
               <GeneralInput
-                label="기타품목"
+                label={`${ingredient.name} 에 추가하기`}
                 name="etcIngredient"
                 type="text"
                 style={{ width: "300px" }}

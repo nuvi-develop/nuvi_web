@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { useField } from "formik";
 import { format, add } from "date-fns";
@@ -10,10 +10,14 @@ export default function DateInputComp(props) {
   const { value } = meta;
   const { setValue } = helpers;
 
-  const CustomInput = ({ value, onClick }) => {
+  const CustomInput = forwardRef(({ value, onClick }, ref) => {
     const formatedDate = format(new Date(value), "yy년 MM월 dd일");
-    return <Current onClick={onClick}>{formatedDate}</Current>;
-  };
+    return (
+      <Current ref={ref} onClick={onClick}>
+        {formatedDate}
+      </Current>
+    );
+  });
 
   return (
     <Container>

@@ -95,10 +95,13 @@ export const api = {
     });
   },
 
-  getIngredientEtcLogsPerDates: async ({ searchingEtcText }) => {
+  getIngredientEtcLogsPerDates: async ({ searchingEtcText, ingredientId }) => {
     const searchingEtcTextFilter = searchingEtcText ? searchingEtcText : " ";
+
+    const ingredientIdFilter = ingredientId ? ingredientId : "all";
+
     return await apiClient.get(
-      `api/inventory/ingredientEtcLogsPerDates?searchingEtcText=${searchingEtcTextFilter}`
+      `api/inventory/ingredientEtcLogsPerDates?searchingEtcText=${searchingEtcTextFilter}&&ingredientId=${ingredientIdFilter}`
     );
   },
 

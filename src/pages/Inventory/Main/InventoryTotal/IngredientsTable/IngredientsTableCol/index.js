@@ -4,12 +4,13 @@ import styled from "styled-components";
 
 import { Row, Col, Button } from "theme/style";
 import Colors from "theme/colors";
-import IngredientCard from "./IngredientCard";
 import { selectors } from "data";
 import { IngredientCardOrderingMode } from "constants/index";
 
 import { EditingContext } from "../../index";
 import LinkLabel from "./LinkLabel";
+import IngredientCard from "./IngredientCard";
+import LinkIngredientCard from "./LinkIngredientCard";
 
 export default function IngredientsTableColComp({ data }) {
   const { category, ingredients } = data;
@@ -28,33 +29,56 @@ export default function IngredientsTableColComp({ data }) {
       )
   };
 
+  let Col = ({ isEditing }) => (
+    <>
+      <Label>{category.name}</Label>
+      {sortedIngredients[currentOrderingMode.name].map((ingredient, index) => {
+        const prevIngredient =
+          index !== 0
+            ? sortedIngredients[currentOrderingMode.name][index - 1]
+            : { order: 0 };
+        return (
+          <IngredientCard
+            key={ingredient.id}
+            ingredient={ingredient}
+            isEditing={isEditing}
+            prevIngredient={prevIngredient}
+          />
+        );
+      })}
+    </>
+  );
+
+  if (category.name === "기타") {
+    Col = ({ isEditing }) => (
+      <>
+        {" "}
+        <LinkLabel>{category.name}</LinkLabel>
+        {sortedIngredients[currentOrderingMode.name].map(
+          (ingredient, index) => {
+            const prevIngredient =
+              index !== 0
+                ? sortedIngredients[currentOrderingMode.name][index - 1]
+                : { order: 0 };
+            return (
+              <LinkIngredientCard
+                key={ingredient.id}
+                ingredient={ingredient}
+                isEditing={isEditing}
+                prevIngredient={prevIngredient}
+              />
+            );
+          }
+        )}{" "}
+      </>
+    );
+  }
+
   return (
     <EditingContext.Consumer>
-      {({ isEditing, setIsEditing }) => (
+      {props => (
         <Container>
-          {category.name === "기타" ? (
-            <LinkLabel>{category.name}</LinkLabel>
-          ) : (
-            <>
-              <Label>{category.name}</Label>
-              {sortedIngredients[currentOrderingMode.name].map(
-                (ingredient, index) => {
-                  const prevIngredient =
-                    index !== 0
-                      ? sortedIngredients[currentOrderingMode.name][index - 1]
-                      : { order: 0 };
-                  return (
-                    <IngredientCard
-                      key={ingredient.id}
-                      ingredient={ingredient}
-                      isEditing={isEditing}
-                      prevIngredient={prevIngredient}
-                    />
-                  );
-                }
-              )}
-            </>
-          )}
+          <Col {...props} />
         </Container>
       )}
     </EditingContext.Consumer>

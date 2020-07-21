@@ -11,11 +11,13 @@ export default function CostStockDetail() {
   const costStockInfo = useSelector(
     selectors.inventory.getStockCostInfoForCurrentStock
   );
+
   const ingredientUnit = useSelector(
     selectors.inventory.getCurrentIngredientUnitName
   );
   const unit = ingredientUnit ? ingredientUnit : "kg";
   const { orderCostList, currentStock, averageCost } = costStockInfo;
+
   const orderCostListLength = orderCostList.length;
 
   return (

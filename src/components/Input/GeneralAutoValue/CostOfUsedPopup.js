@@ -7,7 +7,6 @@ import Colors from "theme/colors";
 export default function CostOfUsedPopup({ autoCalculatedCostInfo }) {
   const { usingOrder } = autoCalculatedCostInfo;
   const usingOrderLength = usingOrder?.length;
-  console.log("usingOrderLength", usingOrderLength);
 
   return (
     <Container usingOrderLength={usingOrderLength}>

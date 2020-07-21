@@ -74,10 +74,10 @@ export function* register(action) {
   try {
     const { userRegisterInfo } = action;
     const { type } = userRegisterInfo;
-    console.log("type", type);
+
     let res;
     yield put(actions.user.registerLoading());
-    console.log("came here");
+
     if (type === "social") {
       res = yield api.authApi.registerSocial(userRegisterInfo);
     } else {

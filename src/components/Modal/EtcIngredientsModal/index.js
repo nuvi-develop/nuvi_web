@@ -10,7 +10,8 @@ import EtcIngredientAddForm from "./EtcIngredientAddForm";
 import EtcTextEditable from "./EtcTextEditable";
 import SubModal from "./SubModal";
 
-export default function EtcIngredientsModal() {
+export default function EtcIngredientsModal({ ingredient }) {
+  const ingredientId = ingredient ? ingredient.id : null;
   const dispatch = useDispatch();
   const [subModal, setSubModal] = useState({
     modalType: null,
@@ -28,7 +29,10 @@ export default function EtcIngredientsModal() {
 
   useEffect(() => {
     dispatch(
-      actions.inventory.loadIngredientEtcLogsPerDates({ searchingEtcText })
+      actions.inventory.loadIngredientEtcLogsPerDates({
+        searchingEtcText,
+        ingredientId
+      })
     );
   }, [searchingEtcText]);
 
@@ -36,14 +40,16 @@ export default function EtcIngredientsModal() {
     <Container>
       <SubModal {...subModal} />
       <Header>
-        <Title>기타 품목</Title>
+        <Title>기타 품목 : {ingredient ? ingredient.name : "all"}</Title>
         <ExitButton onClick={() => dispatch(actions.modal.clearModal())}>
           나가기
         </ExitButton>
       </Header>
 
-      <EtcIngredientAddForm />
-      <SearchEtcIngredientInput label="기타 품목 검색" />
+      {ingredient && <EtcIngredientAddForm ingredient={ingredient} />}
+      <SearchEtcIngredientInput
+        label={ingredient ? `${ingredient.name} 중에 검색` : "기타 품목 검색"}
+      />
       <IngredientsContainer>
         {dates.map(date => (
           <DateWrapper key={date}>
@@ -54,6 +60,7 @@ export default function EtcIngredientsModal() {
                   key={log.id}
                   log={log}
                   setSubModal={setSubModal}
+                  ingredientId={ingredientId}
                 />
               ))}
             </EtcTextsContainer>

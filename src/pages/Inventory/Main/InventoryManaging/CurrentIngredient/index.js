@@ -6,8 +6,14 @@ import { selectors, actions } from "data";
 import Colors from "theme/colors";
 import { numberWithCommas } from "utils/numbers";
 
+import CostOfUsed from "./CostOfUsed";
+
 export default function CurrentIngredientComp() {
   const dispatch = useDispatch();
+
+  const costStockInfo = useSelector(
+    selectors.inventory.getStockCostInfoForCurrentStock
+  );
   const currentIngredient = useSelector(
     selectors.inventory.getCurrentIngredient
   );
@@ -36,6 +42,7 @@ export default function CurrentIngredientComp() {
               {currentIngredient.InventoryCategory.name}
             </CurrentCategory>
           </CurrentContainer>
+          {costStockInfo && <CostOfUsed costStockInfo={costStockInfo} />}
           <CostStockContainer onClick={onClickDetailHandler}>
             <InventoryContainer>
               <InventoryLabel>현재 재고량</InventoryLabel>

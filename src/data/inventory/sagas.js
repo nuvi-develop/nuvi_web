@@ -206,3 +206,14 @@ export function* deleteIngredeintEtcLogsPerDates(action) {
     payload: { searchingEtcText: "", ingredientId }
   });
 }
+
+export function* loadMonthUseIngredients(action) {
+  const departmentId = yield select(selectors.user.getDepartmentId);
+  const { searchDate } = action.payload;
+  const res = yield api.inventory.getMonthUseIngredients({
+    searchDate,
+    departmentId
+  });
+  const { monthUseIngredients } = res.data;
+  yield put(actions.inventory.setMonthUseIngredients(monthUseIngredients));
+}

@@ -1,11 +1,8 @@
 import * as AT from "./actionTypes";
 
-export const toggleTabManaging = () => ({
-  type: AT.TOGGLE_TAB_MANAGING
-});
-
-export const toggleTabTotal = () => ({
-  type: AT.TOGGLE_TAB_TOTAl
+export const toggleInventoryTab = payload => ({
+  type: AT.TOGGLE_INVENTORY_TAB,
+  payload
 });
 
 export const setCurrentIngredient = payload => ({
@@ -147,5 +144,15 @@ export const setCurrentSearchingEtcIngredient = payload => ({
 
 export const setStockCostInfo = payload => ({
   type: AT.SET_STOCK_COST_INFO,
+  payload
+});
+
+export const setMonthUseIngredients = payload => ({
+  type: AT.SET_MONTH_USE_INGREDIENTS,
+  payload
+});
+
+export const loadMonthUseIngredients = payload => ({
+  type: AT.LOAD_MONTH_USE_INGREDIENTS,
   payload
 });

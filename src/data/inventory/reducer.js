@@ -1,15 +1,10 @@
 import produce from "immer";
 
 import * as AT from "./actionTypes";
-import { IngredientCardOrderingMode } from "constants/index";
-
-const inventoryTabs = {
-  MANAGING_INGREDIENTS: "MANAGING_INGREDIENTS",
-  TOTAL_INGREDIENTS: "TOTAL_INGREDIENTS"
-};
+import { IngredientCardOrderingMode, inventoryTabs } from "constants/index";
 
 const INITIAL_STATE = {
-  currentTab: inventoryTabs.MANAGING_INGREDIENTS,
+  currentTab: inventoryTabs.MONTH_USE,
   ingredients: [],
   ingredientsOfCategories: [],
   currentIngredient: null,
@@ -22,16 +17,14 @@ const INITIAL_STATE = {
   currentSearchingIngredient: "",
   currentSearchingEtcIngredient: "",
   currentIngredientCardOrderingMode: IngredientCardOrderingMode.CUSTOM,
-  stockCostInfo: null
+  stockCostInfo: null,
+  monthUseIngredients: []
 };
 
 export default produce((draft, action) => {
   switch (action.type) {
-    case AT.TOGGLE_TAB_MANAGING:
-      draft.currentTab = inventoryTabs.MANAGING_INGREDIENTS;
-      break;
-    case AT.TOGGLE_TAB_TOTAl:
-      draft.currentTab = inventoryTabs.TOTAL_INGREDIENTS;
+    case AT.TOGGLE_INVENTORY_TAB:
+      draft.currentTab = action.payload;
       break;
     case AT.SET_CURRENT_INGREDIENT:
       draft.currentIngredient = action.payload;
@@ -71,6 +64,9 @@ export default produce((draft, action) => {
       break;
     case AT.SET_STOCK_COST_INFO:
       draft.stockCostInfo = action.payload;
+      break;
+    case AT.SET_MONTH_USE_INGREDIENTS:
+      draft.monthUseIngredients = action.payload;
       break;
     default:
       return;

@@ -128,5 +128,12 @@ export const api = {
     return await apiClient.get(
       `api/inventory/ingredientStockCostList/${ingredientId}/${currentStock}`
     );
+  },
+  getMonthUseIngredients: async ({ searchDate, departmentId }) => {
+    console.log("searchDate", typeof searchDate);
+
+    return await apiClient.get(
+      `api/inventory/monthUseIngredients?searchDate=${searchDate}&departmentId=${departmentId}`
+    );
   }
 };

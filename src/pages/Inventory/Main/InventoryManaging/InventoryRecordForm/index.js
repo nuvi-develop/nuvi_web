@@ -71,12 +71,7 @@ export default function InventoryRecordFormComp() {
           <>
             <StyledForm>
               <FormContainer>
-                <DateInput
-                  label="날짜"
-                  name="recordDate"
-                  type="text"
-                  selector
-                />
+                <DateInput label="날짜" name="recordDate" type="text" />
                 <GeneralInput
                   label={`주문량 (${unit})`}
                   name="order"

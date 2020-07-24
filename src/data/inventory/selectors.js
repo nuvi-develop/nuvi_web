@@ -51,3 +51,6 @@ export const getStockAverageCost = state =>
 
 export const getCurrentStock = state =>
   state.inventory.currentIngredient?.InventoryLogs[0]?.currentStock;
+
+export const getMonthUseIngredients = state =>
+  state.inventory.monthUseIngredients;

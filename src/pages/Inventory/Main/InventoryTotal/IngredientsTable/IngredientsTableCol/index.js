@@ -32,6 +32,7 @@ export default function IngredientsTableColComp({ data }) {
   let Col = ({ isEditing }) => (
     <>
       <Label>{category.name}</Label>
+
       {sortedIngredients[currentOrderingMode.name].map((ingredient, index) => {
         const prevIngredient =
           index !== 0
@@ -69,7 +70,7 @@ export default function IngredientsTableColComp({ data }) {
               />
             );
           }
-        )}{" "}
+        )}
       </>
     );
   }
@@ -95,4 +96,9 @@ const Label = styled.div`
   font-size: 20px;
   width: 130px;
   color: ${Colors.gray_1};
+`;
+
+const ColBody = styled.div`
+  max-height: 550px;
+  overflow: scroll;
 `;

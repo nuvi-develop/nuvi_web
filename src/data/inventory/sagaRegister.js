@@ -33,4 +33,5 @@ export default function*() {
     AT.DELETE_INGREDIENT_ETC_LOGS_PER_DATES,
     sagas.deleteIngredeintEtcLogsPerDates
   );
+  yield takeEvery(AT.LOAD_MONTH_USE_INGREDIENTS, sagas.loadMonthUseIngredients);
 }

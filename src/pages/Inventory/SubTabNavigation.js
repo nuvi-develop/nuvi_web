@@ -3,30 +3,29 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { actions, selectors } from "data";
+import { inventoryTabs } from "constants/index";
 
 export default function SubTabNavigation() {
   const dispatch = useDispatch();
   const currentTab = useSelector(selectors.inventory.getCurrentTab);
 
-  const inventoryTabs = {
-    MANAGING_INGREDIENTS: "MANAGING_INGREDIENTS",
-    TOTAL_INGREDIENTS: "TOTAL_INGREDIENTS"
-  };
+  const SubTab = ({ tableName, label }) => (
+    <SubTabStyled
+      onClick={() => dispatch(actions.inventory.toggleInventoryTab(tableName))}
+      isCurrent={currentTab === tableName}
+    >
+      {label}
+    </SubTabStyled>
+  );
 
   return (
     <SubTabContainer>
       <SubTab
-        onClick={() => dispatch(actions.inventory.toggleTabManaging())}
-        isCurrent={currentTab === inventoryTabs.MANAGING_INGREDIENTS}
-      >
-        재고 관리
-      </SubTab>
-      <SubTab
-        onClick={() => dispatch(actions.inventory.toggleTabTotal())}
-        isCurrent={currentTab === inventoryTabs.TOTAL_INGREDIENTS}
-      >
-        전체 재료
-      </SubTab>
+        tableName={inventoryTabs.MANAGING_INGREDIENTS}
+        label="재고 관리"
+      />
+      <SubTab tableName={inventoryTabs.TOTAL_INGREDIENTS} label="전체 재료" />
+      <SubTab tableName={inventoryTabs.MONTH_USE} label="월별 내역" />
     </SubTabContainer>
   );
 }
@@ -38,7 +37,7 @@ const SubTabContainer = styled.div`
   margin: 20px;
 `;
 
-const SubTab = styled.div`
+const SubTabStyled = styled.div`
   font-size: 24px;
 
   margin: 10px;

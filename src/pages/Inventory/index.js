@@ -4,27 +4,25 @@ import styled from "styled-components";
 
 import { selectors } from "data";
 import { Modal } from "components";
+import { inventoryTabs } from "constants/index";
 
 import SubTabNavigation from "./SubTabNavigation";
 import InventoryManaging from "./Main/InventoryManaging";
 import InventoryTotal from "./Main/InventoryTotal";
+import InventoryMonthUse from "./Main/InventoryMonthUse";
 
-const inventoryTabs = {
-  MANAGING_INGREDIENTS: "MANAGING_INGREDIENTS",
-  TOTAL_INGREDIENTS: "TOTAL_INGREDIENTS"
+const InventoryPage = {
+  [inventoryTabs.MANAGING_INGREDIENTS]: <InventoryManaging />,
+  [inventoryTabs.TOTAL_INGREDIENTS]: <InventoryTotal />,
+  [inventoryTabs.MONTH_USE]: <InventoryMonthUse />
 };
 
 export default function Inventory() {
   const currentTab = useSelector(selectors.inventory.getCurrentTab);
-  const modal = useSelector(selectors.modal.getModal);
   return (
     <InventoryContainer>
       <SubTabNavigation />
-      {currentTab === inventoryTabs.MANAGING_INGREDIENTS ? (
-        <InventoryManaging />
-      ) : (
-        <InventoryTotal />
-      )}
+      {InventoryPage[currentTab]}
     </InventoryContainer>
   );
 }

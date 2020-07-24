@@ -11,12 +11,12 @@ export default function CostOfUsedPopup({ autoCalculatedCostInfo }) {
   return (
     <Container usingOrderLength={usingOrderLength}>
       <Title>계산에 사용된 주문 내역</Title>
-      <ItemContainer>
-        <Item>날짜</Item>
-        <Item>주문량</Item>
-        <Item>남은량</Item>
-        <Item>주문비용</Item>
-      </ItemContainer>
+      <HeaderContainer>
+        <HeaderItem>날짜</HeaderItem>
+        <HeaderItem>주문량</HeaderItem>
+        <HeaderItem>남은량</HeaderItem>
+        <HeaderItem>주문비용</HeaderItem>
+      </HeaderContainer>
       {usingOrder &&
         usingOrder.map(usingOrderData => {
           const { recordDate, order, left, used, cost } = usingOrderData;
@@ -63,3 +63,7 @@ const Item = styled.div`
   width: 80px;
   text-align: center;
 `;
+
+const HeaderContainer = styled(ItemContainer)``;
+
+const HeaderItem = styled(Item)``;

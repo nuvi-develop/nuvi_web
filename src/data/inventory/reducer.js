@@ -4,7 +4,7 @@ import * as AT from "./actionTypes";
 import { IngredientCardOrderingMode, inventoryTabs } from "constants/index";
 
 const INITIAL_STATE = {
-  currentTab: inventoryTabs.MONTH_USE,
+  currentTab: inventoryTabs.MANAGING_INGREDIENTS,
   ingredients: [],
   ingredientsOfCategories: [],
   currentIngredient: null,

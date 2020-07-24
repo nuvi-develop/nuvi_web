@@ -94,7 +94,7 @@ export default function IngredientCard({
           <IngredientStock>{`${currentStock} ${ingredientUnit}`}</IngredientStock>
           {isEditing && (
             <DeleteButton
-              onClick={onDeleteHandler.bind(this, {
+              onMouseDown={onDeleteHandler.bind(this, {
                 id: ingredient.id
               })}
             >

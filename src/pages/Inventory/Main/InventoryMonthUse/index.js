@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { format } from "date-fns";
 
 import { actions, selectors } from "data";
-import Colors from "theme/colors";
-import { Row, Col, Button } from "theme/style";
+import { Col } from "theme/style";
 
 import MonthInput from "components/Input/MonthInput";
+import ExcelExportButton from "./ExcelExportButton";
 
 export default function InventoryMonthUse() {
   const dispatch = useDispatch();
@@ -21,15 +20,20 @@ export default function InventoryMonthUse() {
   }, [searchDate]);
   return (
     <MainContainer>
-      <MonthInput
-        label={"월별 검색"}
-        name="month"
-        setSearchDate={setSearchDate}
-        searchDate={searchDate}
-      />
+      <Header>
+        <MonthInput
+          label={"월별 검색"}
+          name="month"
+          setSearchDate={setSearchDate}
+          searchDate={searchDate}
+        />
+        {/* <CsvExportButton>Excel 다운로드</CsvExportButton> */}
+        <ExcelExportButton data={monthUseIngredients} searchDate={searchDate} />
+      </Header>
       <HeaderContainer>
         <HeaderItem>재료명</HeaderItem>
         <HeaderItem>월말 재고량</HeaderItem>
+        <HeaderItem>단위</HeaderItem>
         <HeaderItem>재고량 단가</HeaderItem>
       </HeaderContainer>
       <TableBody>
@@ -39,13 +43,17 @@ export default function InventoryMonthUse() {
               ingredientName,
               currentStock,
               ingredientId,
-              reducedOrdersByCost
+              reducedOrdersByCost,
+              unit
             } = monthUseIngredient;
+
+            console.log("reducedOrdersByCost", reducedOrdersByCost);
 
             return (
               <ContentContainer key={ingredientId}>
                 <ContentItem>{ingredientName}</ContentItem>
                 <ContentItem>{currentStock}</ContentItem>
+                <ContentItem>{unit}</ContentItem>
                 <ContentItem>
                   {Object.keys(reducedOrdersByCost).map(key => {
                     return (
@@ -100,4 +108,9 @@ const ContentItem = styled(Item)``;
 const TableBody = styled.div`
   overflow: scroll;
   max-height: 700px;
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;

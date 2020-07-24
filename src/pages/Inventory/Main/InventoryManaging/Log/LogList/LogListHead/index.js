@@ -7,7 +7,6 @@ import { actions, selectors } from "data";
 import Colors from "theme/colors";
 
 import LogChart from "../../LogChart";
-import CsvExportButton from "./CsvExportButton";
 
 export default function LogListHead() {
   const dispatch = useDispatch();
@@ -33,7 +32,6 @@ export default function LogListHead() {
           <ShowGraphoButton onClick={showGraphHandler}>
             그래프 상세 보기
           </ShowGraphoButton>
-          {/* <CsvExportButton>엑셀파일 다운로드</CsvExportButton> */}
         </ButtonContaienr>
       )}
     </Container>

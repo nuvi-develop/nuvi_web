@@ -47,8 +47,6 @@ export default function InventoryMonthUse() {
               unit
             } = monthUseIngredient;
 
-            console.log("reducedOrdersByCost", reducedOrdersByCost);
-
             return (
               <ContentContainer key={ingredientId}>
                 <ContentItem>{ingredientName}</ContentItem>

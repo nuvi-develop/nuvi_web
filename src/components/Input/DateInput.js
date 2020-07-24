@@ -10,6 +10,7 @@ export default function DateInputComp(props) {
   const { value } = meta;
   const { setValue } = helpers;
 
+  console.log("date value", value);
   const CustomInput = forwardRef(({ value, onClick }, ref) => {
     const formatedDate = format(new Date(value), "yy년 MM월 dd일");
     return (

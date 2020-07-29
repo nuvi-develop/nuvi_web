@@ -16,11 +16,13 @@ if (env === "production") {
 }
 
 const apiClient = axios.create({
-  baseURL: url
+  baseURL: url,
+  withCredentials: true
   // validateStatus: status => status < 500
 });
 
-apiClient.interceptors.request.use(apiRequestInterceptor);
+//DEL LATER
+// apiClient.interceptors.request.use(apiRequestInterceptor);
 apiClient.interceptors.response.use(...apiResponseInterceptor);
 
 export { apiClient };

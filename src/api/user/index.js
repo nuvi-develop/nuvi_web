@@ -23,8 +23,8 @@ export const api = {
   toggleApproved: async userId => {
     return await apiClient.put(`/api/user/toggleApproved/${userId}`);
   },
-  whoAmI: async token => {
-    const headers = { "x-access-token": token };
-    return await apiClient.get("api/user/me", { headers });
+  whoAmI: async () => {
+    // const headers = { "x-access-token": token };
+    return await apiClient.get("api/user/me");
   }
 };

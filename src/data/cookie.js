@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 
-const API_TOKEN = "apiToken";
+const API_TOKEN = "API_TOKEN";
 
 export const setAuthCookie = apiToken => {
   Cookies.set(API_TOKEN, apiToken);

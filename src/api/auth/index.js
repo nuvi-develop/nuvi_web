@@ -21,5 +21,8 @@ export const api = {
 
   checkEmail: async emailAddress => {
     return await apiClient.post("/api/auth/checkEmail", emailAddress);
+  },
+  logout: async () => {
+    return await apiClient.get("/api/auth/logout");
   }
 };

@@ -28,9 +28,9 @@ export default function DashboardComp() {
           </ThirdSubCotainer>
         </DashBoardInnerContainer>
       </DashboardContainer>
-      <NuviLabel>
-        Togeter with <img src={nuviLogo} alt="logo" />
-      </NuviLabel>
+      <NuviLabelConatiner>
+        <NuviLabel> Togeter with</NuviLabel> <img src={nuviLogo} alt="logo" />
+      </NuviLabelConatiner>
     </ColumnWrapper>
   );
 }
@@ -71,13 +71,16 @@ const ThirdSubCotainer = styled(BorderedBox)`
   flex: 1;
 `;
 
-const NuviLabel = styled.div`
+const NuviLabelConatiner = styled.div`
+  display: flex;
   align-self: flex-end;
   font-size: 23px;
   color: ${dashboardColor.gray_8};
 
   // font-weight: 300;
 `;
+
+const NuviLabel = styled.div``;
 
 const ColumnWrapper = styled.div`
   display: flex;

@@ -8,6 +8,7 @@ import Error500 from "./Error500";
 import UpdatePasswordPage from "./UpdatePasswordPage";
 import UserProfile from "./UserProfile";
 import Inventory from "./Inventory";
+import Dashboard from "./Dashboard";
 
 export {
   Daily,
@@ -19,5 +20,6 @@ export {
   Error500,
   UpdatePasswordPage,
   UserProfile,
-  Inventory
+  Inventory,
+  Dashboard
 };

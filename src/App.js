@@ -15,7 +15,8 @@ import {
   Error404,
   Error500,
   UserProfile,
-  Inventory
+  Inventory,
+  Dashboard
 } from "pages";
 
 function App({ history }) {
@@ -42,6 +43,11 @@ function App({ history }) {
           path="/profile"
           layout={DashBoardLayout}
           component={UserProfile}
+        />
+        <AdminRoutes
+          path="/dashboard"
+          layout={DashBoardLayout}
+          component={Dashboard}
         />
         <MasterRoutes
           path="/adminApply"

@@ -13,4 +13,15 @@ const colors = {
   yellow: "#FCC613"
 };
 
+export const dashboardColor = {
+  blue: "#2b88f0",
+  light_blue: "#EFF6FF",
+  light_green: "#3fe2ad",
+  red: "#c96767",
+  gray_4: "#4D4D4D",
+  gray_6: "#666",
+  gray_8: "#808080",
+  orange: "#F1BB77"
+};
+
 export default colors;

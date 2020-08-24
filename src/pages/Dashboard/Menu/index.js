@@ -1,49 +1,116 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { Formik } from "formik";
 
 import { dashboardColor } from "theme/colors";
 import { BorderedBox } from "components/Styled";
 
+import MenuCalorieInput from "./MenuCalorieInput";
 const menu = process.env.PUBLIC_URL + "/dashboard/menu.svg";
 
-const menuItems = [
-  { name: "배추김치", calorie: "0000", natrium: 900 },
-  { name: "단무지 무침", calorie: "0000", natrium: 1100 },
-  { name: "맛살 초무침", calorie: "0000", natrium: 200 },
-  { name: "생선까스", calorie: "0000", natrium: 300 },
-  { name: "현미밥", calorie: "0000", natrium: 1200 },
-  { name: "오징어 무국", calorie: "0000", natrium: 900 }
-];
+const menuItems = {
+  first: { id: 0, name: "배추김치", calorie: "0000", natrium: 900 },
+  second: { id: 1, name: "단무지 무침", calorie: "0000", natrium: 1100 },
+  third: { id: 2, name: "맛살 초무침", calorie: "0000", natrium: 200 },
+  fourth: { id: 3, name: "생선까스", calorie: "0000", natrium: 300 },
+  fifth: { id: 4, name: "현미밥", calorie: "0000", natrium: 1200 },
+  sixth: { id: 5, name: "오징어 무국", calorie: "0000", natrium: 900 }
+};
 
-const first4Items = menuItems.slice(0, 4);
-const last2Items = menuItems.slice(4);
+const MenuItem = ({ item, name, isInEditMode }) => (
+  <MenuItemContainer key={item.name} natrium={item.natrium}>
+    <MenuItemName>{item.name}</MenuItemName>
+    <CalorieContainer>
+      {isInEditMode ? (
+        <MenuCalorieInput name={name} />
+      ) : (
+        <MenuCalorie>{item.calorie}</MenuCalorie>
+      )}
+      <MenuCalorieUnit>Kcal</MenuCalorieUnit>
+    </CalorieContainer>
+  </MenuItemContainer>
+);
 
-const MenuRowWithItems = ({ items }) => {
+const MenuForm = ({ isInEditMode, nutritionInfo, formik }) => {
+  useEffect(() => {
+    if (!isInEditMode) {
+      //수정된 값 날리는 api
+      console.log("formik.values", formik.values);
+    }
+  }, [isInEditMode]);
   return (
-    <MenuRow>
-      {items.map(({ name, calorie, natrium }) => (
-        <MenuItemContainer key={name} natrium={natrium}>
-          <MenuItemName>{name}</MenuItemName>
-          <CalorieContainer>
-            <MenuCalorie>{calorie}</MenuCalorie>
-            <MenuCalorieUnit>Kcal</MenuCalorieUnit>
-          </CalorieContainer>
-        </MenuItemContainer>
-      ))}
-    </MenuRow>
+    <MenuContainer>
+      {nutritionInfo.value && (
+        <MenuRow>
+          <MenuItem
+            item={menuItems.first}
+            name="first"
+            isInEditMode={isInEditMode}
+          />
+          <MenuItem
+            item={menuItems.second}
+            name="second"
+            isInEditMode={isInEditMode}
+          />
+          <MenuItem
+            item={menuItems.third}
+            name="third"
+            isInEditMode={isInEditMode}
+          />
+          <MenuItem
+            item={menuItems.fourth}
+            name="fourth"
+            isInEditMode={isInEditMode}
+          />
+        </MenuRow>
+      )}
+
+      <MenuImage src={menu} alt="menu" />
+      {nutritionInfo.value && (
+        <MenuRow>
+          <MenuItem
+            item={menuItems.fifth}
+            name="fifth"
+            isInEditMode={isInEditMode}
+          />
+          <MenuItem
+            item={menuItems.sixth}
+            name="sixth"
+            isInEditMode={isInEditMode}
+          />
+        </MenuRow>
+      )}
+      {nutritionInfo.value && (
+        <Information>
+          1일 <b>나트륨 권장량</b> 50% 이상 메뉴
+        </Information>
+      )}
+    </MenuContainer>
   );
 };
 
-export default function MenuComp() {
+export default function MenuComp({ state }) {
+  const { isInEditMode, nutritionInfo } = state;
+
   return (
-    <MenuContainer>
-      <MenuRowWithItems items={first4Items} />
-      <MenuImage src={menu} alt="menu" />
-      <MenuRowWithItems items={last2Items} />
-      <Information>
-        1일 <b>나트륨 권장량</b> 50% 이상 메뉴
-      </Information>
-    </MenuContainer>
+    <Formik
+      initialValues={{
+        first: menuItems.first.calorie,
+        second: menuItems.second.calorie,
+        third: menuItems.third.calorie,
+        fourth: menuItems.fourth.calorie,
+        fifth: menuItems.fifth.calorie,
+        sixth: menuItems.sixth.calorie
+      }}
+    >
+      {formik => (
+        <MenuForm
+          isInEditMode={isInEditMode}
+          nutritionInfo={nutritionInfo}
+          formik={formik}
+        />
+      )}
+    </Formik>
   );
 }
 

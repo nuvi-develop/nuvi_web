@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 import { selectors, actions } from "data";
 import Colors from "theme/colors";
-import { numberWithCommas } from "utils/numbers";
 
 import CostOfUsed from "./CostOfUsed";
 
@@ -46,13 +45,15 @@ export default function CurrentIngredientComp() {
           <CostStockContainer onClick={onClickDetailHandler}>
             <InventoryContainer>
               <InventoryLabel>현재 재고량</InventoryLabel>
-              <InventoryValue>{numberWithCommas(currentStock)}</InventoryValue>
+              <InventoryValue>
+                {(+currentStock).toLocaleString()}
+              </InventoryValue>
               <UnitText>{unit}</UnitText>
             </InventoryContainer>
             <InventoryContainer>
               <InventoryLabel>재고량 평균단가</InventoryLabel>
               <InventoryValue>
-                {numberWithCommas(stockAverageCostFixed2)}
+                {(+stockAverageCostFixed2).toLocaleString()}
               </InventoryValue>
               <UnitText>(원/{unit})</UnitText>
             </InventoryContainer>

@@ -13,8 +13,8 @@ export default function DashBoardLayout({ children, master }) {
   let tabs = [
     { name: "DAILY", route: "/daily" },
     { name: "TOTAL", route: "/total" },
-    { name: "재고관리", route: "/inventory" },
-    { name: "DASH BOARD", route: "/dashboard" }
+    { name: "재고관리", route: "/inventory" }
+    // { name: "DASH BOARD", route: "/dashboard" }
   ];
 
   if (master) {

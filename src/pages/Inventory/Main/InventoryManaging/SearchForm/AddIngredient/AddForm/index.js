@@ -26,8 +26,8 @@ export default function AddFormComp({ toggleAddHandler }) {
       DepartmentId: departmentId
     };
     dispatch(actions.inventory.addIngredient({ ingredientInfo }));
-    toggleAddHandler();
     resetForm();
+    toggleAddHandler();
   };
   return (
     <Container>

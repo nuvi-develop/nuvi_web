@@ -100,7 +100,6 @@ export function* register(action) {
 export function* whoAmI(action) {
   try {
     yield put(actions.user.whoAmILoading());
-    // const maybeValidToken = getAuthCookie();
 
     const res = yield call(api.userApi.whoAmI);
     const user = res.data;

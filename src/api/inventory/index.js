@@ -52,6 +52,7 @@ export const api = {
     );
   },
   addIngredientLog: async ({ ingredientLogInfo }) => {
+    const { recordDate } = ingredientLogInfo;
     return await apiClient.post(`api/inventory/ingredientLog`, {
       ingredientLogInfo
     });
@@ -130,8 +131,6 @@ export const api = {
     );
   },
   getMonthUseIngredients: async ({ searchDate, departmentId }) => {
-    console.log("searchDate", typeof searchDate);
-
     return await apiClient.get(
       `api/inventory/monthUseIngredients?searchDate=${searchDate}&departmentId=${departmentId}`
     );

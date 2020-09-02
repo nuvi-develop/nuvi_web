@@ -18,6 +18,7 @@ if (env === "production") {
 const apiClient = axios.create({
   baseURL: url,
   withCredentials: true
+  //이런식으로 status 코드를 보고, error 를 정의할 수도 있습니다.
   // validateStatus: status => status < 500
 });
 
